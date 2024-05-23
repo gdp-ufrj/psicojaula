@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 public class InteractionDialogue : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
     public void OnPointerClick(PointerEventData eventData) {
         gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-        //GameController.GetInstance().changeScenario((int)GameController.LookDirection.OTHER, transform.gameObject.name);
     }
 
     public void OnPointerDown(PointerEventData eventData) {

@@ -1,4 +1,6 @@
-VAR teste = false
+VAR dialogoTV = 0
+VAR teste = true
 
-=== function updateComida(newValue) ===
-~teste = newValue
+=== function resetDialogueVariables() ===
+~teste = true
+~dialogoTV = 0

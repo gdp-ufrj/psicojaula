@@ -4,9 +4,10 @@ public class DialogueTrigger : MonoBehaviour {     //Este script apenas é respon
 
     public TextAsset dialogueJSON;
     [SerializeField] private float textDialogueSpeed = 0.05f;
+    [SerializeField] private float fontSize = 20f;
 
     public void TriggerDialogue() {
         if (!DialogueController.GetInstance().dialogueActive)
-            DialogueController.GetInstance().StartDialogue(dialogueJSON, textDialogueSpeed);
+            DialogueController.GetInstance().StartDialogue(dialogueJSON, textDialogueSpeed, fontSize);
     }
 }

@@ -1,18 +1,18 @@
 using Ink.Runtime;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour {    //Esta classe será única para todo o projeto (singleton class)
     private static DialogueController instance;
 
     public TextAsset variablesJSON;    //Este é o arquivo JSON do ink que contém todas as variáveis de diálogo
-    //public GameObject ImgCharacterDialogue, DialogueBoxContainer;
-    public GameObject bgDialogue;
+    public GameObject canvasDialogue, dialogueBox;
     public TextMeshProUGUI txtDialogue, txtNameCharacter;
     public GameObject[] choices;
     public DialogueVariablesController dialogueVariablesController { get; private set; }
+    [SerializeField] [Range(5f, 10f)] private float showPanelDialogueTax;
 
     private TextMeshProUGUI[] choicesTxt;
     private Story dialogue;
@@ -61,15 +61,36 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
         }
     }
 
-    public void StartDialogue(TextAsset dialogueJSON, float textSpeed) {
-        dialogue = new Story(dialogueJSON.text);        //Carregando o diálogo a partir do arquivo JSON passado de parâmetro
-        dialogueActive = true;
-        textDialogueSpeed = textSpeed;
-        txtDialogue.gameObject.SetActive(true);
-        bgDialogue.SetActive(true);
-        //DialogueBoxContainer.SetActive(true);
-        dialogueVariablesController.StartListening(dialogue);  //Para detectar as mudanças de variáveis no diálogo
+    public IEnumerator ShowCanvasDialogue() {   //Este método será responável por mostrar o canvas de diálogo
+        Image dialogueBoxRectTransform = dialogueBox.GetComponent<Image>();
+        Color initialColor = new Color(0, 0, 0, 0);
+        dialogueBoxRectTransform.color = initialColor;
+        float targetValue = 0.5f;   //Este é o valor desejado para a opacidade da caixa de diálogo
+        bool txtStarted = false;
+        canvasDialogue.SetActive(true);
 
+        while (Mathf.Abs(dialogueBoxRectTransform.color.a - targetValue) > 0.01f) {
+            float lerpValue = Mathf.Lerp(dialogueBoxRectTransform.color.a, targetValue, showPanelDialogueTax * Time.deltaTime);
+            Color newColor = new Color(0, 0, 0, lerpValue);
+            dialogueBoxRectTransform.color = newColor;
+            if (Mathf.Abs(dialogueBoxRectTransform.color.a - targetValue) > 0.008f && !txtStarted) {    //Para começar a mostrar as letras do diálogo um pouco antes de mostrar a caixa
+                txtStarted = true;
+                StartTextDialogue();
+            }
+            yield return null;
+        }
+    }
+
+    public void StartDialogue(TextAsset dialogueJSON, float textSpeed, float fontSize) {
+        dialogue = new Story(dialogueJSON.text);        //Carregando o diálogo a partir do arquivo JSON passado de parâmetro
+        textDialogueSpeed = textSpeed;
+        txtDialogue.fontSize = fontSize;
+        StartCoroutine(ShowCanvasDialogue());
+    }
+
+    public void StartTextDialogue() {
+        dialogueActive = true;
+        dialogueVariablesController.StartListening(dialogue);  //Para detectar as mudanças de variáveis no diálogo
         if (dialogue.canContinue) {
             dialogue.Continue();
             StartCoroutine(PrintDialogue());
@@ -114,8 +135,7 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
 
     private void EndDialogue() {   //Método chamado ao fim do diálogo
         txtDialogue.text = "";
-        txtDialogue.gameObject.SetActive(false);
-        bgDialogue.SetActive(false);
+        canvasDialogue.SetActive(false);
         //DialogueBoxContainer.SetActive(false);
         dialogueActive = false;
         dialogueVariablesController.StopListening(dialogue);  //Para parar de detectar as mudanças de variáveis no diálogo
