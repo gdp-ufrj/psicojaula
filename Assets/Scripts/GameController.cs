@@ -18,11 +18,13 @@ public class GameController : MonoBehaviour {
 
     [SerializeField] private GameObject[] scenariosListInOrder;    //Essa será uma lista serializada, na qual poderemos colocar os GameObjects de cenário
 
-    [SerializeField] private GameObject canvasPause, btnLeft, btnRight, btnUp, btnBack;
+    [SerializeField] private GameObject canvasScenarios, canvasPause, btnLeft, btnRight, btnUp, btnBack;
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private float cameraOffset;
 
     private int idActiveScenario;
     private bool isChangingScenario = false, gamePaused=false, isInMainScenario;
+    private float originalCameraSize;
 
 
     public static GameController GetInstance() {
@@ -37,6 +39,8 @@ public class GameController : MonoBehaviour {
     }
 
     private void Start() {
+        if (mainCamera != null)
+            originalCameraSize = mainCamera.orthographicSize;
         if (scenariosListInOrder.Length > 0) {   //Aqui temos que popular a estrutura de cenários
             scenarios = Scenarios.PopulateScenarios(scenariosListInOrder);
             scenarios.ScenariosDictionary[0].ScenarioObject.SetActive(true);   //Ativando o primeiro cenário
@@ -47,9 +51,8 @@ public class GameController : MonoBehaviour {
             idActiveScenario = 0;    //Este é o índice do cenário que está ativo no momento
             newScenario = null;
         }
-
+        
         TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena só acontecerá depois de tudo que foi feito antes
-
         //DialogueController.GetInstance().dialogueVariablesController.CheckVariableValues();
     }
 
@@ -150,6 +153,9 @@ public class GameController : MonoBehaviour {
 
     private IEnumerator moveCameraOffset(float horizontalOffset, float verticalOffset) {
         isChangingScenario = true;
+        canvasScenarios.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+        StartCoroutine(moveCameraNearScenario());
+
         float timePassed = 0f, lerpDuration = 1f;
         RectTransform scenarioRectTransform = currentScenario.ScenarioObject.GetComponent<RectTransform>();
         while (timePassed < lerpDuration) {
@@ -166,5 +172,19 @@ public class GameController : MonoBehaviour {
         scenarioRectTransform.offsetMin = Vector2.zero;
         scenarioRectTransform.offsetMax = Vector2.zero;
         isChangingScenario = false;
+    }
+
+    private IEnumerator moveCameraNearScenario() {
+        float targetSize = mainCamera.orthographicSize * 0.95f;
+        float timePassed = 0f, lerpDuration = 0.4f;
+        while (timePassed < lerpDuration) {
+            float t = timePassed / lerpDuration;
+            float lerpValue = Mathf.Lerp(mainCamera.orthographicSize, targetSize, t);
+            mainCamera.orthographicSize = lerpValue;
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+        mainCamera.orthographicSize = originalCameraSize;
+        canvasScenarios.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
     }
 }
