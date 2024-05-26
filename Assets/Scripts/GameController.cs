@@ -49,6 +49,8 @@ public class GameController : MonoBehaviour {
         }
 
         TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena só acontecerá depois de tudo que foi feito antes
+
+        //DialogueController.GetInstance().dialogueVariablesController.CheckVariableValues();
     }
 
     private void Update() {
@@ -136,13 +138,13 @@ public class GameController : MonoBehaviour {
             btnBack.SetActive(false);
             btnLeft.SetActive(true);
             btnRight.SetActive(true);
-            btnUp.SetActive(true);
+            //btnUp.SetActive(true);
         }
         else {
             btnBack.SetActive(true);
             btnLeft.SetActive(false);
             btnRight.SetActive(false);
-            btnUp.SetActive(false);
+            //btnUp.SetActive(false);
         }
     }
 
