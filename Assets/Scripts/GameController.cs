@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     private static GameController instance;
@@ -39,30 +40,44 @@ public class GameController : MonoBehaviour {
     }
 
     private void Start() {
+        //Debug.Log(scenariosListInOrder);
+        SoundController.GetInstance().LoadSounds();   //Carregando os sons da cena
+
         if (mainCamera != null)
             originalCameraSize = mainCamera.orthographicSize;
-        if (scenariosListInOrder.Length > 0) {   //Aqui temos que popular a estrutura de cenários
-            scenarios = Scenarios.PopulateScenarios(scenariosListInOrder);
-            scenarios.ScenariosDictionary[0].ScenarioObject.SetActive(true);   //Ativando o primeiro cenário
+        if (scenariosListInOrder != null) {   //Aqui temos que popular a estrutura de cenários
+            if(scenariosListInOrder.Length > 0) {
+                scenarios = Scenarios.PopulateScenarios(scenariosListInOrder);
+                scenarios.ScenariosDictionary[0].ScenarioObject.SetActive(true);   //Ativando o primeiro cenário
 
-            isInMainScenario = true;
-            currentScenario = scenarios.ScenariosDictionary[0];
-            originalMainScenario = scenarios.ScenariosDictionary[0];
-            idActiveScenario = 0;    //Este é o índice do cenário que está ativo no momento
-            newScenario = null;
+                isInMainScenario = true;
+                currentScenario = scenarios.ScenariosDictionary[0];
+                originalMainScenario = scenarios.ScenariosDictionary[0];
+                idActiveScenario = 0;    //Este é o índice do cenário que está ativo no momento
+                newScenario = null;
+            }
         }
-        
-        TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena só acontecerá depois de tudo que foi feito antes
+
+        if (Globals.firstScene)    //Se o jogo tiver acabado de abrir
+            Globals.firstScene = false;
+        else
+            TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena só acontecerá depois de tudo que foi feito antes
+
+        SoundController.GetInstance().PlaySceneMusic();
         //DialogueController.GetInstance().dialogueVariablesController.CheckVariableValues();
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {    //Detectando "pause" do jogo
             if (canvasPause != null) {
-                if (gamePaused)
+                if (gamePaused) {
                     canvasPause.SetActive(false);
-                else
+                    SoundController.GetInstance().ResumeCurrentTrack();
+                }
+                else {
                     canvasPause.SetActive(true);
+                    SoundController.GetInstance().PauseCurrentTrack();
+                }
                 gamePaused = !gamePaused;
             }
         }
@@ -186,5 +201,12 @@ public class GameController : MonoBehaviour {
         }
         mainCamera.orthographicSize = originalCameraSize;
         canvasScenarios.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
+    }
+
+    public void changeOST1() {
+        SoundController.GetInstance().PlaySound("OST_teste");
+    }
+    public void changeOST2() {
+        SoundController.GetInstance().PlaySound("OST_house");
     }
 }

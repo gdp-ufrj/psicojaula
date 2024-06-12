@@ -26,32 +26,7 @@ public class TransitionController : MonoBehaviour {
         Color colorBgTransition = Color.black;
         colorBgTransition.a = 1;
         bgTransitions.GetComponent<Image>().color = colorBgTransition;
-        bgTransitions.GetComponent<Image>().raycastTarget = true;
         animTransitionScenes = bgTransitions.GetComponent<Animator>();
-        /*
-        if (SceneManager.GetActiveScene().name.ToLower().Contains("menu")) {
-            if (!Globals.firstScene)
-                animTransitionScenes.SetBool("fadeOut", true);
-        }
-        else
-            animTransitionScenes.SetTrigger("fadeOut");
-
-        if (Globals.firstScene) {   //Se o jogo tiver acabado de abrir
-            Globals.LoadData();
-            Globals.firstScene = false;
-        }
-        else
-            Globals.SaveData();
-        */
-    }
-
-    public void playSceneMusic() {
-        /*
-        if (SceneManager.GetActiveScene().name.ToLower().Contains("menu"))
-            SoundController.GetInstance().PlaySound("OST_menu", null);
-        else
-            SoundController.GetInstance().PlaySound("OST_level", null);
-        */
     }
 
     public void FadeOutScene() {
@@ -80,14 +55,17 @@ public class TransitionController : MonoBehaviour {
     }
 
     private IEnumerator LoadSceneOrScenario(int sceneIndex=-1) {
-        if(sceneIndex != -1) {   //Se for a transição entre cenas
+        if (sceneIndex != -1) {   //Se for a transição entre cenas
+            bgTransitions.GetComponent<Image>().raycastTarget = true;
             animTransitionScenes.Play("fadeInScene");
             yield return new WaitForSeconds(transistionTimeScenes);
             SceneManager.LoadScene(sceneIndex);
         }
         else {    //Se for transição entre cenários
+            bgTransitions.GetComponent<Image>().raycastTarget = true;
             animTransitionScenes.Play("fadeInScenario");
             yield return new WaitForSeconds(transitionTimeScenarios);
+            bgTransitions.GetComponent<Image>().raycastTarget = false;
             animTransitionScenes.Play("fadeOutScenario");
         }
     }
