@@ -186,14 +186,6 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
     }
     public void ChangeVolumes(bool sceneStart) {    //o parâmetro sceneStart é necessário para evitar que uma música comece com volume errado quando uma cena é carregada
         List<AudioSource> allAudios = GetComponents<AudioSource>().ToList<AudioSource>();
-        /*
-        foreach (GameObject obj in objectsSounds) {
-            AudioSource[] objAudios = obj.GetComponents<AudioSource>();
-            foreach (AudioSource a in objAudios) {
-                allAudios.Add(a);
-            }
-        }
-        */
 
         foreach (AudioSource audio in allAudios) {
             if (audio.clip.name.Contains("OST")) {

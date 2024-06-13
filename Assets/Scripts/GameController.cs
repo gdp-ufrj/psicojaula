@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
     private static GameController instance;
@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] private GameObject[] scenariosListInOrder;    //Essa será uma lista serializada, na qual poderemos colocar os GameObjects de cenário
 
     [SerializeField] private GameObject canvasScenarios, canvasPause, btnLeft, btnRight, btnUp, btnBack;
+    [SerializeField] private Slider OSTVolumeSlider, SFXVolumeSlider;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float cameraOffset;
 
@@ -63,6 +64,22 @@ public class GameController : MonoBehaviour {
         else
             TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena só acontecerá depois de tudo que foi feito antes
 
+
+        SoundController.GetInstance().ChangeVolumes(true);
+        if (OSTVolumeSlider != null) {   //Se 1 slider estiver ativo, os outros também estarão
+            //updateConfigs();
+            OSTVolumeSlider.value = Globals.volumeOST;
+            SFXVolumeSlider.value = Globals.volumeSFX;
+            OSTVolumeSlider.onValueChanged.AddListener((newValue) => {
+                Debug.Log(newValue);
+                Globals.volumeOST = newValue;
+                SoundController.GetInstance().ChangeVolumes(false);
+            });
+            SFXVolumeSlider.onValueChanged.AddListener((newValue) => {
+                Globals.volumeSFX = newValue;
+                SoundController.GetInstance().ChangeVolumes(false);
+            });
+        }
         SoundController.GetInstance().PlaySceneMusic();
         //DialogueController.GetInstance().dialogueVariablesController.CheckVariableValues();
     }
@@ -81,10 +98,6 @@ public class GameController : MonoBehaviour {
                 gamePaused = !gamePaused;
             }
         }
-    }
-
-    public void ChangeSceneButton() {
-        TransitionController.GetInstance().LoadNextScene();
     }
 
     public void ChangeScenarioButton(int direction) {    //Este método servirá para trocar o cenário do jogo (quando olhamos para a esquerda/direita/cima)
@@ -208,5 +221,10 @@ public class GameController : MonoBehaviour {
     }
     public void changeOST2() {
         SoundController.GetInstance().PlaySound("OST_house");
+    }
+
+
+    public void ReturnToMenu() {
+        TransitionController.GetInstance().LoadMenu();
     }
 }
