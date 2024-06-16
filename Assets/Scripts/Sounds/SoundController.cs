@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class SoundController : MonoBehaviour {   //Será uma classe Singleton
     private static SoundController instance;
 
+    [SerializeField] private float timeFadeInTrack, timeFadeOutTrack, timeFadeBetweenTracks;
+
     public Sound[] sounds;
     //public List<GameObject> objectsSounds;
 
@@ -127,7 +129,7 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
                 oldOST = audios.FirstOrDefault(a => a.clip.name.Equals(nameOSTPlaying));
 
             StopAllCoroutines();
-            StartCoroutine(FadeTrack(oldOST, newOST));
+            StartCoroutine(FadeBetweenTracks(oldOST, newOST));
             if(nameOSTPlaying != "")
                 isPlayingOST[nameOSTPlaying] = false;
             isPlayingOST[nameNewOST] = true;
@@ -135,23 +137,49 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
     }
 
 
-    private IEnumerator FadeTrack(AudioSource oldOST, AudioSource newOST) {    //Esta co-rotina será usada para transiocionar entre uma música e outra
-        float timeToFade = 1f, timeElapsed = 0;
+    private IEnumerator FadeBetweenTracks(AudioSource oldOST, AudioSource newOST) {    //Esta co-rotina será usada para transiocionar entre uma música e outra
+        float timeElapsed = 0;
         float volumeNewOst = currentVolumesOSTs[newOST.clip.name], volumeOldOST = 1;
         if (oldOST != null)
             volumeOldOST = currentVolumesOSTs[oldOST.clip.name];
 
         newOST.volume = 0;
         newOST.Play();
-        while (timeElapsed < timeToFade) {
+        while (timeElapsed < timeFadeBetweenTracks) {
             if (oldOST != null)
-                oldOST.volume = Mathf.Lerp(volumeOldOST, 0, timeElapsed / timeToFade);
-            newOST.volume = Mathf.Lerp(0, volumeNewOst, timeElapsed / timeToFade);
+                oldOST.volume = Mathf.Lerp(volumeOldOST, 0, timeElapsed / timeFadeBetweenTracks);
+            newOST.volume = Mathf.Lerp(0, volumeNewOst, timeElapsed / timeFadeBetweenTracks);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         if (oldOST != null)
             oldOST.Stop();
+    }
+
+    private IEnumerator FadeInTrack(AudioSource track) {    //Esta co-rotina será usada para iniciar uma trilha de forma suave
+        float timeElapsed = 0;
+        float newVolume = currentVolumesOSTs[track.clip.name];
+
+        track.volume = 0;
+        track.Play();
+        while (timeElapsed < timeFadeInTrack) {
+            track.volume = Mathf.Lerp(0, newVolume, timeElapsed / timeFadeInTrack);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeOutTrack(AudioSource track) {    //Esta co-rotina será usada para parar uma trilha de forma suave
+        float timeElapsed = 0;
+        float trackVolume = currentVolumesOSTs[track.clip.name];
+        //Debug.Log(track + "  " + trackVolume);
+
+        while (timeElapsed < timeFadeOutTrack) {
+            track.volume = Mathf.Lerp(trackVolume, 0, timeElapsed / timeFadeOutTrack);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        track.Pause();
     }
 
 
@@ -166,7 +194,7 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
         if (nameOSTPlaying != "") {
             AudioSource[] audios = gameObject.GetComponents<AudioSource>();
             AudioSource currentTrack = audios.FirstOrDefault(a => a.clip.name.Equals(nameOSTPlaying));
-            currentTrack.Pause();
+            StartCoroutine(FadeOutTrack(currentTrack));
         }
     }
 
@@ -181,7 +209,7 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
         if (nameOSTPlaying != "") {
             AudioSource[] audios = gameObject.GetComponents<AudioSource>();
             AudioSource currentTrack = audios.FirstOrDefault(a => a.clip.name.Equals(nameOSTPlaying));
-            currentTrack.Play();
+            StartCoroutine(FadeInTrack(currentTrack));
         }
     }
     public void ChangeVolumes(bool sceneStart) {    //o parâmetro sceneStart é necessário para evitar que uma música comece com volume errado quando uma cena é carregada

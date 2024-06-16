@@ -19,7 +19,8 @@ public class GameController : MonoBehaviour {
 
     [SerializeField] private GameObject[] scenariosListInOrder;    //Essa será uma lista serializada, na qual poderemos colocar os GameObjects de cenário
 
-    [SerializeField] private GameObject canvasScenarios, canvasPause, btnLeft, btnRight, btnUp, btnBack;
+    [SerializeField] private GameObject canvasScenarios, btnLeft, btnRight, btnUp, btnBack;
+    [SerializeField] private GameObject canvasPause, canvasMenu, canvasConfigs;  //Diferentes interfaces do jogo
     [SerializeField] private Slider OSTVolumeSlider, SFXVolumeSlider;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float cameraOffset;
@@ -85,23 +86,23 @@ public class GameController : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {    //Detectando "pause" do jogo
-            if (canvasPause != null) {
-                if (gamePaused) {
-                    canvasPause.SetActive(false);
-                    SoundController.GetInstance().ResumeCurrentTrack();
-                }
+        if(canvasPause != null) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                if (canvasConfigs.activeSelf)    //Se estiver no menu de configurações
+                    ExitConfigs();
                 else {
-                    canvasPause.SetActive(true);
-                    SoundController.GetInstance().PauseCurrentTrack();
+                    if (gamePaused)
+                        SoundController.GetInstance().ResumeCurrentTrack();
+                    else
+                        SoundController.GetInstance().PauseCurrentTrack();
+                    canvasPause.SetActive(!gamePaused);
+                    gamePaused = !gamePaused;
                 }
-                gamePaused = !gamePaused;
             }
         }
     }
 
     public void ChangeScenarioButton(int direction) {    //Este método servirá para trocar o cenário do jogo (quando olhamos para a esquerda/direita/cima)
-        string direcao = Enum.GetName(typeof(LookDirection), (LookDirection)direction);
         changeScenario(direction);
     }
 
@@ -224,7 +225,30 @@ public class GameController : MonoBehaviour {
     }
 
 
-    public void ReturnToMenu() {
+
+    //Métodos para botões do menu e do menu de pausa:
+    public void StartGame() {
+        TransitionController.GetInstance().LoadNextScene();
+    }
+    public void QuitGame() {
+        Application.Quit();
+    }
+    public void EnterConfigs() {
+        if(canvasPause != null)
+            canvasPause.SetActive(false);
+        else if(canvasMenu != null)
+            canvasMenu.SetActive(false);
+        canvasConfigs.SetActive(true);
+    }
+    public void ExitConfigs() {
+        if (canvasPause != null)
+            canvasPause.SetActive(true);
+        else if (canvasMenu != null)
+            canvasMenu.SetActive(true);
+        canvasConfigs.SetActive(false);
+    }
+    public void ReturnToGameMenu() {   //Para retornar ao menu do jogo
         TransitionController.GetInstance().LoadMenu();
     }
+
 }

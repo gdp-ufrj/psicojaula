@@ -56,6 +56,7 @@ public class TransitionController : MonoBehaviour {
 
     private IEnumerator LoadSceneOrScenario(int sceneIndex=-1) {
         if (sceneIndex != -1) {   //Se for a transição entre cenas
+            SoundController.GetInstance().PauseCurrentTrack();
             bgTransitions.GetComponent<Image>().raycastTarget = true;
             animTransitionScenes.Play("fadeInScene");
             yield return new WaitForSeconds(transistionTimeScenes);

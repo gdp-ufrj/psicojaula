@@ -9,17 +9,4 @@ public class MenuController : MonoBehaviour {
             canvasMenu.SetActive(true);
         }
     }
-
-    //Métodos para os botões do menu:
-    public void StartGame() {
-        TransitionController.GetInstance().LoadNextScene();
-    }
-    public void Configs() {
-        canvasConfigs.SetActive(true);
-        canvasMenu.SetActive(false);
-    }
-    public void ReturnToMenu() {
-        canvasConfigs.SetActive(false);
-        canvasMenu.SetActive(true);
-    }
 }
