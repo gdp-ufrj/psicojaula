@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46afc19c66515114b86f96102f42739e, type: 3}
-  m_Name: Item2
+  m_Name: Espanador
   m_EditorClassIdentifier: 
-  id: 1
-  itemName: Item 2
+  id: 10
+  itemName: Espanador
   value: 0
-  icon: {fileID: 21300000, guid: 64d5f8cce710fb54d92d72f5f39ad4d7, type: 3}
+  icon: {fileID: 21300000, guid: c063251411c9c3c4a805b5fe85358f70, type: 3}
