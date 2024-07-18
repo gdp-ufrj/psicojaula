@@ -77,11 +77,9 @@ public class InventoryManager : MonoBehaviour
             GameObject obj =  Instantiate(InventoryItem, ItemContent);
 
             var itemIcon = obj.transform.Find("Image").GetComponent<UnityEngine.UI.Image>(); 
-            
+        
             itemIcon.sprite = Items[i].icon;
-
-
-           
+            obj.GetComponent<DragDrop>().AddItem(Items[i]);
         }
     }
 }
