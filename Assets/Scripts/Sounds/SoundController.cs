@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class SoundController : MonoBehaviour {   //Será uma classe Singleton
     private static SoundController instance;
 
-    [SerializeField] private float timeFadeInTrack, timeFadeOutTrack, timeFadeBetweenTracks;
+    [SerializeField] private float timeFadeInTrack, timeFadeOutTrack, timeFadeBetweenTracks, SFXVoume=0.7f;
 
     public Sound[] sounds;
     //public List<GameObject> objectsSounds;
@@ -32,48 +32,27 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
 
     public void LoadSounds() {
         foreach (Sound s in sounds) {
-            if (s.origins.Count() == 0) {   //Se o som não tiver origem especificada
-                s.audioSource = gameObject.AddComponent<AudioSource>();
-                s.audioSource.clip = s.clip;
-                s.audioSource.clip.name = s.name;
-                s.audioSource.volume = s.volume;
-                s.audioSource.pitch = s.pitch;
-                s.audioSource.loop = s.loop;
-                s.audioSource.playOnAwake = false;
-                if (s.is3D) {
-                    s.audioSource.spatialBlend = 1f;
-                    s.audioSource.maxDistance = 100f;
-                    s.audioSource.minDistance = 10f;
-                    s.audioSource.rolloffMode = AudioRolloffMode.Linear;
-                }
+            s.audioSource = gameObject.AddComponent<AudioSource>();
+            s.audioSource.clip = s.clip;
+            s.audioSource.clip.name = s.name;
+            //s.audioSource.volume = s.volume;
+            s.audioSource.pitch = s.pitch;
+            s.audioSource.loop = s.loop;
+            s.audioSource.playOnAwake = false;
+            if (s.is3D) {
+                s.audioSource.spatialBlend = 1f;
+                s.audioSource.maxDistance = 100f;
+                s.audioSource.minDistance = 10f;
+                s.audioSource.rolloffMode = AudioRolloffMode.Linear;
             }
-            /*
-            else {
-                foreach (GameObject go in s.origins) {
-                    GameObject obj = objectsSounds.Find(a => a.name == go.name);
-                    if (obj == null)
-                        objectsSounds.Add(go);
-                    s.audioSource = go.AddComponent<AudioSource>();
-                    s.audioSource.clip = s.clip;
-                    s.audioSource.clip.name = s.name;
-                    s.audioSource.volume = s.volume;
-                    s.audioSource.pitch = s.pitch;
-                    s.audioSource.loop = s.loop;
-                    s.audioSource.playOnAwake = false;
-                    if (s.is3D) {
-                        s.audioSource.spatialBlend = 1f;
-                        s.audioSource.maxDistance = 100f;
-                        s.audioSource.minDistance = 10f;
-                        s.audioSource.rolloffMode = AudioRolloffMode.Linear;
-                    }
-                }
-            }
-            */
+
             if (!s.isOST) {
-                currentVolumesSFXs[s.name] = s.volume;
-                originalVolumesSFXs[s.name] = s.volume;
+                s.audioSource.volume = SFXVoume;
+                currentVolumesSFXs[s.name] = SFXVoume;
+                originalVolumesSFXs[s.name] = SFXVoume;
             }
             else {
+                s.audioSource.volume = s.volume;
                 currentVolumesOSTs[s.name] = s.volume;
                 originalVolumesOSTs[s.name] = s.volume;
             }
@@ -233,7 +212,7 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
     public void PlaySceneMusic() {
         if (SceneManager.GetActiveScene().name.ToLower().Contains("menu"))
             PlaySound("OST_menu", null);
-        else if (SceneManager.GetActiveScene().name.ToLower().Contains("main"))
-            PlaySound("OST_house", null);
+        else if (SceneManager.GetActiveScene().name.ToLower().Contains("quarto"))
+            PlaySound("OST_fase1", null);
     }
 }

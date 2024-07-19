@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -222,10 +221,10 @@ public class GameController : MonoBehaviour {
     }
 
     public void changeOST1() {
-        SoundController.GetInstance().PlaySound("OST_teste");
+        SoundController.GetInstance().PlaySound("OST_fase1");
     }
     public void changeOST2() {
-        SoundController.GetInstance().PlaySound("OST_house");
+        SoundController.GetInstance().PlaySound("OST_fase2");
     }
 
 

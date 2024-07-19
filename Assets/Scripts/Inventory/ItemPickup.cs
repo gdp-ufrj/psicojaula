@@ -1,20 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPickup : MonoBehaviour
-{
+public class ItemPickup : MonoBehaviour {
     public Item Item;
 
-    void Pickup()
-    {
+    void Pickup() {
         InventoryManager.Instance.Add(Item);
         Destroy(gameObject);
         InventoryManager.Instance.ListItems();
+        SoundController.GetInstance().PlaySound(Item.nameSoundPickup);
+        //Debug.Log("alo");
     }
 
-    void OnMouseDown()
-    {
+    void OnMouseDown() {
         Pickup();
     }
 

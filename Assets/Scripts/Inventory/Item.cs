@@ -11,7 +11,5 @@ public class Item:ScriptableObject
     public int value;
     public Sprite icon;
     public Item newItem;
-    	
-
-
+    public string nameSoundPickup;
 }
