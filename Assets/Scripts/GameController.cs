@@ -14,10 +14,10 @@ public class GameController : MonoBehaviour {
         OTHER
     }
 
-    private ScenarioDictionary scenarios;   //Todos os cenários do jogo (todos começarão desativados)  (não é possível serializar)
+    private ScenarioDictionary scenarios;   //Todos os cenï¿½rios do jogo (todos comeï¿½arï¿½o desativados)  (nï¿½o ï¿½ possï¿½vel serializar)
     private ScenarioDictionaryItem currentScenario, newScenario, originalMainScenario;
 
-    [SerializeField] private GameObject[] scenariosListInOrder;    //Essa será uma lista serializada, na qual poderemos colocar os GameObjects de cenário
+    [SerializeField] private GameObject[] scenariosListInOrder;    //Essa serï¿½ uma lista serializada, na qual poderemos colocar os GameObjects de cenï¿½rio
 
     [SerializeField] private GameObject canvasScenarios, btnLeft, btnRight, btnUp, btnBack;
     [SerializeField] private GameObject canvasPause, canvasMenu, canvasConfigs;  //Diferentes interfaces do jogo
@@ -41,21 +41,25 @@ public class GameController : MonoBehaviour {
             Destroy(gameObject);
     }
 
+    public int GetActiveScene() {
+        return idActiveScenario;
+    }
+
     private void Start() {
         //Debug.Log(scenariosListInOrder);
         SoundController.GetInstance().LoadSounds();   //Carregando os sons da cena
 
         if (mainCamera != null)
             originalCameraSize = mainCamera.orthographicSize;
-        if (scenariosListInOrder != null) {   //Aqui temos que popular a estrutura de cenários
+        if (scenariosListInOrder != null) {   //Aqui temos que popular a estrutura de cenï¿½rios
             if(scenariosListInOrder.Length > 0) {
                 scenarios = Scenarios.PopulateScenarios(scenariosListInOrder);
-                scenarios.ScenariosDictionary[0].ScenarioObject.SetActive(true);   //Ativando o primeiro cenário
+                scenarios.ScenariosDictionary[0].ScenarioObject.SetActive(true);   //Ativando o primeiro cenï¿½rio
 
                 isInMainScenario = true;
                 currentScenario = scenarios.ScenariosDictionary[0];
                 originalMainScenario = scenarios.ScenariosDictionary[0];
-                idActiveScenario = 0;    //Este é o índice do cenário que está ativo no momento
+                idActiveScenario = 0;    //Este ï¿½ o ï¿½ndice do cenï¿½rio que estï¿½ ativo no momento
                 newScenario = null;
             }
         }
@@ -63,11 +67,11 @@ public class GameController : MonoBehaviour {
         if (Globals.firstScene)    //Se o jogo tiver acabado de abrir
             Globals.firstScene = false;
         else
-            TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena só acontecerá depois de tudo que foi feito antes
+            TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena sï¿½ acontecerï¿½ depois de tudo que foi feito antes
 
 
         SoundController.GetInstance().ChangeVolumes(true);
-        if (OSTVolumeSlider != null) {   //Se 1 slider estiver ativo, os outros também estarão
+        if (OSTVolumeSlider != null) {   //Se 1 slider estiver ativo, os outros tambï¿½m estarï¿½o
             //updateConfigs();
             OSTVolumeSlider.value = Globals.volumeOST;
             SFXVolumeSlider.value = Globals.volumeSFX;
@@ -88,7 +92,7 @@ public class GameController : MonoBehaviour {
     private void Update() {
         if(canvasPause != null) {
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                if (canvasConfigs.activeSelf)    //Se estiver no menu de configurações
+                if (canvasConfigs.activeSelf)    //Se estiver no menu de configuraï¿½ï¿½es
                     ExitConfigs();
                 else {
                     if (gamePaused)
@@ -102,15 +106,15 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void ChangeScenarioButton(int direction) {    //Este método servirá para trocar o cenário do jogo (quando olhamos para a esquerda/direita/cima)
+    public void ChangeScenarioButton(int direction) {    //Este mï¿½todo servirï¿½ para trocar o cenï¿½rio do jogo (quando olhamos para a esquerda/direita/cima)
         changeScenario(direction);
     }
 
     public void changeScenario(int direction=(int)LookDirection.OTHER, string scenarioName=null) {
         if (!isChangingScenario) {
             if(direction != (int)LookDirection.OTHER) {   //Se estivermos virando para esquerda/direita/cima
-                if (isInMainScenario) {    //Se estivermos em um cenário principal do jogo
-                    float horizontalOffset = 0, verticalOffset = 0;   //Estes valores são os campos do objeto do cenário que servirão como offset da câmera ao olhar para alguma direção
+                if (isInMainScenario) {    //Se estivermos em um cenï¿½rio principal do jogo
+                    float horizontalOffset = 0, verticalOffset = 0;   //Estes valores sï¿½o os campos do objeto do cenï¿½rio que servirï¿½o como offset da cï¿½mera ao olhar para alguma direï¿½ï¿½o
                     switch (direction) {
                         case (int)LookDirection.LEFT:
                             if (idActiveScenario == 0)
@@ -136,7 +140,7 @@ public class GameController : MonoBehaviour {
                     }
                     newScenario = scenarios.ScenariosDictionary[idActiveScenario];
                     originalMainScenario = newScenario;
-                    StartCoroutine(moveCameraOffset(horizontalOffset, verticalOffset));    //Novendo o cenário para dar a impressão de movimentação da câmera
+                    StartCoroutine(moveCameraOffset(horizontalOffset, verticalOffset));    //Novendo o cenï¿½rio para dar a impressï¿½o de movimentaï¿½ï¿½o da cï¿½mera
                 }
                 else {
                     newScenario = currentScenario.ParentScenario;
@@ -145,7 +149,7 @@ public class GameController : MonoBehaviour {
                     //idActiveScenario = originalMainScenario.SceneId;
                 }
             }
-            else {    //Se clicarmos em uma parte do cenário
+            else {    //Se clicarmos em uma parte do cenï¿½rio
                 if(scenarioName != null) {
                     foreach(ScenarioDictionaryItem itemDict in currentScenario.PartsOfScenario) {
                         if (itemDict.ScenarioObject.name.Equals(scenarioName)) {
@@ -161,7 +165,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void changeImgScenario() {    //Este método será chamado logo após o fade-in da transição entre cenários
+    public void changeImgScenario() {    //Este mï¿½todo serï¿½ chamado logo apï¿½s o fade-in da transiï¿½ï¿½o entre cenï¿½rios
         currentScenario.ScenarioObject.SetActive(false);
         newScenario.ScenarioObject.SetActive(true);
         currentScenario = newScenario;
@@ -226,7 +230,7 @@ public class GameController : MonoBehaviour {
 
 
 
-    //Métodos para botões do menu e do menu de pausa:
+    //Mï¿½todos para botï¿½es do menu e do menu de pausa:
     public void StartGame() {
         TransitionController.GetInstance().LoadNextScene();
     }

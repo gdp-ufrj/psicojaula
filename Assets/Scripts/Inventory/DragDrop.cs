@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,13 @@ using UnityEngine.EventSystems;
 public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 
-    Vector3 originalPosition;
     private CanvasGroup canvasGroup;
     private Canvas canvas;
-    Transform parentAfterDrag;
     RectTransform rectTransform;
-
+    private GameController gameController;
     private Item item;
+    private int activeScene;
+    public GameObject ItemObject;
 
     private void Awake() {
         canvas = GameObject.Find("canvasBtn").GetComponent<Canvas>();
@@ -29,31 +30,42 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         return item;
     }
 
+    public void SetGameController(GameController newGameController) {
+        gameController = newGameController;
+    }
+
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
-        originalPosition = rectTransform.anchoredPosition;
+        activeScene = gameController.GetActiveScene();
+
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
-        //parentAfterDrag = transform.parent;
-        //transform.SetParent(transform.root);
-
+        rectTransform.SetParent(GameObject.Find(activeScene.ToString()).GetComponent<RectTransform>());
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        //Debug.Log(canvas.scaleFactor);
-
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         //Debug.Log("OnEndDrag");
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
-        //rectTransform.anchoredPosition = originalPosition;
+        
+        InventoryManager.Instance.Remove(item);
+        
+        GameObject obj = Instantiate(ItemObject, GameObject.Find(activeScene.ToString()).GetComponent<RectTransform>());
+
+        var itemIcon = obj.GetComponent<UnityEngine.UI.Image>(); 
+        obj.GetComponent<RectTransform>().localPosition = rectTransform.localPosition;
+        
+        itemIcon.sprite = item.icon;
+        obj.GetComponent<ItemPickup>().Item = item;
+        obj.GetComponent<ItemController>().Item = item;
+        
+        Destroy(rectTransform.gameObject);
     }
 
 }

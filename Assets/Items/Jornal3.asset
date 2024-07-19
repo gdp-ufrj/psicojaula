@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46afc19c66515114b86f96102f42739e, type: 3}
-  m_Name: Jornal1
+  m_Name: Jornal3
   m_EditorClassIdentifier: 
-  id: 0
-  itemName: Jornal Parte 1
+  id: 14
+  itemName: Jornal Parte 3
   value: 0
-  icon: {fileID: 21300000, guid: 1cd0207b2771edf4b82735a4c2dbe29c, type: 3}
-  newItem: {fileID: 11400000, guid: 765e868a658d87648a214c464a5498eb, type: 2}
+  icon: {fileID: 21300000, guid: 62e7957ea4e2b6e40929281978d6391d, type: 3}
+  newItem: {fileID: 0}

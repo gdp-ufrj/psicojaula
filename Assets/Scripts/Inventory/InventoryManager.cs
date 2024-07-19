@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     private List<Item> Items = new List<Item>();
     public Transform ItemContent;
     public GameObject InventoryItem;
+    public GameController gameController;
     private int firstItem = 0;
     private int lastItem = 0;
     private int qtdItem = 0;
@@ -28,14 +29,18 @@ public class InventoryManager : MonoBehaviour
         if (qtdItem <= 4){
             lastItem += 1;
         }
+        ListItems();
     }
 
     public void Remove(Item item)
     {
-        Items.Remove(item);
-        qtdItem -= 1;
-        if (qtdItem <= 4){
-            lastItem -= 1;
+        if (Items.Contains(item)){
+            Items.Remove(item);
+            qtdItem -= 1;
+            if (qtdItem <= 4){
+                lastItem -= 1;
+            }
+            ListItems();
         }
     }
 
@@ -80,6 +85,7 @@ public class InventoryManager : MonoBehaviour
         
             itemIcon.sprite = Items[i].icon;
             obj.GetComponent<DragDrop>().AddItem(Items[i]);
+            obj.GetComponent<DragDrop>().SetGameController(gameController);
         }
     }
 }
