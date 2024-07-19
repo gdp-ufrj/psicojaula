@@ -19,8 +19,9 @@ public class Frigobar : MonoBehaviour, IDropHandler
     private bool isOpen = false; 
 
     public void OnMouseDown(){
-        int x = 30;
-        int y = 12;
+        int x = 40;
+        int y = 15;
+
 
         if(isOpen){
             GetComponent<Image>().sprite = frigobar_fechado;

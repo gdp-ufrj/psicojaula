@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5355356951088811486}
   - component: {fileID: 7856709298990506226}
   - component: {fileID: 5744467395668785469}
+  - component: {fileID: 3002869121242171385}
   m_Layer: 5
   m_Name: Frigobar_Fechado
   m_TagString: Untagged
@@ -75,3 +76,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3002869121242171385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285394140534696000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed0f8d6fa3562141bb5409518a2a619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cruz_fria: {fileID: 11400000, guid: 8f25c0b2417faaa4d83498167e0693db, type: 2}
+  Cena: {fileID: 0}
+  Item: {fileID: 3717808657834230246, guid: b20a14a13476b314994abc85a91ce889, type: 3}
+  frigobar_aberto: {fileID: 21300000, guid: 94257cf543c5bc14fb593c36cb7a6401, type: 3}
+  frigobar_fechado: {fileID: 21300000, guid: 20fe24ff0a91cbd42bcf25e5995f5eb6, type: 3}
