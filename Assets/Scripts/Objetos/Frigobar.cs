@@ -49,7 +49,6 @@ public class Frigobar : MonoBehaviour, IDropHandler
         Debug.Log(item.id);
         if (item.id == 4 && isOpen){
             InventoryManager.Instance.Remove(item);
-            //InventoryManager.Instance.Add(cruz_fria);
             
             rectTransform =  GetComponent<RectTransform>();
             
@@ -58,6 +57,7 @@ public class Frigobar : MonoBehaviour, IDropHandler
             obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
             Debug.Log(obj.transform.localPosition);
             InventoryManager.Instance.ListItems();
+            Destroy(itemObject); 
         }
 
     }
