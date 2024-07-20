@@ -4,11 +4,16 @@ public class ItemPickup : MonoBehaviour {
     public Item Item;
 
     void Pickup() {
-        InventoryManager.Instance.Add(Item);
-        Destroy(gameObject);
-        InventoryManager.Instance.ListItems();
+        DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+        ItemInventory itemInventory = new ItemInventory(Item, dialogueTrigger);
+        InventoryManager.Instance.Add(itemInventory);
+        //InventoryManager.Instance.ListItems();
         SoundController.GetInstance().PlaySound(Item.nameSoundPickup);
-        //Debug.Log("alo");
+        if (!gameObject.CompareTag("ItemDropped")) {
+            if (dialogueTrigger != null)
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue();
+        }
+        Destroy(gameObject);
     }
 
     void OnMouseDown() {

@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
-    private List<Item> Items = new List<Item>();
+    private List<ItemInventory> Items = new List<ItemInventory>();
     public Transform ItemContent;
     public GameObject InventoryItem;
     public GameController gameController;
@@ -22,9 +22,10 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
-    public void Add(Item item)
+    public void Add(ItemInventory itemInventory)
     {
-        Items.Add(item);
+        //Debug.Log("adicionou!");
+        Items.Add(itemInventory);
         qtdItem += 1;
         if (qtdItem <= 4){
             lastItem += 1;
@@ -32,10 +33,11 @@ public class InventoryManager : MonoBehaviour
         ListItems();
     }
 
-    public void Remove(Item item)
+    public void Remove(ItemInventory itemInventory)
     {
-        if (Items.Contains(item)){
-            Items.Remove(item);
+        if (Items.Contains(itemInventory)){
+            //Debug.Log("removeu!");
+            Items.Remove(itemInventory);
             qtdItem -= 1;
             if (qtdItem <= 4){
                 lastItem -= 1;
@@ -46,7 +48,6 @@ public class InventoryManager : MonoBehaviour
 
     public void NextPage()
     {
-        
         if (lastItem == qtdItem){
             return;
         }
@@ -78,14 +79,18 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = firstItem; i < lastItem; i++)
         {
-
             GameObject obj =  Instantiate(InventoryItem, ItemContent);
 
-            var itemIcon = obj.transform.Find("Image").GetComponent<UnityEngine.UI.Image>(); 
-        
-            itemIcon.sprite = Items[i].icon;
-            obj.GetComponent<DragDrop>().AddItem(Items[i]);
+            var itemIcon = obj.transform.Find("Image").GetComponent<UnityEngine.UI.Image>();
+
+            itemIcon.sprite = Items[i].item.icon;
+            obj.GetComponent<DragDrop>().AddItem(Items[i].item);
             obj.GetComponent<DragDrop>().SetGameController(gameController);
+
+            if (Items[i].dialogueTrigger != null) {
+                DialogueTrigger dialogueTrigger = obj.GetComponent<DialogueTrigger>();
+                dialogueTrigger.SetVariables(Items[i].dialogueTrigger);
+            }
         }
     }
 }

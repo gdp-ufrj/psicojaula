@@ -9,10 +9,9 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
 
     public TextAsset variablesJSON;    //Este é o arquivo JSON do ink que contém todas as variáveis de diálogo
     public GameObject canvasDialogue, dialogueBox;
-    public TextMeshProUGUI txtDialogue, txtNameCharacter;
+    public TextMeshProUGUI txtDialogue;
     public GameObject[] choices;
     public DialogueVariablesController dialogueVariablesController { get; private set; }
-    [SerializeField] [Range(5f, 10f)] private float showPanelDialogueTax;
 
     private TextMeshProUGUI[] choicesTxt;
     private Story dialogue;
@@ -56,36 +55,36 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
         }
         if (endLine) {
             endLine = false;
-            //if (dialogue.currentChoices.Count > 0)
-            //    ShowChoices();
         }
     }
 
-    public IEnumerator ShowCanvasDialogue() {   //Este método será responável por mostrar o canvas de diálogo
+    public IEnumerator ShowCanvasDialogue(float showPanelDialogueTax) {   //Este método será responável por mostrar o canvas de diálogo
         Image dialogueBoxRectTransform = dialogueBox.GetComponent<Image>();
         Color initialColor = new Color(0, 0, 0, 0);
         dialogueBoxRectTransform.color = initialColor;
         float targetValue = 0.5f;   //Este é o valor desejado para a opacidade da caixa de diálogo
         bool txtStarted = false;
         canvasDialogue.SetActive(true);
-
-        while (Mathf.Abs(dialogueBoxRectTransform.color.a - targetValue) > 0.01f) {
+        while (Mathf.Abs(targetValue - dialogueBoxRectTransform.color.a) > 0.01f) {
+            Debug.Log("Valor: " + Mathf.Abs(targetValue - dialogueBoxRectTransform.color.a));
+            //Debug.Log("Transparencia: " + dialogueBoxRectTransform.color.a);
             float lerpValue = Mathf.Lerp(dialogueBoxRectTransform.color.a, targetValue, showPanelDialogueTax * Time.deltaTime);
             Color newColor = new Color(0, 0, 0, lerpValue);
             dialogueBoxRectTransform.color = newColor;
-            if (Mathf.Abs(dialogueBoxRectTransform.color.a - targetValue) > 0.008f && !txtStarted) {    //Para começar a mostrar as letras do diálogo um pouco antes de mostrar a caixa
+            if (targetValue - Mathf.Abs(dialogueBoxRectTransform.color.a) < 0.015f && !txtStarted) {    //Para começar a mostrar as letras do diálogo um pouco antes de mostrar a caixa
                 txtStarted = true;
                 StartTextDialogue();
             }
+            Debug.Log("Valor: " + Mathf.Abs(targetValue - dialogueBoxRectTransform.color.a));
             yield return null;
         }
     }
 
-    public void StartDialogue(TextAsset dialogueJSON, float textSpeed, float fontSize) {
+    public void StartDialogue(TextAsset dialogueJSON, float textSpeed, float fontSize, float showPanelDialogueTax) {
         dialogue = new Story(dialogueJSON.text);        //Carregando o diálogo a partir do arquivo JSON passado de parâmetro
         textDialogueSpeed = textSpeed;
         txtDialogue.fontSize = fontSize;
-        StartCoroutine(ShowCanvasDialogue());
+        StartCoroutine(ShowCanvasDialogue(showPanelDialogueTax));
     }
 
     public void StartTextDialogue() {
@@ -141,51 +140,6 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
         dialogueVariablesController.StopListening(dialogue);  //Para parar de detectar as mudanças de variáveis no diálogo
         //GameController.checkVariablesDialogue(dialogueVariablesController.variablesValues);    //Fazendo as checagens de variáveis importantes que podem ter mudado após um diálogo
     }
-
-    /*
-    private void ShowChoices() {    //Função para mostrar as escolhas do diálogo
-        List<Choice> choicesList = dialogue.currentChoices;   //Recuperando as escolhas do diálogo
-
-        int index = 0;
-        foreach (Choice choice in choicesList) {
-            choicesTxt[index].text = choice.text;
-            choices[index].SetActive(true);
-            index++;
-        }
-        for (int i = index; i < choices.Length; i++) {   //Escondendo as escolhas que não fazem parte do diálogo
-            choices[i].SetActive(false);
-        }
-    }
-
-    public void MakeChoice(int choiceIndex) {    //Função para fazer uma escolha no diálogo
-        dialogue.ChooseChoiceIndex(choiceIndex);
-        foreach (GameObject choice in choices) {
-            choice.SetActive(false);
-        }
-
-        if (!dialogue.canContinue)     //Se estiver no final do diálogo
-            EndDialogue();
-        else {
-            dialogue.Continue();
-            StartCoroutine(PrintDialogue());
-        }
-    }
-
-    private void ChangeCharacterDialogue() {   //Função para mudar o sprite do personagem do diálogo
-        List<string> tagsDialogueLine = dialogue.currentTags;   //As tags são: nome do personagem e sprite do personagem
-        string characterName = "", spriteCharacter = "";
-        foreach (string tag in tagsDialogueLine) {
-            if (tag.Split(":")[0].Trim() == "character")
-                characterName = tag.Split(":")[1].Trim().ToUpper();
-            else if (tag.Split(":")[0].Trim() == "state")
-                spriteCharacter = tag.Split(":")[1].Trim();
-        }
-        if (spriteCharacter != "")
-            ImgCharacterDialogue.GetComponent<Animator>().Play(spriteCharacter);
-        if (characterName != "")
-            txtNameCharacter.text = characterName;
-    }
-    */
 
     public Ink.Runtime.Object GetVariableState(string variableName) {    //Esta função servirá para recuperar o estado de determinada variável de diálogo
         Ink.Runtime.Object variableValue = null;

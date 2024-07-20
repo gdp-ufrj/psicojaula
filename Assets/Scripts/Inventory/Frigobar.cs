@@ -43,12 +43,13 @@ public class Frigobar : MonoBehaviour, IDropHandler
 
         GameObject itemObject = eventData.selectedObject;
 
-        var item = itemObject.GetComponent<DragDrop>().GetItem();
+        Item item = itemObject.GetComponent<DragDrop>().GetItem();
 
-
-        Debug.Log(item.id);
-        if (item.id == 4 && isOpen){
-            InventoryManager.Instance.Remove(item);
+        //Debug.Log(item.id);
+        if (item.id == 4 && isOpen){    //Puzzle cruz
+            DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
+            ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
+            InventoryManager.Instance.Remove(itemInventory);
             //InventoryManager.Instance.Add(cruz_fria);
             
             rectTransform =  GetComponent<RectTransform>();

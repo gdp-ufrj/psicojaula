@@ -17,3 +17,6 @@ MonoBehaviour:
   value: 0
   icon: {fileID: 21300000, guid: 62e7957ea4e2b6e40929281978d6391d, type: 3}
   newItem: {fileID: 0}
+  nameSoundPickup: pickup_jornal
+  firstPickup: 1
+  dialogueTriggerScript: {fileID: 0}

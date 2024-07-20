@@ -16,3 +16,7 @@ MonoBehaviour:
   itemName: Cruz Quente
   value: 0
   icon: {fileID: 21300000, guid: f2e9e59db8dab7345bd9586bcf94a759, type: 3}
+  newItem: {fileID: 0}
+  nameSoundPickup: pickup_cruz
+  firstPickup: 1
+  dialogueTriggerScript: {fileID: 0}

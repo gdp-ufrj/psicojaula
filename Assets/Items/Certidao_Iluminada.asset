@@ -16,3 +16,7 @@ MonoBehaviour:
   itemName: "Certid\xE3o iluminda"
   value: 0
   icon: {fileID: 21300000, guid: c849cba9854c3884e9a09b6687d6608d, type: 3}
+  newItem: {fileID: 0}
+  nameSoundPickup: pickup_certidao
+  firstPickup: 1
+  dialogueTriggerScript: {fileID: 0}
