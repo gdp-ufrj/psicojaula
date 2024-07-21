@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPickup : MonoBehaviour
-{
+public class ItemPickup : MonoBehaviour {
     public Item Item;
 
-    void Pickup()
-    {
-        InventoryManager.Instance.Add(Item);
+    void Pickup() {
+        DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+        InventoryManager.Instance.Add(Item, dialogueTrigger);
+        //InventoryManager.Instance.ListItems();
+        SoundController.GetInstance().PlaySound(Item.nameSoundPickup);
+        if (!gameObject.CompareTag("ItemDropped")) {
+            if (dialogueTrigger != null)
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue();
+        }
         Destroy(gameObject);
-        InventoryManager.Instance.ListItems();
     }
 
-    void OnMouseDown()
-    {
-        Pickup();
+    void OnMouseDown() {
+        if(!GameController.GetInstance().blockActionsDialogue)
+            Pickup();
     }
 
 }

@@ -14,10 +14,11 @@ public class ItemController : MonoBehaviour, IDropHandler
         Debug.Log("OIIIIIIIIIIIIIIIIIIII");
         var dropItem = itemObject.GetComponent<DragDrop>().GetItem();
 
-        if (Item.id == 0 || Item.id == 1) {
+        if (Item.id == 0 || Item.id == 1) {    //Combinando jornais
             if (dropItem.id ==  0 || dropItem.id == 1) {
-                
-                InventoryManager.Instance.Remove(dropItem);    
+                DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
+                ItemInventory itemInventory = new ItemInventory(dropItem, dialogueTrigger);
+                InventoryManager.Instance.Remove(itemInventory);    
 
                 GameObject obj = Instantiate(ItemObject, itemObject.transform.parent);
 

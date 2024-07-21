@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
-{
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler {
 
     private CanvasGroup canvasGroup;
     private Canvas canvas;
@@ -21,7 +17,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     }
 
     public void AddItem(Item newItem) {
-        
         item = newItem;
     }
 
@@ -52,11 +47,12 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //Debug.Log("OnEndDrag");
-        
-        InventoryManager.Instance.Remove(item);
+        DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+        ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
+        InventoryManager.Instance.Remove(itemInventory);
         
         GameObject obj = Instantiate(ItemObject, GameObject.Find(activeScene.ToString()).GetComponent<RectTransform>());
+        obj.tag = "ItemDropped";
 
         var itemIcon = obj.GetComponent<UnityEngine.UI.Image>(); 
         obj.GetComponent<RectTransform>().localPosition = rectTransform.localPosition;
@@ -64,8 +60,15 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         itemIcon.sprite = item.icon;
         obj.GetComponent<ItemPickup>().Item = item;
         obj.GetComponent<ItemController>().Item = item;
+        obj.GetComponent<DialogueTrigger>().SetVariables(dialogueTrigger);
         
         Destroy(rectTransform.gameObject);
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+        DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+        if (dialogueTrigger != null)
+            dialogueTrigger.TriggerExamDialogue();
     }
 
 }

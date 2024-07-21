@@ -16,3 +16,7 @@ MonoBehaviour:
   itemName: Caixa Fosforo
   value: 0
   icon: {fileID: 21300000, guid: bda37d0f4378d7840bff33f886c4f4b4, type: 3}
+  newItem: {fileID: 0}
+  nameSoundPickup: pickup_fosforo
+  firstPickup: 1
+  dialogueTriggerScript: {fileID: 0}

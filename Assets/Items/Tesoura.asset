@@ -16,3 +16,7 @@ MonoBehaviour:
   itemName: Tesoura
   value: 0
   icon: {fileID: 21300000, guid: 33c742845bc5b9d41a7198b9990a8478, type: 3}
+  newItem: {fileID: 0}
+  nameSoundPickup: pickup_tesoura
+  firstPickup: 1
+  dialogueTriggerScript: {fileID: 0}

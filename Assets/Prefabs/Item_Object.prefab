@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3797780016053100010}
   - component: {fileID: 5032924218584204216}
   - component: {fileID: -7552328606255044092}
+  - component: {fileID: 8130153579914072366}
   m_Layer: 5
   m_Name: Item_Object
   m_TagString: Untagged
@@ -150,3 +151,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4804198854426867716}
   m_CullTransparentMesh: 1
+--- !u!114 &8130153579914072366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804198854426867716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON: {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  examDialogueJSON: {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  textDialogueSpeed: 0.05
+  fontSize: 20
