@@ -4,63 +4,73 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueController : MonoBehaviour {    //Esta classe será única para todo o projeto (singleton class)
+public class DialogueController : MonoBehaviour
+{    //Esta classe serï¿½ ï¿½nica para todo o projeto (singleton class)
     private static DialogueController instance;
 
-    public TextAsset variablesJSON;    //Este é o arquivo JSON do ink que contém todas as variáveis de diálogo
+    public TextAsset variablesJSON;    //Este ï¿½ o arquivo JSON do ink que contï¿½m todas as variï¿½veis de diï¿½logo
     public GameObject canvasDialogue, dialogueBox, bgDialogue;
     public TextMeshProUGUI txtDialogue;
     public DialogueVariablesController dialogueVariablesController { get; private set; }
 
     private Story dialogue;
 
-    private bool endLine = false;   //Esta variável é responsável por guardar se cada linha do diálogo já terminou ou ainda não
-    private bool letterEfect = true;   //Define se o diálogo terá o efeito de letras aparecendo
+    private bool endLine = false;   //Esta variï¿½vel ï¿½ responsï¿½vel por guardar se cada linha do diï¿½logo jï¿½ terminou ou ainda nï¿½o
+    private bool letterEfect = true;   //Define se o diï¿½logo terï¿½ o efeito de letras aparecendo
     private float textDialogueSpeed;
     private int indexLine;
 
-    public bool dialogueActive { get; private set; }   //Quero que esta variável possa ser lida por outros scripts, mas não modificada
-    public float showPanelDialogueTax = 9f, opacityPanelDialogue=0.5f;
+    public bool dialogueActive { get; private set; }   //Quero que esta variï¿½vel possa ser lida por outros scripts, mas nï¿½o modificada
+    public float showPanelDialogueTax = 9f, opacityPanelDialogue = 0.5f;
 
-    public static DialogueController GetInstance() {
+    public static DialogueController GetInstance()
+    {
         return instance;
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         if (instance == null)
             instance = this;
         else
             Destroy(gameObject);
 
-        //Ao carregar pela primeira vez, precisamos carregar as variáveis criadas no ink para o código. Faço isso chamando o próprio construtor da classe DialogueVariablesController:
+        //Ao carregar pela primeira vez, precisamos carregar as variï¿½veis criadas no ink para o cï¿½digo. Faï¿½o isso chamando o prï¿½prio construtor da classe DialogueVariablesController:
         dialogueVariablesController = new DialogueVariablesController(variablesJSON);
     }
 
-    void Start() {
+    void Start()
+    {
         dialogueActive = false;
     }
 
-    private void Update() {
-        if (dialogueActive) {
+    private void Update()
+    {
+        if (dialogueActive)
+        {
             if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
                 PassDialogue();
         }
-        if (endLine) {
+        if (endLine)
+        {
             endLine = false;
         }
     }
 
-    public IEnumerator ShowCanvasDialogue(float showPanelDialogueTax) {   //Este método será responável por mostrar o canvas de diálogo
+    public IEnumerator ShowCanvasDialogue(float showPanelDialogueTax)
+    {   //Este mï¿½todo serï¿½ responï¿½vel por mostrar o canvas de diï¿½logo
         Image dialogueBoxRectTransform = dialogueBox.GetComponent<Image>();
         Color initialColor = new Color(0, 0, 0, 0);
         dialogueBoxRectTransform.color = initialColor;
-        float targetValue = opacityPanelDialogue;   //Este é o valor desejado para a opacidade da caixa de diálogo
+        float targetValue = opacityPanelDialogue;   //Este ï¿½ o valor desejado para a opacidade da caixa de diï¿½logo
         bool txtStarted = false;
-        while (Mathf.Abs(targetValue - dialogueBoxRectTransform.color.a) > 0.01f) {
+        while (Mathf.Abs(targetValue - dialogueBoxRectTransform.color.a) > 0.01f)
+        {
             float lerpValue = Mathf.Lerp(dialogueBoxRectTransform.color.a, targetValue, showPanelDialogueTax * Time.deltaTime);
             Color newColor = new Color(0, 0, 0, lerpValue);
             dialogueBoxRectTransform.color = newColor;
-            if (targetValue - Mathf.Abs(dialogueBoxRectTransform.color.a) < 0.015f && !txtStarted) {    //Para começar a mostrar as letras do diálogo um pouco antes de mostrar a caixa
+            if (targetValue - Mathf.Abs(dialogueBoxRectTransform.color.a) < 0.015f && !txtStarted)
+            {    //Para comeï¿½ar a mostrar as letras do diï¿½logo um pouco antes de mostrar a caixa
                 txtStarted = true;
                 StartTextDialogue();
             }
@@ -68,8 +78,9 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
         }
     }
 
-    public void StartDialogue(TextAsset dialogueJSON, float textSpeed, float fontSize, bool isInteractionDialogue) {
-        dialogue = new Story(dialogueJSON.text);        //Carregando o diálogo a partir do arquivo JSON passado de parâmetro
+    public void StartDialogue(TextAsset dialogueJSON, float textSpeed, float fontSize, bool isInteractionDialogue)
+    {
+        dialogue = new Story(dialogueJSON.text);        //Carregando o diï¿½logo a partir do arquivo JSON passado de parï¿½metro
         textDialogueSpeed = textSpeed;
         txtDialogue.fontSize = fontSize;
         canvasDialogue.SetActive(true);
@@ -80,7 +91,8 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
 
         if (isInteractionDialogue)
             StartCoroutine(ShowCanvasDialogue(showPanelDialogueTax));
-        else {
+        else
+        {
             Image dialogueBoxRectTransform = dialogueBox.GetComponent<Image>();
             Color colorPanel = new Color(0, 0, 0, opacityPanelDialogue);
             dialogueBoxRectTransform.color = colorPanel;
@@ -89,30 +101,37 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
 
     }
 
-    public void StartTextDialogue() {
+    public void StartTextDialogue()
+    {
         dialogueActive = true;
-        dialogueVariablesController.StartListening(dialogue);  //Para detectar as mudanças de variáveis no diálogo
-        if (dialogue.canContinue) {
+        dialogueVariablesController.StartListening(dialogue);  //Para detectar as mudanï¿½as de variï¿½veis no diï¿½logo
+        if (dialogue.canContinue)
+        {
             dialogue.Continue();
             StartCoroutine(PrintDialogue());
         }
     }
 
-    private void PassDialogue() {
+    private void PassDialogue()
+    {
         string fala = dialogue.currentText;
 
-        if (indexLine < fala.Length - 1) {         //Se não estiver no final da fala
+        if (indexLine < fala.Length - 1)
+        {         //Se nï¿½o estiver no final da fala
             StopAllCoroutines();
             indexLine = fala.Length - 1;
             endLine = true;
             txtDialogue.text = fala;
         }
-        else {
-            if (dialogue.currentChoices.Count == 0) {
+        else
+        {
+            if (dialogue.currentChoices.Count == 0)
+            {
                 //SoundController.GetInstance().PlaySound("skip_dialogo", null);
-                if (!dialogue.canContinue)     //Se estiver no final do diálogo
+                if (!dialogue.canContinue)     //Se estiver no final do diï¿½logo
                     EndDialogue();
-                else {
+                else
+                {
                     dialogue.Continue();
                     StartCoroutine(PrintDialogue());
                 }
@@ -120,39 +139,46 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
         }
     }
 
-    //Função que printa cada linha do diálogo na caixa de diálogo
-    private IEnumerator PrintDialogue() {
-        string fala = dialogue.currentText;    //Pegando a fala atual do diálogo
-        if (letterEfect) {
+    //Funï¿½ï¿½o que printa cada linha do diï¿½logo na caixa de diï¿½logo
+    private IEnumerator PrintDialogue()
+    {
+        string fala = dialogue.currentText;    //Pegando a fala atual do diï¿½logo
+        if (letterEfect)
+        {
             txtDialogue.text = "";
-            for (int i = 0; i < fala.Length; i++) {    //Fazendo as letras aparecerem uma de cada vez
+            for (int i = 0; i < fala.Length; i++)
+            {    //Fazendo as letras aparecerem uma de cada vez
                 txtDialogue.text += fala[i];
                 indexLine = i;
                 yield return new WaitForSeconds(textDialogueSpeed);
             }
         }
-        else {
+        else
+        {
             txtDialogue.text = fala;
             indexLine = fala.Length - 1;
         }
         endLine = true;
     }
 
-    public void EndDialogue() {   //Método chamado ao fim do diálogo
+    public void EndDialogue()
+    {   //Mï¿½todo chamado ao fim do diï¿½logo
         txtDialogue.text = "";
         canvasDialogue.SetActive(false);
         dialogueActive = false;
-        if(dialogue != null)
-            dialogueVariablesController.StopListening(dialogue);  //Para parar de detectar as mudanças de variáveis no diálogo
+        if (dialogue != null)
+            dialogueVariablesController.StopListening(dialogue);  //Para parar de detectar as mudanï¿½as de variï¿½veis no diï¿½logo
         GameController.GetInstance().blockActionsDialogue = false;
-        //GameController.checkVariablesDialogue(dialogueVariablesController.variablesValues);    //Fazendo as checagens de variáveis importantes que podem ter mudado após um diálogo
+        //GameController.checkVariablesDialogue(dialogueVariablesController.variablesValues);    //Fazendo as checagens de variï¿½veis importantes que podem ter mudado apï¿½s um diï¿½logo
     }
 
-    public Ink.Runtime.Object GetVariableState(string variableName) {    //Esta função servirá para recuperar o estado de determinada variável de diálogo
+    public Ink.Runtime.Object GetVariableState(string variableName)
+    {    //Esta funï¿½ï¿½o servirï¿½ para recuperar o estado de determinada variï¿½vel de diï¿½logo
         Ink.Runtime.Object variableValue = null;
         dialogueVariablesController.variablesValues.TryGetValue(variableName, out variableValue);
-        if (variableValue == null) {
-            Debug.Log("Não foi possível recuperar o valor da variável de diálogo informada.");
+        if (variableValue == null)
+        {
+            Debug.Log("Nï¿½o foi possï¿½vel recuperar o valor da variï¿½vel de diï¿½logo informada.");
             return null;
         }
         return variableValue;
