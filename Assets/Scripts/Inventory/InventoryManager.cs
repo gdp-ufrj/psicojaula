@@ -98,16 +98,13 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
-        Debug.Log("List Items - 1");
         foreach (Transform item in ItemContent)
         {
             Destroy(item.gameObject);
         }
 
-        Debug.Log("List Items - 2");
         for (int i = firstItem; i < lastItem; i++)
         {
-            Debug.Log("List Items -s" + i);
             GameObject obj = Instantiate(InventoryItem, ItemContent);
 
             var itemIcon = obj.transform.Find("Image").GetComponent<UnityEngine.UI.Image>();
