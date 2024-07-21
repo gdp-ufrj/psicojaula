@@ -26,7 +26,8 @@ public class InventoryManager : MonoBehaviour
     public void Add(Item item, DialogueTrigger dialogueTrigger)
     {
         ItemInventory itemInventory;
-        if(dialogueTrigger != null) {
+        if (dialogueTrigger != null)
+        {
             DialogueTrigger newDialogueTrigger = Instantiate(dialogueTriggerPrefab);
             newDialogueTrigger.SetVariables(dialogueTrigger);
             itemInventory = new ItemInventory(item, newDialogueTrigger);
@@ -36,7 +37,8 @@ public class InventoryManager : MonoBehaviour
 
         Items.Add(itemInventory);
         qtdItem += 1;
-        if (qtdItem <= 4){
+        if (qtdItem <= 4)
+        {
             lastItem += 1;
         }
         ListItems();
@@ -44,11 +46,13 @@ public class InventoryManager : MonoBehaviour
 
     public void Remove(ItemInventory itemInventory)
     {
-        if (Items.Contains(itemInventory)){
+        if (Items.Contains(itemInventory))
+        {
             Destroy(Items[Items.IndexOf(itemInventory)].dialogueTrigger.gameObject);
             Items.Remove(itemInventory);
             qtdItem -= 1;
-            if (qtdItem <= 4){
+            if (qtdItem <= 4)
+            {
                 lastItem -= 1;
             }
             ListItems();
@@ -57,13 +61,17 @@ public class InventoryManager : MonoBehaviour
 
     public void NextPage()
     {
-        if (lastItem == qtdItem){
+        if (lastItem == qtdItem)
+        {
             return;
         }
         firstItem += 4;
-        if (qtdItem < (lastItem + 4)){
+        if (qtdItem < (lastItem + 4))
+        {
             lastItem = qtdItem;
-        }else{
+        }
+        else
+        {
             lastItem = lastItem + 4;
         }
         ListItems();
@@ -71,7 +79,8 @@ public class InventoryManager : MonoBehaviour
 
     public void PrevPage()
     {
-        if (firstItem == 0){
+        if (firstItem == 0)
+        {
             return;
         }
         lastItem = firstItem;
@@ -88,7 +97,7 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = firstItem; i < lastItem; i++)
         {
-            GameObject obj =  Instantiate(InventoryItem, ItemContent);
+            GameObject obj = Instantiate(InventoryItem, ItemContent);
 
             var itemIcon = obj.transform.Find("Image").GetComponent<UnityEngine.UI.Image>();
 
@@ -96,7 +105,8 @@ public class InventoryManager : MonoBehaviour
             obj.GetComponent<DragDrop>().AddItem(Items[i].item);
             obj.GetComponent<DragDrop>().SetGameController(gameController);
 
-            if (Items[i].dialogueTrigger != null) {
+            if (Items[i].dialogueTrigger != null)
+            {
                 DialogueTrigger dialogueTrigger = obj.GetComponent<DialogueTrigger>();
                 dialogueTrigger.SetVariables(Items[i].dialogueTrigger);
             }
