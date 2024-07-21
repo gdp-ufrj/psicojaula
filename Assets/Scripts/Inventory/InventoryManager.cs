@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour
     public Transform ItemContent;
     public GameObject InventoryItem;
     public GameController gameController;
+    public DialogueTrigger dialogueTriggerPrefab;
     private int firstItem = 0;
     private int lastItem = 0;
     private int qtdItem = 0;
@@ -22,9 +23,17 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
-    public void Add(ItemInventory itemInventory)
+    public void Add(Item item, DialogueTrigger dialogueTrigger)
     {
-        //Debug.Log("adicionou!");
+        ItemInventory itemInventory;
+        if(dialogueTrigger != null) {
+            DialogueTrigger newDialogueTrigger = Instantiate(dialogueTriggerPrefab);
+            newDialogueTrigger.SetVariables(dialogueTrigger);
+            itemInventory = new ItemInventory(item, newDialogueTrigger);
+        }
+        else
+            itemInventory = new ItemInventory(item, null);
+
         Items.Add(itemInventory);
         qtdItem += 1;
         if (qtdItem <= 4){
@@ -36,7 +45,7 @@ public class InventoryManager : MonoBehaviour
     public void Remove(ItemInventory itemInventory)
     {
         if (Items.Contains(itemInventory)){
-            //Debug.Log("removeu!");
+            Destroy(Items[Items.IndexOf(itemInventory)].dialogueTrigger.gameObject);
             Items.Remove(itemInventory);
             qtdItem -= 1;
             if (qtdItem <= 4){

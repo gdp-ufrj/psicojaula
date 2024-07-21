@@ -8,19 +8,19 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
     private static DialogueController instance;
 
     public TextAsset variablesJSON;    //Este é o arquivo JSON do ink que contém todas as variáveis de diálogo
-    public GameObject canvasDialogue, dialogueBox;
+    public GameObject canvasDialogue, dialogueBox, bgDialogue;
     public TextMeshProUGUI txtDialogue;
-    public GameObject[] choices;
     public DialogueVariablesController dialogueVariablesController { get; private set; }
 
-    private TextMeshProUGUI[] choicesTxt;
     private Story dialogue;
 
     private bool endLine = false;   //Esta variável é responsável por guardar se cada linha do diálogo já terminou ou ainda não
+    private bool letterEfect = true;   //Define se o diálogo terá o efeito de letras aparecendo
     private float textDialogueSpeed;
     private int indexLine;
 
     public bool dialogueActive { get; private set; }   //Quero que esta variável possa ser lida por outros scripts, mas não modificada
+    public float showPanelDialogueTax = 9f, opacityPanelDialogue=0.5f;
 
     public static DialogueController GetInstance() {
         return instance;
@@ -37,15 +37,7 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
     }
 
     void Start() {
-        //DialogueBoxContainer.SetActive(false);
         dialogueActive = false;
-
-        choicesTxt = new TextMeshProUGUI[choices.Length];   //O array deve ter o mesmo tamanho do número de escolhas
-        int index = 0;
-        foreach (GameObject choice in choices) {
-            choicesTxt[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
-            index++;
-        }
     }
 
     private void Update() {
@@ -62,12 +54,9 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
         Image dialogueBoxRectTransform = dialogueBox.GetComponent<Image>();
         Color initialColor = new Color(0, 0, 0, 0);
         dialogueBoxRectTransform.color = initialColor;
-        float targetValue = 0.5f;   //Este é o valor desejado para a opacidade da caixa de diálogo
+        float targetValue = opacityPanelDialogue;   //Este é o valor desejado para a opacidade da caixa de diálogo
         bool txtStarted = false;
-        canvasDialogue.SetActive(true);
         while (Mathf.Abs(targetValue - dialogueBoxRectTransform.color.a) > 0.01f) {
-            Debug.Log("Valor: " + Mathf.Abs(targetValue - dialogueBoxRectTransform.color.a));
-            //Debug.Log("Transparencia: " + dialogueBoxRectTransform.color.a);
             float lerpValue = Mathf.Lerp(dialogueBoxRectTransform.color.a, targetValue, showPanelDialogueTax * Time.deltaTime);
             Color newColor = new Color(0, 0, 0, lerpValue);
             dialogueBoxRectTransform.color = newColor;
@@ -75,16 +64,29 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
                 txtStarted = true;
                 StartTextDialogue();
             }
-            Debug.Log("Valor: " + Mathf.Abs(targetValue - dialogueBoxRectTransform.color.a));
             yield return null;
         }
     }
 
-    public void StartDialogue(TextAsset dialogueJSON, float textSpeed, float fontSize, float showPanelDialogueTax) {
+    public void StartDialogue(TextAsset dialogueJSON, float textSpeed, float fontSize, bool isInteractionDialogue) {
         dialogue = new Story(dialogueJSON.text);        //Carregando o diálogo a partir do arquivo JSON passado de parâmetro
         textDialogueSpeed = textSpeed;
         txtDialogue.fontSize = fontSize;
-        StartCoroutine(ShowCanvasDialogue(showPanelDialogueTax));
+        canvasDialogue.SetActive(true);
+        letterEfect = isInteractionDialogue;
+        //Image bgDialogueImg = bgDialogue.GetComponent<Image>();
+        //bgDialogueImg.raycastTarget = true;
+        GameController.GetInstance().blockActionsDialogue = true;
+
+        if (isInteractionDialogue)
+            StartCoroutine(ShowCanvasDialogue(showPanelDialogueTax));
+        else {
+            Image dialogueBoxRectTransform = dialogueBox.GetComponent<Image>();
+            Color colorPanel = new Color(0, 0, 0, opacityPanelDialogue);
+            dialogueBoxRectTransform.color = colorPanel;
+            StartTextDialogue();
+        }
+
     }
 
     public void StartTextDialogue() {
@@ -120,24 +122,29 @@ public class DialogueController : MonoBehaviour {    //Esta classe será única pa
 
     //Função que printa cada linha do diálogo na caixa de diálogo
     private IEnumerator PrintDialogue() {
-        //ChangeCharacterDialogue();
         string fala = dialogue.currentText;    //Pegando a fala atual do diálogo
-
-        txtDialogue.text = "";
-        for (int i = 0; i < fala.Length; i++) {    //Fazendo as letras aparecerem uma de cada vez
-            txtDialogue.text += fala[i];
-            indexLine = i;
-            yield return new WaitForSeconds(textDialogueSpeed);
+        if (letterEfect) {
+            txtDialogue.text = "";
+            for (int i = 0; i < fala.Length; i++) {    //Fazendo as letras aparecerem uma de cada vez
+                txtDialogue.text += fala[i];
+                indexLine = i;
+                yield return new WaitForSeconds(textDialogueSpeed);
+            }
+        }
+        else {
+            txtDialogue.text = fala;
+            indexLine = fala.Length - 1;
         }
         endLine = true;
     }
 
-    private void EndDialogue() {   //Método chamado ao fim do diálogo
+    public void EndDialogue() {   //Método chamado ao fim do diálogo
         txtDialogue.text = "";
         canvasDialogue.SetActive(false);
-        //DialogueBoxContainer.SetActive(false);
         dialogueActive = false;
-        dialogueVariablesController.StopListening(dialogue);  //Para parar de detectar as mudanças de variáveis no diálogo
+        if(dialogue != null)
+            dialogueVariablesController.StopListening(dialogue);  //Para parar de detectar as mudanças de variáveis no diálogo
+        GameController.GetInstance().blockActionsDialogue = false;
         //GameController.checkVariablesDialogue(dialogueVariablesController.variablesValues);    //Fazendo as checagens de variáveis importantes que podem ter mudado após um diálogo
     }
 

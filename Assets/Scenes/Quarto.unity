@@ -1855,6 +1855,10 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1108670810}
+    - target: {fileID: 2911909180951134555, guid: 38bfe8654c217f64eb1413ce510a5e6b, type: 3}
+      propertyPath: dialogueTriggerPrefab
+      value: 
+      objectReference: {fileID: 973260930909849872, guid: 1db3e2c2c6dc29a42b023c8569955912, type: 3}
     - target: {fileID: 4955980023233316945, guid: 38bfe8654c217f64eb1413ce510a5e6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.2504907
@@ -2074,6 +2078,9 @@ GameObject:
   m_Component:
   - component: {fileID: 795881756}
   - component: {fileID: 795881757}
+  - component: {fileID: 795881760}
+  - component: {fileID: 795881759}
+  - component: {fileID: 795881758}
   m_Layer: 0
   m_Name: camaLado1
   m_TagString: Untagged
@@ -2148,6 +2155,79 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &795881758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795881755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975658466670d9e40a47fe0c41732c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &795881759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795881755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON: {fileID: 4900000, guid: 3678da96dcd39dd4b9523b1151db3eac, type: 3}
+  examDialogueJSON: {fileID: 4900000, guid: a4295904e16d45048a41e1d14e0416fe, type: 3}
+  textDialogueSpeed: 0.05
+  fontSize: 18
+--- !u!61 &795881760
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795881755}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 21.59, y: 9.772428}
+    newSize: {x: 21.59, y: 9.772428}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 21.59, y: 9.772428}
+  m_EdgeRadius: 0
 --- !u!1 &821870946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2796,15 +2876,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4192,54 +4272,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310134452}
   m_CullTransparentMesh: 1
---- !u!1 &1355045897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1355045899}
-  - component: {fileID: 1355045898}
-  m_Layer: 0
-  m_Name: teste
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1355045898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355045897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDialogueJSON: {fileID: 0}
-  examDialogueJSON: {fileID: 0}
-  textDialogueSpeed: 0.05
-  fontSize: 20
---- !u!4 &1355045899
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355045897}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3803331, y: 1.1953198, z: 3.00091}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1373709768 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6359492873525504074, guid: 7cc947c5f70492745844dd651e4b6b5a, type: 3}
@@ -5600,6 +5632,7 @@ GameObject:
   - component: {fileID: 1836001492}
   - component: {fileID: 1836001491}
   - component: {fileID: 1836001490}
+  - component: {fileID: 1836001494}
   m_Layer: 5
   m_Name: Jornal2
   m_TagString: Untagged
@@ -5750,6 +5783,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1836001494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836001488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON: {fileID: 4900000, guid: f493eddb003562d4f81bc96b11c95180, type: 3}
+  examDialogueJSON: {fileID: 4900000, guid: 50863504839462a4282bb13f2e0d36e1, type: 3}
+  textDialogueSpeed: 0.05
+  fontSize: 18
 --- !u!1 &1842276678
 GameObject:
   m_ObjectHideFlags: 0
@@ -6196,10 +6245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDialogueJSON: {fileID: 4900000, guid: 50388a6f7ce1291458c7ded33ee4f673, type: 3}
-  examDialogueJSON: {fileID: 4900000, guid: 7c36d50dac6d8ac46944fc7ae6cddcf7, type: 3}
+  interactionDialogueJSON: {fileID: 4900000, guid: 258ecb96257be344985feae6cc9cacc6, type: 3}
+  examDialogueJSON: {fileID: 4900000, guid: d918fbc91727faa4cada90ef83bffb86, type: 3}
   textDialogueSpeed: 0.05
-  fontSize: 14
+  fontSize: 18
 --- !u!1 &1971820424
 GameObject:
   m_ObjectHideFlags: 0
@@ -6912,6 +6961,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 384966082}
     - target: {fileID: 8940185247825709365, guid: 18c5336422b74c441aec037820e6e1c7, type: 3}
+      propertyPath: bgDialogue
+      value: 
+      objectReference: {fileID: 923948021}
+    - target: {fileID: 8940185247825709365, guid: 18c5336422b74c441aec037820e6e1c7, type: 3}
       propertyPath: dialogueBox
       value: 
       objectReference: {fileID: 155231026}
@@ -7042,4 +7095,3 @@ SceneRoots:
   - {fileID: 593155663}
   - {fileID: 727762307}
   - {fileID: 4996507364810191879}
-  - {fileID: 1355045899}

@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
     }
 
     private ScenarioDictionary scenarios;   //Todos os cen�rios do jogo (todos come�ar�o desativados)  (n�o � poss�vel serializar)
-    private ScenarioDictionaryItem currentScenario, newScenario, originalMainScenario;
+    private ScenarioDictionaryItem currentScenario, newScenario;
 
     [SerializeField] private GameObject[] scenariosListInOrder;    //Essa ser� uma lista serializada, na qual poderemos colocar os GameObjects de cen�rio
 
@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour {
 
     private int idActiveScenario;
     private bool isChangingScenario = false, gamePaused=false, isInMainScenario;
+    public bool blockActionsDialogue = false;
     private float originalCameraSize;
 
 
@@ -57,7 +58,6 @@ public class GameController : MonoBehaviour {
 
                 isInMainScenario = true;
                 currentScenario = scenarios.ScenariosDictionary[0];
-                originalMainScenario = scenarios.ScenariosDictionary[0];
                 idActiveScenario = 0;    //Este � o �ndice do cen�rio que est� ativo no momento
                 newScenario = null;
             }
@@ -106,6 +106,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void ChangeScenarioButton(int direction) {    //Este m�todo servir� para trocar o cen�rio do jogo (quando olhamos para a esquerda/direita/cima)
+        DialogueController.GetInstance().EndDialogue();
         changeScenario(direction);
     }
 
@@ -138,14 +139,11 @@ public class GameController : MonoBehaviour {
                             break;
                     }
                     newScenario = scenarios.ScenariosDictionary[idActiveScenario];
-                    originalMainScenario = newScenario;
                     StartCoroutine(moveCameraOffset(horizontalOffset, verticalOffset));    //Novendo o cen�rio para dar a impress�o de movimenta��o da c�mera
                 }
                 else {
                     newScenario = currentScenario.ParentScenario;
                     idActiveScenario = newScenario.SceneId;
-                    //newScenario = originalMainScenario;
-                    //idActiveScenario = originalMainScenario.SceneId;
                 }
             }
             else {    //Se clicarmos em uma parte do cen�rio

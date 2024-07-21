@@ -7,7 +7,7 @@ public class ItemDrop : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("aaaopop");
+
     }
 
 }

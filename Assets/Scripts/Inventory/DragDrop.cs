@@ -17,7 +17,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     }
 
     public void AddItem(Item newItem) {
-        
         item = newItem;
     }
 
