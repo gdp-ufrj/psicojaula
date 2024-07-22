@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 //Esta classe estará presente nos objetos de cenário que ativarão diálogos
 public class InteractionDialogue : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
     public void OnPointerClick(PointerEventData eventData) {
-        gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue();
+        gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
     }
 
     public void OnPointerDown(PointerEventData eventData) {

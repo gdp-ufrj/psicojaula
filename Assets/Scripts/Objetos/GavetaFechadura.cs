@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GavetaFechadura : MonoBehaviour, IDropHandler, IPointerClickHandler
-{
+{   //Não terá ObjDialogue
 
     private bool isOpen;
     public Sprite gavetaAberta;
@@ -22,11 +19,15 @@ public class GavetaFechadura : MonoBehaviour, IDropHandler, IPointerClickHandler
 
         if (item.id == 5 && !isOpen)
         {
+            SoundController.GetInstance().PlaySound("abrindo_fechadura");
             DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
             ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
             InventoryManager.Instance.Remove(itemInventory);
 
             GetComponent<Image>().sprite = gavetaAberta;
+
+            if (gameObject.GetComponent<DialogueTrigger>() != null)
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
 
             isOpen = true;
         }
@@ -36,11 +37,16 @@ public class GavetaFechadura : MonoBehaviour, IDropHandler, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("clicou!");
         if (isOpen)
         {
             GameController.GetInstance().changeScenario((int)GameController.LookDirection.OTHER, transform.gameObject.name);
         }
-        //throw new System.NotImplementedException();
+        else {
+            if (eventData.button == ObjDialogue.clickExam) { 
+                DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+                if (dialogueTrigger != null)
+                    dialogueTrigger.TriggerExamDialogue(true);
+            }
+        }
     }
 }

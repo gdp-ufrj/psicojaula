@@ -106,6 +106,11 @@ public class GameController : MonoBehaviour {
     }
 
     public void ChangeScenarioButton(int direction) {    //Este m�todo servir� para trocar o cen�rio do jogo (quando olhamos para a esquerda/direita/cima)
+        if (direction == (int)LookDirection.LEFT)
+            SoundController.GetInstance().PlaySound("cena_esq");
+        else if (direction == (int)LookDirection.RIGHT)
+            SoundController.GetInstance().PlaySound("cena_dir");
+
         DialogueController.GetInstance().EndDialogue();
         changeScenario(direction);
     }

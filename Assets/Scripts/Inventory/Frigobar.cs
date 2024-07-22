@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Frigobar : MonoBehaviour, IDropHandler
-{
+public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
 
     private RectTransform rectTransform;
-    private Image image;
     public Item cruz_fria;
     public Transform Cena;
     public GameObject Item;
@@ -18,23 +13,27 @@ public class Frigobar : MonoBehaviour, IDropHandler
 
     private bool isOpen = false; 
 
-    public void OnMouseDown(){
-        int x = 40;
-        int y = 15;
+    public void OnPointerClick(PointerEventData eventData) {
+        if (eventData.button == ObjDialogue.clickInteract) {    //Com o botão direito, estaremos interagindo com o objeto do cenário
+            int x = 40;
+            int y = 15;
 
-
-        if(isOpen){
-            GetComponent<Image>().sprite = frigobar_fechado;
-            rectTransform =  GetComponent<RectTransform>();
-            rectTransform.localPosition = new Vector3(rectTransform.localPosition.x - x, rectTransform.localPosition.y - y, rectTransform.localPosition.z);
-            rectTransform.sizeDelta = new Vector2(100, 150);
-            isOpen = false;
-        }else{
-            GetComponent<Image>().sprite = frigobar_aberto;
-            rectTransform =  GetComponent<RectTransform>();
-            rectTransform.localPosition = new Vector3(rectTransform.localPosition.x + x, rectTransform.localPosition.y + y, rectTransform.localPosition.z);
-            rectTransform.sizeDelta = new Vector2((float)161.76, 175);
-            isOpen = true;
+            if (isOpen) {
+                SoundController.GetInstance().PlaySound("fechando_frigobar");
+                GetComponent<Image>().sprite = frigobar_fechado;
+                rectTransform = GetComponent<RectTransform>();
+                rectTransform.localPosition = new Vector3(rectTransform.localPosition.x - x, rectTransform.localPosition.y - y, rectTransform.localPosition.z);
+                rectTransform.sizeDelta = new Vector2(100, 150);
+                isOpen = false;
+            }
+            else {
+                SoundController.GetInstance().PlaySound("abrindo_frigobar");
+                GetComponent<Image>().sprite = frigobar_aberto;
+                rectTransform = GetComponent<RectTransform>();
+                rectTransform.localPosition = new Vector3(rectTransform.localPosition.x + x, rectTransform.localPosition.y + y, rectTransform.localPosition.z);
+                rectTransform.sizeDelta = new Vector2((float)161.76, 175);
+                isOpen = true;
+            }
         }
     }
 
@@ -59,6 +58,9 @@ public class Frigobar : MonoBehaviour, IDropHandler
             obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
             Debug.Log(obj.transform.localPosition);
             InventoryManager.Instance.ListItems();
+
+            if (gameObject.GetComponent<DialogueTrigger>() != null)
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);
         }
 
     }

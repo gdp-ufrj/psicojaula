@@ -3,18 +3,25 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {     //Este script apenas � respons�vel por triggar um di�logo quando alguma a��o acontecer durante o jogo
 
-    public TextAsset interactionDialogueJSON, examDialogueJSON;
-    public float textDialogueSpeed = 0.05f, fontSize = 20f;
+    public TextAsset[] interactionDialogueJSON, examDialogueJSON;
+    public float textDialogueSpeed = 0.05f, fontSize = 16f;
 
-    public void TriggerInteractionDialogue()
+    public void TriggerInteractionDialogue(bool letterEfect, int idDialogue = -1)
     {
-        if (!DialogueController.GetInstance().dialogueActive)
-            DialogueController.GetInstance().StartDialogue(interactionDialogueJSON, textDialogueSpeed, fontSize, true);
+        if (!DialogueController.GetInstance().dialogueActive) {
+            idDialogue = idDialogue == -1 ? 0 : idDialogue;
+            if (interactionDialogueJSON[idDialogue] != null) {
+                DialogueController.GetInstance().StartDialogue(interactionDialogueJSON[idDialogue], textDialogueSpeed, fontSize, letterEfect);
+            }
+        }
     }
 
-    public void TriggerExamDialogue()
+    public void TriggerExamDialogue(bool letterEfect, int idDialogue = -1)
     {
-        DialogueController.GetInstance().StartDialogue(examDialogueJSON, textDialogueSpeed, fontSize, false);
+        idDialogue = idDialogue == -1 ? 0 : idDialogue;
+        if (examDialogueJSON[idDialogue] != null) {
+            DialogueController.GetInstance().StartDialogue(examDialogueJSON[idDialogue], textDialogueSpeed, fontSize, letterEfect);
+        }
     }
 
     public void SetVariables(DialogueTrigger dialogueTrigger)

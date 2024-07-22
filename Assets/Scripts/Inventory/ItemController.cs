@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,21 +14,25 @@ public class ItemController : MonoBehaviour, IDropHandler
 
         if (Item.id == 0 || Item.id == 1) {    //Combinando jornais
             if (dropItem.id ==  0 || dropItem.id == 1) {
-                DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
+                //Debug.Log(itemObject.GetComponents<DialogueTrigger>().Length);
+                DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
                 ItemInventory itemInventory = new ItemInventory(dropItem, dialogueTrigger);
-                InventoryManager.Instance.Remove(itemInventory);    
+                InventoryManager.Instance.Remove(itemInventory);
 
-                GameObject obj = Instantiate(ItemObject, itemObject.transform.parent);
-
-                var itemIcon = obj.GetComponent<UnityEngine.UI.Image>(); 
+                //GameObject obj = Instantiate(ItemObject, itemObject.transform.parent);
+                GameObject obj = Instantiate(dropItem.newItemPrefab, itemObject.transform.parent);
                 obj.GetComponent<RectTransform>().localPosition = itemObject.GetComponent<RectTransform>().localPosition;
+
+                //var itemIcon = obj.GetComponent<UnityEngine.UI.Image>(); 
                 
-                itemIcon.sprite = dropItem.newItem.icon;
-                obj.GetComponent<ItemPickup>().Item = dropItem.newItem;
-                obj.GetComponent<ItemController>().Item = dropItem.newItem;
+                //itemIcon.sprite = dropItem.newItem.icon;
+                //obj.GetComponent<ItemPickup>().Item = dropItem.newItem;
+                //obj.GetComponent<ItemController>().Item = dropItem.newItem;
+
+                //obj.GetComponent<DialogueTrigger>().SetVariables(dialogueTrigger);
                 
                 Destroy(itemObject); 
-                Destroy(GetComponent<RectTransform>().gameObject); 
+                Destroy(gameObject); 
             }
         }
     }

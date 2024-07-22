@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2352988380821464698}
   - component: {fileID: 3626672447468580949}
   - component: {fileID: 6863532447705438209}
+  - component: {fileID: -6983702244746465433}
+  - component: {fileID: 9117562267185120825}
   m_Layer: 5
   m_Name: Caixa6
   m_TagString: Untagged
@@ -89,3 +91,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemObject: {fileID: 0}
+--- !u!114 &-6983702244746465433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235944666907072649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22a8de0b49c68f449ca02159de1d2af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9117562267185120825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235944666907072649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON: {fileID: 0}
+  examDialogueJSON: {fileID: 4900000, guid: 02ec6c8dfabbec641a7ae94b5997b113, type: 3}
+  textDialogueSpeed: 0.05
+  fontSize: 16

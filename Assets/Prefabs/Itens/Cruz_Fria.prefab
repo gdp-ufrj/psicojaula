@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDialogueJSON: {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
-  examDialogueJSON: {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  interactionDialogueJSON: {fileID: 4900000, guid: 36a632d035b3d7645a0e74ba0b77e87c, type: 3}
+  examDialogueJSON: {fileID: 4900000, guid: b88ff9c14ce743f4ca396aae435232c6, type: 3}
   textDialogueSpeed: 0.05
-  fontSize: 20
+  fontSize: 16

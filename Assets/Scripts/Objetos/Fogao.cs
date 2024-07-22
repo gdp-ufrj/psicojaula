@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class Fogao : MonoBehaviour, IDropHandler
 {
@@ -25,15 +21,20 @@ public class Fogao : MonoBehaviour, IDropHandler
         Debug.Log(item.id);
         if (item.id == 3)
         {
+            SoundController.GetInstance().PlaySound("acendendo_fogao");
             DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
             ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
             InventoryManager.Instance.Remove(itemInventory);
 
             isOnFire = true;
 
+            if (gameObject.GetComponent<DialogueTrigger>() != null)
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);    //Diálogo de acender fogão
+
         }
         if (isOnFire && item.id == 14)
         {
+            SoundController.GetInstance().PlaySound("queimando_jornal");
             DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
             ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
             InventoryManager.Instance.Remove(itemInventory);
@@ -46,6 +47,9 @@ public class Fogao : MonoBehaviour, IDropHandler
             Debug.Log(obj.transform.localPosition);
             InventoryManager.Instance.ListItems();
             Destroy(itemObject);
+
+            if (gameObject.GetComponent<DialogueTrigger>() != null)
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 1);    //Diálogo de queimar objeto
         }
 
     }

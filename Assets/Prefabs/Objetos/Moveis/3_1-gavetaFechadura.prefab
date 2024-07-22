@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2616806215930862233}
   - component: {fileID: 2330205932562988939}
   - component: {fileID: 4432998671791586037}
+  - component: {fileID: -2496475344584959349}
   m_Layer: 5
   m_Name: 3_1-gavetaFechadura
   m_TagString: Untagged
@@ -111,3 +112,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gavetaAberta: {fileID: 0}
+--- !u!114 &-2496475344584959349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7308890627800912637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: 4055878a43ad13349940edeaa65ef8fb, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: b434fa332e9f13c48bbb665bdeed2be3, type: 3}
+  textDialogueSpeed: 0.05
+  fontSize: 16

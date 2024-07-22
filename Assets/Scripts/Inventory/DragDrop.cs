@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
-{
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler {
 
     private CanvasGroup canvasGroup;
     private Canvas canvas;
@@ -73,11 +72,25 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         Destroy(rectTransform.gameObject);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
-        if (dialogueTrigger != null)
-            dialogueTrigger.TriggerExamDialogue();
-    }
+    public void OnPointerClick(PointerEventData eventData){
+        if (eventData.button == PointerEventData.InputButton.Left) {    //Examinando o item
+            DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+            if (dialogueTrigger != null)
+                dialogueTrigger.TriggerExamDialogue(false);
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right) {    //Usando o item
+            if (item.isUsable) {
+                if (item.id == 8)   //Remédio
+                    SoundController.GetInstance().PlaySound("tomando_remedio");
 
+                Debug.Log("Usou o item: " + item.name);
+                DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+                ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
+                InventoryManager.Instance.Remove(itemInventory);
+                Destroy(rectTransform.gameObject);
+            }
+            else
+                Debug.Log("O item " + item.name + " não é usável");   //Som?
+        }
+    }
 }

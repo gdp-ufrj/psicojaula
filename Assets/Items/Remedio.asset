@@ -18,5 +18,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 480a985e10b5fbd4e9e835fe0e4149cf, type: 3}
   newItem: {fileID: 0}
   nameSoundPickup: pickup_remedio
-  firstPickup: 1
   dialogueTriggerScript: {fileID: 0}
+  isUsable: 1

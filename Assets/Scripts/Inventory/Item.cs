@@ -8,7 +8,8 @@ public class Item:ScriptableObject
     public string itemName;
     public int value;
     public Sprite icon;
-    public Item newItem;
+    //public Item newItem;
     public string nameSoundPickup;
-    public DialogueTrigger dialogueTriggerScript;
+    public bool isUsable;
+    public GameObject newItemPrefab;
 }
