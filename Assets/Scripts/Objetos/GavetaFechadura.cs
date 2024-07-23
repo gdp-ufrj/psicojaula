@@ -3,11 +3,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GavetaFechadura : MonoBehaviour, IDropHandler, IPointerClickHandler
-{   //Não terá ObjDialogue
+{   //Nï¿½o terï¿½ ObjDialogue
 
     private bool isOpen;
     public Sprite gavetaAberta;
 
+    private void Awake() {
+        isOpen = ListaItems.Instance.gavetaIsOpen;
+    }
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -30,6 +33,7 @@ public class GavetaFechadura : MonoBehaviour, IDropHandler, IPointerClickHandler
                 gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
 
             isOpen = true;
+            ListaItems.Instance.gavetaIsOpen = isOpen;
         }
 
     }

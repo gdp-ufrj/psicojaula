@@ -16,6 +16,8 @@ public class ItemController : MonoBehaviour, IDropHandler
                 //Debug.Log(itemObject.GetComponents<DialogueTrigger>().Length);
                 DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
                 ItemInventory itemInventory = new ItemInventory(dropItem, dialogueTrigger);
+                ItemInventory itemInventory2 = new ItemInventory(Item, dialogueTrigger);
+                ListaItems.Instance.listaItenslargados.Remove(itemInventory2);
                 InventoryManager.Instance.Remove(itemInventory);
 
                 //GameObject obj = Instantiate(ItemObject, itemObject.transform.parent);

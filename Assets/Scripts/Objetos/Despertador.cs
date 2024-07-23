@@ -7,6 +7,12 @@ public class Despertador : MonoBehaviour, IPointerClickHandler
     public GameObject Item;
     public Transform Cena;
     private bool clicked = false;
+    
+    private void Awake() {
+        clicked = ListaItems.Instance.despertadorIsClicked;
+
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if(eventData.button == ObjDialogue.clickInteract) {
@@ -18,6 +24,7 @@ public class Despertador : MonoBehaviour, IPointerClickHandler
                 obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
 
                 clicked = true;
+                ListaItems.Instance.despertadorIsClicked = clicked;
             }
         }
     }

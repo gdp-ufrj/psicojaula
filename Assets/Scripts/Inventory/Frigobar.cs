@@ -13,8 +13,20 @@ public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
 
     private bool isOpen = false; 
 
+    private void Awake() {
+        int x = 40;
+        int y = 15;
+
+        if (ListaItems.Instance.frigobarIsOpen) {
+            GetComponent<Image>().sprite = frigobar_aberto;
+            rectTransform = GetComponent<RectTransform>();
+            rectTransform.localPosition = new Vector3(rectTransform.localPosition.x + x, rectTransform.localPosition.y + y, rectTransform.localPosition.z);
+            rectTransform.sizeDelta = new Vector2((float)161.76, 175);
+            isOpen = true;
+        }
+    }    
     public void OnPointerClick(PointerEventData eventData) {
-        if (eventData.button == ObjDialogue.clickInteract) {    //Com o botão direito, estaremos interagindo com o objeto do cenário
+        if (eventData.button == ObjDialogue.clickInteract) {    //Com o botï¿½o direito, estaremos interagindo com o objeto do cenï¿½rio
             int x = 40;
             int y = 15;
 
@@ -25,6 +37,7 @@ public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
                 rectTransform.localPosition = new Vector3(rectTransform.localPosition.x - x, rectTransform.localPosition.y - y, rectTransform.localPosition.z);
                 rectTransform.sizeDelta = new Vector2(100, 150);
                 isOpen = false;
+                ListaItems.Instance.frigobarIsOpen = isOpen;
             }
             else {
                 SoundController.GetInstance().PlaySound("abrindo_frigobar");
@@ -33,6 +46,7 @@ public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
                 rectTransform.localPosition = new Vector3(rectTransform.localPosition.x + x, rectTransform.localPosition.y + y, rectTransform.localPosition.z);
                 rectTransform.sizeDelta = new Vector2((float)161.76, 175);
                 isOpen = true;
+                ListaItems.Instance.frigobarIsOpen = isOpen;
             }
         }
     }
