@@ -10,6 +10,10 @@ public class Fogao : MonoBehaviour, IDropHandler
     public GameObject Item;
     private bool isOnFire = false;
 
+    private void Awake() {
+        isOnFire = ListaItems.Instance.isOnFire;
+    }
+
     public void OnDrop(PointerEventData eventData)
     {
 
@@ -27,9 +31,10 @@ public class Fogao : MonoBehaviour, IDropHandler
             InventoryManager.Instance.Remove(itemInventory);
 
             isOnFire = true;
+            ListaItems.Instance.isOnFire = true;
 
             if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);    //Diálogo de acender fogão
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);    //Diï¿½logo de acender fogï¿½o
 
         }
         if (isOnFire && item.id == 14)
@@ -49,7 +54,7 @@ public class Fogao : MonoBehaviour, IDropHandler
             Destroy(itemObject);
 
             if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 1);    //Diálogo de queimar objeto
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 1);    //Diï¿½logo de queimar objeto
         }
 
     }

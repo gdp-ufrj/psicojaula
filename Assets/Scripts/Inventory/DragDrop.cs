@@ -59,6 +59,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         Debug.Log(item.id);
         DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
         ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
+        ListaItems.Instance.listaItenslargados.Add(itemInventory);
         InventoryManager.Instance.Remove(itemInventory);
 
         GameObject obj = Instantiate(ItemObject, GameObject.Find(activeScene.ToString()).GetComponent<RectTransform>());
@@ -84,7 +85,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         }
         else if (eventData.button == PointerEventData.InputButton.Right) {    //Usando o item
             if (item.isUsable) {
-                if (item.id == 8)   //Remédio
+                if (item.id == 8)   //Remï¿½dio
                     SoundController.GetInstance().PlaySound("tomando_remedio");
 
                 Debug.Log("Usou o item: " + item.name);
@@ -94,7 +95,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 Destroy(rectTransform.gameObject);
             }
             else
-                Debug.Log("O item " + item.name + " não é usável");   //Som?
+                Debug.Log("O item " + item.name + " nï¿½o ï¿½ usï¿½vel");   //Som?
         }
     }
 

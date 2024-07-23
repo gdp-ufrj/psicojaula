@@ -24,6 +24,12 @@ public class InventoryManager : MonoBehaviour
             qtdItem = ListaItems.Instance.qtdItem ;
             ListItems();
         }
+        if (ListaItems.Instance.listaItenslargados.Count > 0) {
+            foreach (ItemInventory i in ListaItems.Instance.listaItenslargados){
+                Add(i.item, i.dialogueTrigger);
+            }
+        }
+        ListaItems.Instance.listaItenslargados = new List<ItemInventory>();
     }
 
     public void updateItems(List<ItemInventory> items, int first, int last, int qtd)
@@ -65,7 +71,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (Items.Contains(itemInventory))
         {
-            Destroy(Items[Items.IndexOf(itemInventory)].dialogueTrigger.gameObject);
+            //Destroy(Items[Items.IndexOf(itemInventory)].dialogueTrigger.gameObject);
             Items.Remove(itemInventory);
             qtdItem -= 1;
             if (qtdItem <= 4)

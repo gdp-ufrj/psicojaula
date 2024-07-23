@@ -1,5 +1,9 @@
 using System.Collections;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.Sqlite;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
@@ -35,6 +39,7 @@ public class GameController : MonoBehaviour {
     }
 
     private void Awake() {
+        Debug.Log("Quarto" + SceneManager.GetActiveScene().buildIndex);
         if (instance == null)
             instance = this;
         else
@@ -46,6 +51,19 @@ public class GameController : MonoBehaviour {
     }
 
     private void Start() {
+        if (SceneManager.GetActiveScene().buildIndex % 2 == 0){
+            Debug.Log(ListaItems.Instance.depositoScenarios);
+            if (ListaItems.Instance.depositoScenarios != null){
+                Debug.Log("Quarto");
+                canvasScenarios = ListaItems.Instance.depositoScenarios;
+            }
+        }
+        else {
+            if (ListaItems.Instance.quartoScenarios != null){
+               Debug.Log("Deposito");
+                canvasScenarios = ListaItems.Instance.quartoScenarios;
+            }
+        }
         //Debug.Log(scenariosListInOrder);
         SoundController.GetInstance().LoadSounds();   //Carregando os sons da cena
 
@@ -233,6 +251,15 @@ public class GameController : MonoBehaviour {
         SoundController.GetInstance().PlaySound("OST_fase3");
     }
 
+    public void LoadDeposito() {
+         
+        TransitionController.GetInstance().LoadDeposito();
+    }
+
+    public void LoadQuarto() {
+        
+        TransitionController.GetInstance().LoadQuarto();
+    }
 
 
     //M�todos para bot�es do menu e do menu de pausa:

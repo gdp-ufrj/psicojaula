@@ -3741,8 +3741,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1108670810}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+      - m_Target: {fileID: 1701514312}
+        m_TargetAssemblyTypeName: TransitionController, Assembly-CSharp
         m_MethodName: LoadDeposito
         m_Mode: 1
         m_Arguments:
