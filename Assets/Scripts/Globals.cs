@@ -7,7 +7,7 @@ public class Globals : MonoBehaviour {    //Aqui ficarão as configurações globai
     public static float volumeOST = 1, volumeSFX = 1;
 
     //Essas informações não serão salvas e só servirão para definir certas coisas no jogo:
-    public static bool firstScene = true;
+    public static bool firstScene = true, playedFirstCutscene=false;
     public enum languages {
         english,
         portuguese,

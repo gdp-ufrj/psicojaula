@@ -1,7 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.Sqlite;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -61,7 +58,7 @@ public class GameController : MonoBehaviour {
         else {
             if (ListaItems.Instance.quartoScenarios != null){
                Debug.Log("Deposito");
-                canvasScenarios = ListaItems.Instance.quartoScenarios;
+               canvasScenarios = ListaItems.Instance.quartoScenarios;
             }
         }
         //Debug.Log(scenariosListInOrder);
@@ -81,10 +78,16 @@ public class GameController : MonoBehaviour {
             }
         }
 
+        if (!Globals.playedFirstCutscene) {
+            TransitionController.GetInstance().LoadCutscene(0);   //Cutscene inicial
+            Globals.playedFirstCutscene = true;
+        }
+        else {
+            TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena s� acontecer� depois de tudo que foi feito antes
+        }
+
         if (Globals.firstScene)    //Se o jogo tiver acabado de abrir
             Globals.firstScene = false;
-        else
-            TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena s� acontecer� depois de tudo que foi feito antes
 
 
         SoundController.GetInstance().ChangeVolumes(true);

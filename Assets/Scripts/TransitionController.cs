@@ -8,7 +8,11 @@ public class TransitionController : MonoBehaviour {
 
     public GameObject bgTransitions;
     private Animator animTransitionScenes;
-    [SerializeField] private float transistionTimeScenes, transitionTimeScenarios;
+    [SerializeField] private float transistionTimeScenes, transitionTimeScenarios, transitionTimeCutscenes;
+
+    private int cutscene = -1, activeCutscene = -1;  //cutscene guarda qual das cutscenes está rodando (nenhuma se for -1), e activeCutscene guarda qual imagem da cutscene está aparecendo (nenhuma se for -1)
+    private bool canPassCutscene = false;
+    [SerializeField] private GameObject cutscenes;
 
     public static TransitionController GetInstance() {
         return instance;
@@ -27,6 +31,14 @@ public class TransitionController : MonoBehaviour {
         colorBgTransition.a = 1;
         bgTransitions.GetComponent<Image>().color = colorBgTransition;
         animTransitionScenes = bgTransitions.GetComponent<Animator>();
+    }
+
+    private void Update() {
+        if (canPassCutscene) {
+            if(Input.GetKeyDown(KeyCode.Mouse0) ||  Input.GetKeyDown(KeyCode.Space)) {
+                StartCoroutine(NextCutscene());
+            }
+        }
     }
 
     public void FadeOutScene() {
@@ -62,7 +74,45 @@ public class TransitionController : MonoBehaviour {
         StartCoroutine(LoadSceneOrScenario(0));   //Carregando o menu
     }
 
-    private IEnumerator LoadSceneOrScenario(int sceneIndex=-1) {
+
+    public void LoadCutscene(int cutsceneIndex) {
+        cutscene = cutsceneIndex;
+        cutscenes.SetActive(true);
+        cutscenes.transform.GetChild(cutsceneIndex).gameObject.SetActive(true);
+        StartCoroutine(NextCutscene());
+    }
+
+    private IEnumerator NextCutscene() {
+        canPassCutscene = false;
+        //Debug.Log("opacity: " + bgTransitions.GetComponent<Image>().color.a);
+        if(activeCutscene == cutscenes.transform.GetChild(cutscene).transform.childCount - 1) {
+            bgTransitions.GetComponent<Image>().raycastTarget = true;
+            animTransitionScenes.Play("fadeInCutscene");
+            yield return new WaitForSeconds(transitionTimeCutscenes);
+            cutscenes.transform.GetChild(cutscene).transform.GetChild(activeCutscene).gameObject.SetActive(false);
+            cutscenes.transform.GetChild(cutscene).gameObject.SetActive(false);
+            cutscenes.gameObject.SetActive(false);
+            activeCutscene = -1;
+            cutscene = -1;
+            FadeOutScene();
+        }
+        else {
+            if (bgTransitions.GetComponent<Image>().color.a != 1) {
+                bgTransitions.GetComponent<Image>().raycastTarget = true;
+                animTransitionScenes.Play("fadeInCutscene");
+                yield return new WaitForSeconds(transitionTimeCutscenes);
+            }
+            if (activeCutscene != -1)
+                cutscenes.transform.GetChild(cutscene).transform.GetChild(activeCutscene).gameObject.SetActive(false);
+            activeCutscene++;
+            cutscenes.transform.GetChild(cutscene).transform.GetChild(activeCutscene).gameObject.SetActive(true);
+            animTransitionScenes.Play("fadeOutCutscene");
+            canPassCutscene = true;
+        }
+    }
+
+
+    private IEnumerator LoadSceneOrScenario(int sceneIndex = -1) {
         if (sceneIndex != -1) {   //Se for a transi��o entre cenas
             SoundController.GetInstance().PauseCurrentTrack();
             bgTransitions.GetComponent<Image>().raycastTarget = true;
