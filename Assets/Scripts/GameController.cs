@@ -229,6 +229,9 @@ public class GameController : MonoBehaviour {
     public void changeOST2() {
         SoundController.GetInstance().PlaySound("OST_fase2");
     }
+    public void changeOST3() {
+        SoundController.GetInstance().PlaySound("OST_fase3");
+    }
 
 
 

@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler {
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
 
     private CanvasGroup canvasGroup;
     private Canvas canvas;
@@ -11,10 +12,13 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private int activeScene;
     public GameObject ItemObject;
 
+    private Image itemImg;
+
     private void Awake()
     {
         canvas = GameObject.Find("canvasBtn").GetComponent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
+        itemImg = transform.GetChild(0).gameObject.GetComponent<Image>();
     }
 
     public void AddItem(Item newItem)
@@ -92,5 +96,16 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             else
                 Debug.Log("O item " + item.name + " não é usável");   //Som?
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        Color newColor = itemImg.color;
+        newColor.a = 0.95f;
+        itemImg.color = newColor;
+    }
+    public void OnPointerExit(PointerEventData eventData) {
+        Color newColor = itemImg.color;
+        newColor.a = 1;
+        itemImg.color = newColor;
     }
 }
