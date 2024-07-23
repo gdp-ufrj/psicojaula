@@ -4,7 +4,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
-    private List<ItemInventory> Items = new List<ItemInventory>();
+    public List<ItemInventory> Items = new List<ItemInventory>();
     public Transform ItemContent;
     public GameObject InventoryItem;
     public GameController gameController;
@@ -16,6 +16,23 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        //Mantem o iventario entre as cenas
+        if (ListaItems.Instance.listItems.Count >= 0) {
+            Items = ListaItems.Instance.listItems;
+            firstItem = ListaItems.Instance.firstItem;
+            lastItem = ListaItems.Instance.lastItem;
+            qtdItem = ListaItems.Instance.qtdItem ;
+            ListItems();
+        }
+    }
+
+    public void updateItems(List<ItemInventory> items, int first, int last, int qtd)
+    {
+        // update a lista de itens no iventario
+        ListaItems.Instance.listItems = items;
+        ListaItems.Instance.firstItem = first;
+        ListaItems.Instance.lastItem = last;
+        ListaItems.Instance.qtdItem = qtd;
     }
 
     public void Add(Item item, DialogueTrigger dialogueTrigger)
@@ -41,6 +58,7 @@ public class InventoryManager : MonoBehaviour
             lastItem += 1;
         }
         ListItems();
+        updateItems(Items, firstItem, lastItem, qtdItem);
     }
 
     public void Remove(ItemInventory itemInventory)
@@ -59,6 +77,7 @@ public class InventoryManager : MonoBehaviour
                 lastItem -= 1;
             }
             ListItems();
+            updateItems(Items, firstItem, lastItem, qtdItem);
         }
     }
 

@@ -22,7 +22,7 @@ public class TransitionController : MonoBehaviour {
     }
 
     private void Start() {
-        //Quando uma cena carregar, a tela vai ficar preta e o fadeOut só vai acontecer quando tudo já estiver pronto
+        //Quando uma cena carregar, a tela vai ficar preta e o fadeOut sï¿½ vai acontecer quando tudo jï¿½ estiver pronto
         Color colorBgTransition = Color.black;
         colorBgTransition.a = 1;
         bgTransitions.GetComponent<Image>().color = colorBgTransition;
@@ -41,11 +41,19 @@ public class TransitionController : MonoBehaviour {
         else
             StartCoroutine(LoadSceneOrScenario(SceneManager.GetActiveScene().buildIndex + 1));
     }
+    public void LoadQuarto() {
+        StartCoroutine(LoadSceneOrScenario(SceneManager.GetActiveScene().buildIndex - 1));   //Carregando o Quarto
+    }
+    public void LoadDeposito() {
+        StartCoroutine(LoadSceneOrScenario(SceneManager.GetActiveScene().buildIndex + 1));   //Carregando o Deposito
+    }
+    public void LoadNextFase() {
+        StartCoroutine(LoadSceneOrScenario(SceneManager.GetActiveScene().buildIndex + 2));   //Carregando a proxima fase
+    }
 
     public void LoadScenario() {
         StartCoroutine(LoadSceneOrScenario());
     }
-
 
     public void LoadMainScene() {
         StartCoroutine(LoadSceneOrScenario(1));   //Carregando a cena principal
@@ -55,14 +63,14 @@ public class TransitionController : MonoBehaviour {
     }
 
     private IEnumerator LoadSceneOrScenario(int sceneIndex=-1) {
-        if (sceneIndex != -1) {   //Se for a transição entre cenas
+        if (sceneIndex != -1) {   //Se for a transiï¿½ï¿½o entre cenas
             SoundController.GetInstance().PauseCurrentTrack();
             bgTransitions.GetComponent<Image>().raycastTarget = true;
             animTransitionScenes.Play("fadeInScene");
             yield return new WaitForSeconds(transistionTimeScenes);
             SceneManager.LoadScene(sceneIndex);
         }
-        else {    //Se for transição entre cenários
+        else {    //Se for transiï¿½ï¿½o entre cenï¿½rios
             bgTransitions.GetComponent<Image>().raycastTarget = true;
             animTransitionScenes.Play("fadeInScenario");
             yield return new WaitForSeconds(transitionTimeScenarios);
