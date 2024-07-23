@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8556402231938516067}
   - component: {fileID: 2352988380821464698}
   - component: {fileID: 3626672447468580949}
-  - component: {fileID: 6863532447705438209}
   - component: {fileID: -6983702244746465433}
   - component: {fileID: 9117562267185120825}
   m_Layer: 5
@@ -78,19 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6863532447705438209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235944666907072649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b182d5ef76511b479817f391b3b1c3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemObject: {fileID: 0}
 --- !u!114 &-6983702244746465433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDialogueJSON: {fileID: 0}
-  examDialogueJSON: {fileID: 4900000, guid: 02ec6c8dfabbec641a7ae94b5997b113, type: 3}
+  interactionDialogueJSON:
+  - {fileID: 0}
+  examDialogueJSON:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   textDialogueSpeed: 0.05
   fontSize: 16
