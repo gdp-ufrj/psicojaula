@@ -17,6 +17,11 @@ public class ListaItems : MonoBehaviour
     public bool despertadorIsClicked = false;
     public bool isOnFire = false;
     public bool gavetaIsOpen = false;
+    public bool caixaIsOpen = false;
+    public bool musicaColetadaJanela = false;
+    public bool musicaColetadaLuminaria = false;
+    public bool musicaColetadaTv = false;
+    public bool oculosUsado = false;
     private void Awake()
     {
         

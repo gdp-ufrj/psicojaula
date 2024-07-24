@@ -56,7 +56,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        Debug.Log(item.id);
         DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
         ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
         ListaItems.Instance.listaItenslargados.Add(itemInventory);

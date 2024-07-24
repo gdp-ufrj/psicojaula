@@ -70,11 +70,12 @@ public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
             GameObject obj =  Instantiate(Item, Cena);
             
             obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
-            Debug.Log(obj.transform.localPosition);
             InventoryManager.Instance.ListItems();
 
             if (gameObject.GetComponent<DialogueTrigger>() != null)
                 gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);
+            
+            Destroy(itemObject);
         }
 
     }
