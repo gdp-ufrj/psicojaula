@@ -59,20 +59,14 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
         }
     }
 
-    public void PlaySound(string soundName, GameObject go = null) {
+    public void PlaySound(string soundName) {
         Sound s = Array.Find(sounds, sound => sound.name.Equals(soundName));   //Procurando o som informado pelo seu nome
         if (s != null) {
-            if (go != null) {
-                AudioSource[] audios = go.GetComponents<AudioSource>();
-                audios.FirstOrDefault(a => a.clip.name.Equals(soundName)).Play();
-            }
+            if (soundName.Contains("OST"))   //Se eu estiver tentando mudar a música de fundo
+                SwapTrack(soundName);
             else {
-                if (soundName.Contains("OST"))   //Se eu estiver tentando mudar a música de fundo
-                    SwapTrack(soundName);
-                else {
-                    AudioSource[] audios = gameObject.GetComponents<AudioSource>();
-                    audios.FirstOrDefault(a => a.clip.name.Equals(soundName)).Play();
-                }
+                AudioSource[] audios = gameObject.GetComponents<AudioSource>();
+                audios.FirstOrDefault(a => a.clip.name.Equals(soundName)).Play();
             }
         }
     }
@@ -211,8 +205,8 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
 
     public void PlaySceneMusic() {
         if (SceneManager.GetActiveScene().name.ToLower().Contains("menu"))
-            PlaySound("OST_menu", null);
+            PlaySound("OST_menu");
         else if (SceneManager.GetActiveScene().name.ToLower().Contains("quarto"))
-            PlaySound("OST_fase1", null);
+            PlaySound("OST_fase1");
     }
 }

@@ -6154,6 +6154,10 @@ PrefabInstance:
       propertyPath: bgTransitions
       value: 
       objectReference: {fileID: 2068080002}
+    - target: {fileID: 5710106192533179199, guid: 18c5336422b74c441aec037820e6e1c7, type: 3}
+      propertyPath: canvasScenarios
+      value: 
+      objectReference: {fileID: 1013918372}
     - target: {fileID: 7561403843225535469, guid: 18c5336422b74c441aec037820e6e1c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 393.5299

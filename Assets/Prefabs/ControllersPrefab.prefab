@@ -82,13 +82,13 @@ MonoBehaviour:
   timeFadeInTrack: 0.8
   timeFadeOutTrack: 0.5
   timeFadeBetweenTracks: 1
+  SFXVoume: 0.7
   sounds:
   - name: OST_house
     loop: 1
     is3D: 0
     isOST: 1
     clip: {fileID: 8300000, guid: 71a56c31cbd54d44582974686ce7590a, type: 3}
-    origins: []
     volume: 0.5
     pitch: 1
     audioSource: {fileID: 0}
@@ -97,7 +97,6 @@ MonoBehaviour:
     is3D: 0
     isOST: 1
     clip: {fileID: 8300000, guid: 4fb84b0c4f4f34f44b6cdd327bf98782, type: 3}
-    origins: []
     volume: 0.5
     pitch: 1
     audioSource: {fileID: 0}
@@ -148,10 +147,10 @@ MonoBehaviour:
   variablesJSON: {fileID: 4900000, guid: 90bacc9a1a5697040a0c4e98eb885d80, type: 3}
   canvasDialogue: {fileID: 0}
   dialogueBox: {fileID: 0}
+  bgDialogue: {fileID: 0}
   txtDialogue: {fileID: 0}
-  txtNameCharacter: {fileID: 0}
-  choices: []
   showPanelDialogueTax: 9
+  opacityPanelDialogue: 0.5
 --- !u!1 &4347664945707214177
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +198,8 @@ MonoBehaviour:
   bgTransitions: {fileID: 0}
   transistionTimeScenes: 2
   transitionTimeScenarios: 0.5
+  transitionTimeCutscenes: 0
+  cutscenes: {fileID: 7384225569319489156, guid: b18e7a1a2de9e3b419bd022c6de1f9be, type: 3}
 --- !u!1 &5512412540412008784
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,3 +265,4 @@ MonoBehaviour:
   SFXVolumeSlider: {fileID: 0}
   mainCamera: {fileID: 0}
   cameraOffset: 20
+  blockActionsDialogue: 0

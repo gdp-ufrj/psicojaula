@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] private float cameraOffset;
 
     private int idActiveScenario;
-    private bool isChangingScenario = false, gamePaused=false, isInMainScenario;
+    private bool isChangingScenario = false, gamePaused=false, isInMainScenario, isInQuarto=false, developMode=true;
     public bool blockActionsDialogue = false;
     private float originalCameraSize;
 
@@ -36,7 +36,6 @@ public class GameController : MonoBehaviour {
     }
 
     private void Awake() {
-        Debug.Log("Quarto" + SceneManager.GetActiveScene().buildIndex);
         if (instance == null)
             instance = this;
         else
@@ -48,17 +47,19 @@ public class GameController : MonoBehaviour {
     }
 
     private void Start() {
-        if (SceneManager.GetActiveScene().buildIndex % 2 == 0){
+        if (SceneManager.GetActiveScene().name.ToUpper().Contains("DEPOSITO")) {
             Debug.Log(ListaItems.Instance.depositoScenarios);
+            isInQuarto = false;
             if (ListaItems.Instance.depositoScenarios != null){
                 Debug.Log("Quarto");
                 canvasScenarios = ListaItems.Instance.depositoScenarios;
             }
         }
-        else {
+        else if (SceneManager.GetActiveScene().name.ToUpper().Contains("QUARTO")) {
+            isInQuarto = true;
             if (ListaItems.Instance.quartoScenarios != null){
-               Debug.Log("Deposito");
-               canvasScenarios = ListaItems.Instance.quartoScenarios;
+                Debug.Log("Deposito");
+                canvasScenarios = ListaItems.Instance.quartoScenarios;
             }
         }
         //Debug.Log(scenariosListInOrder);
@@ -79,15 +80,19 @@ public class GameController : MonoBehaviour {
         }
 
         if (!Globals.playedFirstCutscene) {
-            TransitionController.GetInstance().LoadCutscene(0);   //Cutscene inicial
-            Globals.playedFirstCutscene = true;
+            if (isInQuarto && !developMode) {
+                TransitionController.GetInstance().LoadCutscene(0);   //Cutscene inicial
+                Globals.playedFirstCutscene = true;
+            }
+            else {
+                if (!Globals.firstScene)
+                    TransitionController.GetInstance().FadeOutScene();
+                else
+                    Globals.firstScene = false;
+            }
         }
-        else {
-            TransitionController.GetInstance().FadeOutScene();   //O fadeOut da cena s� acontecer� depois de tudo que foi feito antes
-        }
-
-        if (Globals.firstScene)    //Se o jogo tiver acabado de abrir
-            Globals.firstScene = false;
+        else
+            TransitionController.GetInstance().FadeOutScene();
 
 
         SoundController.GetInstance().ChangeVolumes(true);
@@ -252,6 +257,10 @@ public class GameController : MonoBehaviour {
     }
     public void changeOST3() {
         SoundController.GetInstance().PlaySound("OST_fase3");
+    }
+
+    public void startCutscene() {
+        TransitionController.GetInstance().LoadCutscene(1);
     }
 
     public void LoadDeposito() {

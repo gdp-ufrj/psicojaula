@@ -12,7 +12,7 @@ public class TransitionController : MonoBehaviour {
 
     private int cutscene = -1, activeCutscene = -1;  //cutscene guarda qual das cutscenes está rodando (nenhuma se for -1), e activeCutscene guarda qual imagem da cutscene está aparecendo (nenhuma se for -1)
     private bool canPassCutscene = false;
-    [SerializeField] private GameObject cutscenes;
+    [SerializeField] private GameObject canvasCutscenes, canvasScenarios;
 
     public static TransitionController GetInstance() {
         return instance;
@@ -77,23 +77,25 @@ public class TransitionController : MonoBehaviour {
 
     public void LoadCutscene(int cutsceneIndex) {
         cutscene = cutsceneIndex;
-        cutscenes.SetActive(true);
-        cutscenes.transform.GetChild(cutsceneIndex).gameObject.SetActive(true);
+        canvasCutscenes.SetActive(true);
+        canvasCutscenes.transform.GetChild(cutsceneIndex).gameObject.SetActive(true);
+        SoundController.GetInstance().PlaySound("OST_fase3");
         StartCoroutine(NextCutscene());
     }
 
     private IEnumerator NextCutscene() {
         canPassCutscene = false;
-        //Debug.Log("opacity: " + bgTransitions.GetComponent<Image>().color.a);
-        if(activeCutscene == cutscenes.transform.GetChild(cutscene).transform.childCount - 1) {
+        if(activeCutscene == canvasCutscenes.transform.GetChild(cutscene).transform.childCount - 1) {
             bgTransitions.GetComponent<Image>().raycastTarget = true;
             animTransitionScenes.Play("fadeInCutscene");
             yield return new WaitForSeconds(transitionTimeCutscenes);
-            cutscenes.transform.GetChild(cutscene).transform.GetChild(activeCutscene).gameObject.SetActive(false);
-            cutscenes.transform.GetChild(cutscene).gameObject.SetActive(false);
-            cutscenes.gameObject.SetActive(false);
+            canvasCutscenes.transform.GetChild(cutscene).transform.GetChild(activeCutscene).gameObject.SetActive(false);
+            canvasCutscenes.transform.GetChild(cutscene).gameObject.SetActive(false);
+            canvasCutscenes.SetActive(false);
+            canvasScenarios.SetActive(true);
             activeCutscene = -1;
             cutscene = -1;
+            SoundController.GetInstance().PlaySceneMusic();
             FadeOutScene();
         }
         else {
@@ -103,9 +105,11 @@ public class TransitionController : MonoBehaviour {
                 yield return new WaitForSeconds(transitionTimeCutscenes);
             }
             if (activeCutscene != -1)
-                cutscenes.transform.GetChild(cutscene).transform.GetChild(activeCutscene).gameObject.SetActive(false);
+                canvasCutscenes.transform.GetChild(cutscene).transform.GetChild(activeCutscene).gameObject.SetActive(false);
+            else
+                canvasScenarios.SetActive(false);
             activeCutscene++;
-            cutscenes.transform.GetChild(cutscene).transform.GetChild(activeCutscene).gameObject.SetActive(true);
+            canvasCutscenes.transform.GetChild(cutscene).transform.GetChild(activeCutscene).gameObject.SetActive(true);
             animTransitionScenes.Play("fadeOutCutscene");
             canPassCutscene = true;
         }
