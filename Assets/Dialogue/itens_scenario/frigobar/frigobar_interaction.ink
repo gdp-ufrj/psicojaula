@@ -3,5 +3,5 @@ INCLUDE ../../Variaveis.ink
 -> main
 
 ==main==
-Testando interação!!!!!!
+Funcionou!
 -> END

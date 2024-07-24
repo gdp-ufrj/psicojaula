@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5346933329484765898}
   - component: {fileID: 842946472953474275}
   - component: {fileID: 6122177194392915751}
-  - component: {fileID: 8806653078492727010}
+  - component: {fileID: 1889389660635720303}
+  - component: {fileID: 7979358442890455679}
   m_Layer: 5
   m_Name: Despertador
   m_TagString: Untagged
@@ -113,7 +114,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item: {fileID: 0}
   Cena: {fileID: 0}
---- !u!114 &8806653078492727010
+--- !u!114 &1889389660635720303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735516875683394001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22a8de0b49c68f449ca02159de1d2af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7979358442890455679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDialogueJSON: {fileID: 0}
-  examDialogueJSON: {fileID: 0}
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: f71fff1c043bc5448b955e544698b2b7, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: 810ca07ebf721024297cdf886ea6f893, type: 3}
   textDialogueSpeed: 0.05
-  fontSize: 20
+  fontSize: 16

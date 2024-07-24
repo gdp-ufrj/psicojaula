@@ -18,12 +18,13 @@ public class Despertador : MonoBehaviour, IPointerClickHandler
         if(eventData.button == ObjDialogue.clickInteract) {
             if (!clicked) {
                 rectTransform = GetComponent<RectTransform>();
-
                 GameObject obj = Instantiate(Item, Cena);
-
                 obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
-
                 clicked = true;
+
+                if (gameObject.GetComponent<DialogueTrigger>() != null)
+                    gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
+
                 ListaItems.Instance.despertadorIsClicked = clicked;
             }
         }

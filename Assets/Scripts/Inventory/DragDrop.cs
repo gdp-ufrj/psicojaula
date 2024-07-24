@@ -85,11 +85,15 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         }
         else if (eventData.button == PointerEventData.InputButton.Right) {    //Usando o item
             if (item.isUsable) {
-                if (item.id == 8)   //Rem�dio
-                    SoundController.GetInstance().PlaySound("tomando_remedio");
-
-                Debug.Log("Usou o item: " + item.name);
                 DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+                if (item.id == 8) {   //Remédio
+                    dialogueTrigger.TriggerInteractionDialogue(true);
+                    SoundController.GetInstance().PlaySound("tomando_remedio");
+                }
+                if (item.id == 2) {   //Presunto
+                    dialogueTrigger.TriggerInteractionDialogue(true);
+                    SoundController.GetInstance().PlaySound("comendo_presunto");
+                }
                 ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
                 InventoryManager.Instance.Remove(itemInventory);
                 Destroy(rectTransform.gameObject);
