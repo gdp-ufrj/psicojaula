@@ -238,6 +238,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 593155663}
     m_Modifications:
+    - target: {fileID: 511422106778945101, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 511422106778945101, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1544d9222b8d32a4e8316026674aa959, type: 3}
     - target: {fileID: 609921799495255999, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -474,6 +482,22 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6518312791341804964, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518312791341804964, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c49bc90bca5c91b43afc688ee69f6c2e, type: 3}
+    - target: {fileID: 6649350804370299236, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649350804370299236, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 67bc1cef29dc9004e9eeec3225ba025c, type: 3}
     - target: {fileID: 6769798697279354010, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -530,6 +554,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -2.51
       objectReference: {fileID: 0}
+    - target: {fileID: 8133176238312519488, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8133176238312519488, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 69d2c122c2c00064aa78ba100db0e19a, type: 3}
     - target: {fileID: 8253633009545380902, guid: 96efac1defb401a4e937e10c22dcf8dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
