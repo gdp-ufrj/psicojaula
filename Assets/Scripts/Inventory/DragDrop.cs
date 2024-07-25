@@ -88,10 +88,12 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 if (item.id == 8) {   //Remédio
                     dialogueTrigger.TriggerInteractionDialogue(true);
                     SoundController.GetInstance().PlaySound("tomando_remedio");
+                    ListaItems.Instance.remedioTomado = true;
                 }
                 if (item.id == 2) {   //Presunto
                     dialogueTrigger.TriggerInteractionDialogue(true);
                     SoundController.GetInstance().PlaySound("comendo_presunto");
+                    ListaItems.Instance.comeuPresunto = true;
                 }
                 ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
                 InventoryManager.Instance.Remove(itemInventory);

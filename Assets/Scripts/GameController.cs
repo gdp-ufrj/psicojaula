@@ -262,8 +262,9 @@ public class GameController : MonoBehaviour {
     }
 
     public void LoadDeposito() {
-         
-        TransitionController.GetInstance().LoadDeposito();
+        if (ListaItems.Instance.cafeTomado && ListaItems.Instance.vestiuRoupa && ListaItems.Instance.remedioTomado){
+            TransitionController.GetInstance().LoadDeposito();
+        }
     }
 
     public void LoadQuarto() {
