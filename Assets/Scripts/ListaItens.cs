@@ -22,6 +22,11 @@ public class ListaItems : MonoBehaviour
     public bool musicaColetadaLuminaria = false;
     public bool musicaColetadaTv = false;
     public bool oculosUsado = false;
+    public bool cafeTomado = false;
+    public bool vestiuRoupa = false;
+    public bool remedioTomado = false;
+    public bool guitarraInteragida = false;
+    public bool comeuPresunto = false;
     private void Awake()
     {
         

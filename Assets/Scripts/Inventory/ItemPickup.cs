@@ -20,7 +20,7 @@ public class ItemPickup : MonoBehaviour {
         SoundController.GetInstance().PlaySound(Item.nameSoundPickup);
         if (!gameObject.CompareTag("ItemDropped")) {
             if (dialogueTrigger != null) {
-                if (Item.id != 2 && Item.id != 8)    //Se não for remédio nem presunto
+                if (Item.id != 2 && Item.id != 8)    //Se nï¿½o for remï¿½dio nem presunto
                     dialogueTrigger.TriggerInteractionDialogue(true);
             }
         }

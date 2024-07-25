@@ -8,6 +8,7 @@ public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
     public Item cruz_fria;
     public Transform Cena;
     public GameObject Item;
+    public GameObject Presunto;
     public Sprite frigobar_aberto;
     public Sprite frigobar_fechado;
 
@@ -22,6 +23,9 @@ public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
             rectTransform = GetComponent<RectTransform>();
             rectTransform.localPosition = new Vector3(rectTransform.localPosition.x + x, rectTransform.localPosition.y + y, rectTransform.localPosition.z);
             rectTransform.sizeDelta = new Vector2((float)161.76, 175);
+            if (Presunto != null) {
+                Presunto.SetActive(true);
+            }
             isOpen = true;
         }
     }    
@@ -38,6 +42,9 @@ public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
                 rectTransform.sizeDelta = new Vector2(100, 150);
                 isOpen = false;
                 ListaItems.Instance.frigobarIsOpen = isOpen;
+                if (Presunto != null) {
+                    Presunto.SetActive(false);
+                }
             }
             else {
                 SoundController.GetInstance().PlaySound("abrindo_frigobar");
@@ -47,6 +54,9 @@ public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
                 rectTransform.sizeDelta = new Vector2((float)161.76, 175);
                 isOpen = true;
                 ListaItems.Instance.frigobarIsOpen = isOpen;
+                if (Presunto != null) {
+                    Presunto.SetActive(true);
+                }
             }
         }
     }
