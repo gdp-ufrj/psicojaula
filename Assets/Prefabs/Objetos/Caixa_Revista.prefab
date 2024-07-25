@@ -93,7 +93,7 @@ MonoBehaviour:
   interactionDialogueJSON:
   - {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
   examDialogueJSON:
-  - {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  - {fileID: 4900000, guid: 777c51a7950686941b5105445133830a, type: 3}
   textDialogueSpeed: 0.05
   fontSize: 16
 --- !u!114 &1758600880564577212

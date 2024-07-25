@@ -16,7 +16,6 @@ MonoBehaviour:
   itemName: "\xD3culos Escuros"
   value: 0
   icon: {fileID: 21300000, guid: ce5a0d88aa3b8c54d86db4834801bc32, type: 3}
-  newItem: {fileID: 0}
   nameSoundPickup: pickup_oculos
-  firstPickup: 1
-  dialogueTriggerScript: {fileID: 0}
+  isUsable: 0
+  newItemPrefab: {fileID: 0}

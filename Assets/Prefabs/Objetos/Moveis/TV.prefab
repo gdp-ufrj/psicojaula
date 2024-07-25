@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3900062901589467491}
   - component: {fileID: 6477189825702153430}
   - component: {fileID: 8707616258005005040}
+  - component: {fileID: 7752817441756837267}
   m_Layer: 5
   m_Name: TV
   m_TagString: Untagged
@@ -121,3 +122,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 121.58421, y: 76.5842}
   m_EdgeRadius: 0
+--- !u!114 &7752817441756837267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835825698602189178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: 068f1255d447d3e4c8d2413cb6fbe0f1, type: 3}
+  - {fileID: 4900000, guid: 8b00afb845bdbf046b8041f3b82de0dc, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: 696b887f84ad13f40a611b9ba26f0f09, type: 3}
+  - {fileID: 4900000, guid: ac6a3361ae215a148af5538d5116682c, type: 3}
+  textDialogueSpeed: 0.05
+  fontSize: 16

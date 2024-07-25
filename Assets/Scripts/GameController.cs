@@ -132,65 +132,65 @@ public class GameController : MonoBehaviour {
     }
 
     public void ChangeScenarioButton(int direction) {    //Este m�todo servir� para trocar o cen�rio do jogo (quando olhamos para a esquerda/direita/cima)
-        if (direction == (int)LookDirection.LEFT)
-            SoundController.GetInstance().PlaySound("cena_esq");
-        else if (direction == (int)LookDirection.RIGHT)
-            SoundController.GetInstance().PlaySound("cena_dir");
+        if (!isChangingScenario) {
+            if (direction == (int)LookDirection.LEFT)
+                SoundController.GetInstance().PlaySound("cena_esq");
+            else if (direction == (int)LookDirection.RIGHT)
+                SoundController.GetInstance().PlaySound("cena_dir");
 
-        DialogueController.GetInstance().EndDialogue();
-        changeScenario(direction);
+            DialogueController.GetInstance().EndDialogue();
+            changeScenario(direction);
+        }
     }
 
     public void changeScenario(int direction=(int)LookDirection.OTHER, string scenarioName=null) {
-        if (!isChangingScenario) {
-            if(direction != (int)LookDirection.OTHER) {   //Se estivermos virando para esquerda/direita/cima
-                if (isInMainScenario) {    //Se estivermos em um cen�rio principal do jogo
-                    float horizontalOffset = 0, verticalOffset = 0;   //Estes valores s�o os campos do objeto do cen�rio que servir�o como offset da c�mera ao olhar para alguma dire��o
-                    switch (direction) {
-                        case (int)LookDirection.LEFT:
-                            if (idActiveScenario == 0)
-                                idActiveScenario = scenarios.ScenariosDictionary.Count - 1;
-                            else
-                                idActiveScenario = idActiveScenario - 1;
-                            horizontalOffset = -cameraOffset;
-                            break;
-                        case (int)LookDirection.RIGHT:
-                            if (idActiveScenario == scenarios.ScenariosDictionary.Count - 1)
-                                idActiveScenario = 0;
-                            else
-                                idActiveScenario = idActiveScenario + 1;
-                            horizontalOffset = cameraOffset;
-                            break;
-                        case (int)LookDirection.UP:
-                            if (idActiveScenario == scenarios.ScenariosDictionary.Count - 1)
-                                idActiveScenario = 0;
-                            else
-                                idActiveScenario = idActiveScenario + 1;
-                            verticalOffset = -cameraOffset;
-                            break;
-                    }
-                    newScenario = scenarios.ScenariosDictionary[idActiveScenario];
-                    StartCoroutine(moveCameraOffset(horizontalOffset, verticalOffset));    //Novendo o cen�rio para dar a impress�o de movimenta��o da c�mera
+        if(direction != (int)LookDirection.OTHER) {   //Se estivermos virando para esquerda/direita/cima
+            if (isInMainScenario) {    //Se estivermos em um cen�rio principal do jogo
+                float horizontalOffset = 0, verticalOffset = 0;   //Estes valores s�o os campos do objeto do cen�rio que servir�o como offset da c�mera ao olhar para alguma dire��o
+                switch (direction) {
+                    case (int)LookDirection.LEFT:
+                        if (idActiveScenario == 0)
+                            idActiveScenario = scenarios.ScenariosDictionary.Count - 1;
+                        else
+                            idActiveScenario = idActiveScenario - 1;
+                        horizontalOffset = -cameraOffset;
+                        break;
+                    case (int)LookDirection.RIGHT:
+                        if (idActiveScenario == scenarios.ScenariosDictionary.Count - 1)
+                            idActiveScenario = 0;
+                        else
+                            idActiveScenario = idActiveScenario + 1;
+                        horizontalOffset = cameraOffset;
+                        break;
+                    case (int)LookDirection.UP:
+                        if (idActiveScenario == scenarios.ScenariosDictionary.Count - 1)
+                            idActiveScenario = 0;
+                        else
+                            idActiveScenario = idActiveScenario + 1;
+                        verticalOffset = -cameraOffset;
+                        break;
                 }
-                else {
-                    newScenario = currentScenario.ParentScenario;
-                    idActiveScenario = newScenario.SceneId;
-                }
+                newScenario = scenarios.ScenariosDictionary[idActiveScenario];
+                StartCoroutine(moveCameraOffset(horizontalOffset, verticalOffset));    //Novendo o cen�rio para dar a impress�o de movimenta��o da c�mera
             }
-            else {    //Se clicarmos em uma parte do cen�rio
-                if(scenarioName != null) {
-                    foreach(ScenarioDictionaryItem itemDict in currentScenario.PartsOfScenario) {
-                        if (itemDict.ScenarioObject.name.Equals(scenarioName)) {
-                            newScenario = itemDict;
-                            idActiveScenario = itemDict.SceneId;
-                            break;
-                        }
-                    }
-                }
+            else {
+                newScenario = currentScenario.ParentScenario;
+                idActiveScenario = newScenario.SceneId;
             }
-            isInMainScenario = newScenario.ParentScenario == null;
-            TransitionController.GetInstance().LoadScenario();
         }
+        else {    //Se clicarmos em uma parte do cen�rio
+            if(scenarioName != null) {
+                foreach(ScenarioDictionaryItem itemDict in currentScenario.PartsOfScenario) {
+                    if (itemDict.ScenarioObject.name.Equals(scenarioName)) {
+                        newScenario = itemDict;
+                        idActiveScenario = itemDict.SceneId;
+                        break;
+                    }
+                }
+            }
+        }
+        isInMainScenario = newScenario.ParentScenario == null;
+        TransitionController.GetInstance().LoadScenario();
     }
 
     public void changeImgScenario() {    //Este m�todo ser� chamado logo ap�s o fade-in da transi��o entre cen�rios
@@ -202,13 +202,11 @@ public class GameController : MonoBehaviour {
             btnBack.SetActive(false);
             btnLeft.SetActive(true);
             btnRight.SetActive(true);
-            //btnUp.SetActive(true);
         }
         else {
             btnBack.SetActive(true);
             btnLeft.SetActive(false);
             btnRight.SetActive(false);
-            //btnUp.SetActive(false);
         }
     }
 
