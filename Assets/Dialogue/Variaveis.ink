@@ -12,6 +12,15 @@ VAR exameTesoura = 0
 VAR exameRevista = 0
 
 === function resetDialogueVariables() ===
-~teste = true
-~dialogoTV = 0
-~exameJornal1 = 0
+~ dialogoTV = 0
+~ teste = true
+~ exameJornal1 = 0
+~ exameJornal2 = 0
+~ exameRemedio = 0
+~ exameGavetaFechada = 0
+~ exameFogao = 0
+~ exameCama = 0
+~ exameArmario = 0
+~ examePresunto = 0
+~ exameTesoura = 0
+~ exameRevista = 0

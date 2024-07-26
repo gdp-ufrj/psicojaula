@@ -47,18 +47,19 @@ public class GameController : MonoBehaviour {
     }
 
     private void Start() {
+        //DialogueController.GetInstance().dialogueVariablesController.CheckVariableValues();
         if (SceneManager.GetActiveScene().name.ToUpper().Contains("DEPOSITO")) {
-            Debug.Log(ListaItems.Instance.depositoScenarios);
+            //Debug.Log(ListaItems.Instance.depositoScenarios);
             isInQuarto = false;
             if (ListaItems.Instance.depositoScenarios != null){
-                Debug.Log("Quarto");
+                //Debug.Log("Quarto");
                 canvasScenarios = ListaItems.Instance.depositoScenarios;
             }
         }
         else if (SceneManager.GetActiveScene().name.ToUpper().Contains("QUARTO")) {
             isInQuarto = true;
             if (ListaItems.Instance.quartoScenarios != null){
-                Debug.Log("Deposito");
+                //Debug.Log("Deposito");
                 canvasScenarios = ListaItems.Instance.quartoScenarios;
             }
         }
@@ -294,7 +295,13 @@ public class GameController : MonoBehaviour {
         canvasConfigs.SetActive(false);
     }
     public void ReturnToGameMenu() {   //Para retornar ao menu do jogo
+        ResetGame();
         TransitionController.GetInstance().LoadMenu();
+    }
+
+    public void ResetGame() {   //Deve ser chamada quando voltamos ao menu ou zeramos o jogo
+        ListaItems.Instance.resetVariables();
+        DialogueController.GetInstance().dialogueVariablesController.ChangeSpecificVariable("resetDialogueVariables");
     }
 
 }

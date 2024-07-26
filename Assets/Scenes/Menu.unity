@@ -655,7 +655,7 @@ GameObject:
   - component: {fileID: 497293987}
   - component: {fileID: 497293986}
   m_Layer: 5
-  m_Name: txtConfig
+  m_Name: txtExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1348,7 +1348,7 @@ GameObject:
   - component: {fileID: 1009675908}
   - component: {fileID: 1009675907}
   m_Layer: 5
-  m_Name: btnExit (1)
+  m_Name: btnCreditos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1788,7 +1788,7 @@ GameObject:
   - component: {fileID: 1431940058}
   - component: {fileID: 1431940057}
   m_Layer: 5
-  m_Name: txtConfig
+  m_Name: txtCreditos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1954,8 +1954,8 @@ RectTransform:
   m_Children:
   - {fileID: 407281653}
   - {fileID: 2090635928}
-  - {fileID: 1309173830}
   - {fileID: 1009675906}
+  - {fileID: 1309173830}
   m_Father: {fileID: 940400494}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}

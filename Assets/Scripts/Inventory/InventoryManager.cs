@@ -48,6 +48,7 @@ public class InventoryManager : MonoBehaviour
         {
             DialogueTrigger newDialogueTrigger = Instantiate(dialogueTriggerPrefab);
             newDialogueTrigger.SetVariables(dialogueTrigger);
+            newDialogueTrigger.transform.SetParent(ListaItems.Instance.transform);
             itemInventory = new ItemInventory(item, newDialogueTrigger);
         }
         else
@@ -71,7 +72,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (Items.Contains(itemInventory))
         {
-            //Destroy(Items[Items.IndexOf(itemInventory)].dialogueTrigger.gameObject);
+            Destroy(Items[Items.IndexOf(itemInventory)].dialogueTrigger.gameObject);
             Items.Remove(itemInventory);
             qtdItem -= 1;
             if (qtdItem <= 4)
@@ -133,11 +134,12 @@ public class InventoryManager : MonoBehaviour
             obj.GetComponent<DragDrop>().AddItem(Items[i].item);
             obj.GetComponent<DragDrop>().SetGameController(gameController);
 
-            if (Items[i].dialogueTrigger != null)
-            {
+            if (Items[i].dialogueTrigger != null) {
                 DialogueTrigger dialogueTrigger = obj.GetComponent<DialogueTrigger>();
                 dialogueTrigger.SetVariables(Items[i].dialogueTrigger);
             }
+            else
+                Debug.Log(Items[i]);
         }
     }
 }

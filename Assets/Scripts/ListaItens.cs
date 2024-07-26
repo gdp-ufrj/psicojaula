@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +29,6 @@ public class ListaItems : MonoBehaviour
     public bool comeuPresunto = false;
     private void Awake()
     {
-        
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -40,6 +38,30 @@ public class ListaItems : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    
-    
+    public void resetVariables() {
+        foreach (Transform child in gameObject.transform) {
+            GameObject.Destroy(child.gameObject);
+        }
+        ItensColetados = new List<Item>();
+        listItems = new List<ItemInventory>();
+        listaItenslargados = new List<ItemInventory>();
+        firstItem = 0;
+        lastItem = 0;
+        qtdItem = 0;
+        frigobarIsOpen = false;
+        despertadorIsClicked = false;
+        mesaTVIsClicked = false;
+        isOnFire = false;
+        gavetaIsOpen = false;
+        caixaRevistaIsOpen = false;
+        musicaColetadaJanela = false;
+        musicaColetadaLuminaria = false;
+        musicaColetadaTv = false;
+        oculosUsado = false;
+        cafeTomado = false;
+        vestiuRoupa = false;
+        remedioTomado = false;
+        guitarraInteragida = false;
+        comeuPresunto = false;
+    }
 }
