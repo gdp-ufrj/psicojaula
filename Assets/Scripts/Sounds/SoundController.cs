@@ -206,7 +206,11 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
     public void PlaySceneMusic() {
         if (SceneManager.GetActiveScene().name.ToLower().Contains("menu"))
             PlaySound("OST_menu");
-        else if (SceneManager.GetActiveScene().name.ToLower().Contains("quarto"))
+        else if (SceneManager.GetActiveScene().name.ToLower().Contains("_1"))
             PlaySound("OST_fase1");
+        else if (SceneManager.GetActiveScene().name.ToLower().Contains("_2"))
+            PlaySound("OST_fase2");
+        else if (SceneManager.GetActiveScene().name.ToLower().Contains("_3"))
+            PlaySound("OST_fase3");
     }
 }

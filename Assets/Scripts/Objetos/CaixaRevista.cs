@@ -1,35 +1,48 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CaixaRevista : MonoBehaviour {
-    public Item Item;
-    public bool coletado;
+public class CaixaRevista : MonoBehaviour, IDropHandler, IPointerClickHandler {
+
+    private RectTransform rectTransform;
+    public Item revista;
+    public Transform Cena;
+    public GameObject Item;
+    private bool isOpen = false;
+
     private void Awake() {
-        if (ListaItems.Instance.ItensColetados.Contains(Item)) {
-            Destroy(gameObject);
+        isOpen = ListaItems.Instance.caixaRevistaIsOpen;
+    }
+
+    public void OnDrop(PointerEventData eventData) {
+
+        GameObject itemObject = eventData.selectedObject;
+
+        var item = itemObject.GetComponent<DragDrop>().GetItem();
+
+        if (item.id == 11) {
+            DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
+            ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
+            InventoryManager.Instance.Remove(itemInventory);
+
+            isOpen = true;
+            ListaItems.Instance.caixaRevistaIsOpen = true;
+
+            if (gameObject.GetComponent<DialogueTrigger>() != null)
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
+
+            rectTransform = GetComponent<RectTransform>();
+            GameObject obj = Instantiate(Item, Cena);
+            obj.transform.localPosition = new Vector3(rectTransform.localPosition.x - 70, rectTransform.localPosition.y - 20, -4);
+            InventoryManager.Instance.ListItems();
+            Destroy(itemObject);
         }
     }
 
-    void Pickup() {
-        DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
-        ItemInventory itemInventory = new ItemInventory(Item, dialogueTrigger);
-        InventoryManager.Instance.Add(Item, dialogueTrigger);
-        ListaItems.Instance.ItensColetados.Add(Item);
-        if (ListaItems.Instance.listaItenslargados.Contains(itemInventory)) {
-            ListaItems.Instance.listaItenslargados.Remove(itemInventory);
-        }
-        SoundController.GetInstance().PlaySound(Item.nameSoundPickup);
-        if (!gameObject.CompareTag("ItemDropped")) {
-            if (dialogueTrigger != null) {
-                if (Item.id != 2 && Item.id != 8)    //Se n�o for rem�dio nem presunto
-                    dialogueTrigger.TriggerInteractionDialogue(true);
+    public void OnPointerClick(PointerEventData eventData) {
+        if (eventData.button == ObjDialogue.clickExam) {
+            if (!isOpen) {
+                gameObject.GetComponent<DialogueTrigger>().TriggerExamDialogue(true);
             }
         }
-        Destroy(gameObject);
     }
-
-    void OnMouseDown() {
-        if(!GameController.GetInstance().blockActionsDialogue)
-            Pickup();
-    }
-
 }

@@ -111,7 +111,6 @@ public class GameController : MonoBehaviour {
             });
         }
         SoundController.GetInstance().PlaySceneMusic();
-        //DialogueController.GetInstance().dialogueVariablesController.CheckVariableValues();
     }
 
     private void Update() {

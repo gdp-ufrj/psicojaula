@@ -15,9 +15,10 @@ public class ListaItems : MonoBehaviour
     public int qtdItem = 0;
     public bool frigobarIsOpen;
     public bool despertadorIsClicked = false;
+    public bool mesaTVIsClicked = false;
     public bool isOnFire = false;
     public bool gavetaIsOpen = false;
-    public bool caixaIsOpen = false;
+    public bool caixaRevistaIsOpen = false;
     public bool musicaColetadaJanela = false;
     public bool musicaColetadaLuminaria = false;
     public bool musicaColetadaTv = false;

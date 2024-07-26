@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 534762898283905548}
   - component: {fileID: 2164750651704348614}
   - component: {fileID: 5760212719932279843}
-  - component: {fileID: 7055081307704049877}
-  - component: {fileID: 3141754672093782398}
+  - component: {fileID: 7662596516162298545}
   m_Layer: 5
   m_Name: 3_0-gaveta
   m_TagString: Untagged
@@ -77,28 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!65 &7055081307704049877
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764310818227050793}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3141754672093782398
+--- !u!114 &7662596516162298545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
