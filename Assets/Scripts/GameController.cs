@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float cameraOffset;
 
+    public GameObject exitKey;
     private int idActiveScenario, gamePhase;
     private bool isChangingScenario = false, gamePaused=false, isInMainScenario, isInQuarto=false, developMode=true;
     public bool blockActionsDialogue = false;
@@ -303,6 +304,10 @@ public class GameController : MonoBehaviour {
         }
         if (gamePhase == 2 && ListaItems.Instance.musicaVocal && ListaItems.Instance.musicaTeclado) {
             StartCoroutine(NextPhase());
+        }
+        if (ListaItems.Instance.musicaBaixo && ListaItems.Instance.musicaBateria && !ListaItems.Instance.exitKeyGenerated) {
+            exitKey.SetActive(true);
+            ListaItems.Instance.exitKeyGenerated = true;
         }
     }
 
