@@ -307,7 +307,7 @@ public class GameController : MonoBehaviour {
         if (gamePhase == 1 && ListaItems.Instance.guitarraInteragida) {
             StartCoroutine(NextPhase());
         }
-        if (gamePhase == 2 && ListaItems.Instance.musicaBaixo && ListaItems.Instance.musicaVocal && ListaItems.Instance.musicaTeclado) {
+        if (gamePhase == 2 && ListaItems.Instance.musicaVocal && ListaItems.Instance.musicaTeclado) {
             StartCoroutine(NextPhase());
         }
     }
