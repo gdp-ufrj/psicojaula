@@ -77,6 +77,7 @@ public class TransitionController : MonoBehaviour {
 
 
     public void LoadCutsceneMusica(string nameAnimation) {
+        SoundController.GetInstance().PlaySound("flashback");
         canvasCutsceneMusica.SetActive(true);
         posterBanda.GetComponent<Animator>().Play(nameAnimation);
     }

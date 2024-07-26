@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Teclado : MonoBehaviour, IDropHandler {
+public class Teclado : MonoBehaviour, IDropHandler, IPointerClickHandler {
     public void OnDrop(PointerEventData eventData) {
-
         GameObject itemObject = eventData.selectedObject;
         var item = itemObject.GetComponent<DragDrop>().GetItem();
 
@@ -16,6 +15,14 @@ public class Teclado : MonoBehaviour, IDropHandler {
             if (gameObject.GetComponent<DialogueTrigger>() != null)
                 gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
             TransitionController.GetInstance().LoadCutsceneMusica("teclado");
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+        if (eventData.button == ObjDialogue.clickExam) {
+            DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+            if (dialogueTrigger != null)
+                dialogueTrigger.TriggerExamDialogue(true);
         }
     }
 }
