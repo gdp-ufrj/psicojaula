@@ -32,6 +32,7 @@ public class ListaItems : MonoBehaviour
     public bool musicaBateria = false;
     public bool musicaVocal = false;
     public bool musicaTeclado = false;
+    public bool exitKeyUsed = false;
     private void Awake()
     {
         if (Instance != null)
@@ -73,5 +74,6 @@ public class ListaItems : MonoBehaviour
         musicaBateria = false;
         musicaVocal = false;
         musicaTeclado = false;
+        exitKeyUsed = false;
     }
 }

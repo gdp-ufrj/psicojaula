@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5474355629095002085}
   - component: {fileID: 676851011315050508}
   - component: {fileID: 1311138774693289296}
+  - component: {fileID: -355386908950879966}
+  - component: {fileID: 3068923593853110899}
   m_Layer: 0
   m_Name: Bateria
   m_TagString: Untagged
@@ -26,7 +28,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3072216779020408807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4049.9993}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 11, y: 11, z: 11}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -75,3 +77,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-355386908950879966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072216779020408807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: 30cab5e45b9014d4a80ecf5b9faac091, type: 3}
+  examDialogueJSON: []
+  textDialogueSpeed: 0.1
+  fontSize: 16
+--- !u!114 &3068923593853110899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072216779020408807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe12ac93878a32c4b8b494065219ee0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -19,13 +19,13 @@ public class GameController : MonoBehaviour {
 
     [SerializeField] private GameObject[] scenariosListInOrder;    //Essa ser� uma lista serializada, na qual poderemos colocar os GameObjects de cen�rio
 
-    [SerializeField] private GameObject canvasScenarios, btnLeft, btnRight, btnUp, btnBack;
+    [SerializeField] private GameObject canvasScenarios, btnLeft, btnRight, btnUp, btnBack, canvasCutsceneMusica;
     [SerializeField] private GameObject canvasPause, canvasMenu, canvasConfigs;  //Diferentes interfaces do jogo
     [SerializeField] private Slider OSTVolumeSlider, SFXVolumeSlider;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float cameraOffset;
 
-    private int idActiveScenario;
+    private int idActiveScenario, gamePhase;
     private bool isChangingScenario = false, gamePaused=false, isInMainScenario, isInQuarto=false, developMode=true;
     public bool blockActionsDialogue = false;
     private float originalCameraSize;
@@ -47,23 +47,27 @@ public class GameController : MonoBehaviour {
     }
 
     private void Start() {
-        //DialogueController.GetInstance().dialogueVariablesController.CheckVariableValues();
+        if (SceneManager.GetActiveScene().name.ToUpper().Contains("_1"))
+            gamePhase = 1;
+        else if (SceneManager.GetActiveScene().name.ToUpper().Contains("_2"))
+            gamePhase = 2;
+        else if (SceneManager.GetActiveScene().name.ToUpper().Contains("_3"))
+            gamePhase = 3;
+        else
+            gamePhase = -1;
+
         if (SceneManager.GetActiveScene().name.ToUpper().Contains("DEPOSITO")) {
-            //Debug.Log(ListaItems.Instance.depositoScenarios);
             isInQuarto = false;
             if (ListaItems.Instance.depositoScenarios != null){
-                //Debug.Log("Quarto");
                 canvasScenarios = ListaItems.Instance.depositoScenarios;
             }
         }
         else if (SceneManager.GetActiveScene().name.ToUpper().Contains("QUARTO")) {
             isInQuarto = true;
             if (ListaItems.Instance.quartoScenarios != null){
-                //Debug.Log("Deposito");
                 canvasScenarios = ListaItems.Instance.quartoScenarios;
             }
         }
-        //Debug.Log(scenariosListInOrder);
         SoundController.GetInstance().LoadSounds();   //Carregando os sons da cena
 
         if (mainCamera != null)
@@ -257,12 +261,7 @@ public class GameController : MonoBehaviour {
         SoundController.GetInstance().PlaySound("OST_fase3");
     }
 
-    public void startCutscene() {
-        TransitionController.GetInstance().LoadCutscene(1);
-    }
-
     public void LoadDeposito() {
-        TransitionController.GetInstance().LoadDeposito();
         if (ListaItems.Instance.cafeTomado && ListaItems.Instance.vestiuRoupa && ListaItems.Instance.remedioTomado){
             TransitionController.GetInstance().LoadDeposito();
         }
@@ -295,7 +294,6 @@ public class GameController : MonoBehaviour {
         canvasConfigs.SetActive(false);
     }
     public void ReturnToGameMenu() {   //Para retornar ao menu do jogo
-        ResetGame();
         TransitionController.GetInstance().LoadMenu();
     }
 
@@ -304,4 +302,19 @@ public class GameController : MonoBehaviour {
         DialogueController.GetInstance().dialogueVariablesController.ChangeSpecificVariable("resetDialogueVariables");
     }
 
+    public void checkActionsAfterDialogue() {
+        canvasCutsceneMusica.SetActive(false);
+        if (gamePhase == 1 && ListaItems.Instance.guitarraInteragida) {
+            StartCoroutine(NextPhase());
+        }
+        if (gamePhase == 2 && ListaItems.Instance.musicaBaixo && ListaItems.Instance.musicaVocal && ListaItems.Instance.musicaTeclado) {
+            StartCoroutine(NextPhase());
+        }
+    }
+
+
+    private IEnumerator NextPhase() {
+        yield return new WaitForSeconds(0.5f);
+        TransitionController.GetInstance().LoadNextFase();
+    }
 }

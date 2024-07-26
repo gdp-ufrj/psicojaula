@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4389120713470727139}
   - component: {fileID: 37250264341007238}
   - component: {fileID: 8330102672278292965}
+  - component: {fileID: -750821618257800005}
+  - component: {fileID: 6877454461222967945}
   m_Layer: 0
   m_Name: Baixo
   m_TagString: Untagged
@@ -75,3 +77,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-750821618257800005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592321992675912116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: d54e03d2aae8c544a8db2cf252c68ba6, type: 3}
+  examDialogueJSON: []
+  textDialogueSpeed: 0.1
+  fontSize: 16
+--- !u!114 &6877454461222967945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592321992675912116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa64bc225a6be84d8d0acd682d949e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

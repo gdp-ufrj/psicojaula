@@ -169,7 +169,7 @@ public class DialogueController : MonoBehaviour
         if (dialogue != null)
             dialogueVariablesController.StopListening(dialogue);  //Para parar de detectar as mudan�as de vari�veis no di�logo
         GameController.GetInstance().blockActionsDialogue = false;
-        //GameController.checkVariablesDialogue(dialogueVariablesController.variablesValues);    //Fazendo as checagens de vari�veis importantes que podem ter mudado ap�s um di�logo
+        GameController.GetInstance().checkActionsAfterDialogue();
     }
 
     public Ink.Runtime.Object GetVariableState(string variableName)
@@ -178,7 +178,6 @@ public class DialogueController : MonoBehaviour
         dialogueVariablesController.variablesValues.TryGetValue(variableName, out variableValue);
         if (variableValue == null)
         {
-            Debug.Log("N�o foi poss�vel recuperar o valor da vari�vel de di�logo informada.");
             return null;
         }
         return variableValue;

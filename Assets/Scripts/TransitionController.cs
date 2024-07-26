@@ -71,6 +71,7 @@ public class TransitionController : MonoBehaviour {
         StartCoroutine(LoadSceneOrScenario(1));   //Carregando a cena principal
     }
     public void LoadMenu() {
+        GameController.GetInstance().ResetGame();
         StartCoroutine(LoadSceneOrScenario(0));   //Carregando o menu
     }
 
@@ -99,10 +100,14 @@ public class TransitionController : MonoBehaviour {
             canvasCutscenes.transform.GetChild(cutscene).gameObject.SetActive(false);
             canvasCutscenes.SetActive(false);
             canvasScenarios.SetActive(true);
+            bool isFinalCutscene = cutscene == 0 ? true : false;
             activeCutscene = -1;
             cutscene = -1;
             SoundController.GetInstance().PlaySceneMusic();
-            FadeOutScene();
+            if(isFinalCutscene)   //Se for a cutscene final do jogo
+                LoadMenu();
+            else
+                FadeOutScene();
         }
         else {
             if (bgTransitions.GetComponent<Image>().color.a != 1) {

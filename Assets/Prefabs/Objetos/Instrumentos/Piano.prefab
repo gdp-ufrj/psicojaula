@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5500367189299643341}
   - component: {fileID: 8737035535280187163}
   - component: {fileID: 3112303670966506546}
+  - component: {fileID: 1230264901021900149}
+  - component: {fileID: 3704016083193812582}
   m_Layer: 5
   m_Name: Piano
   m_TagString: Untagged
@@ -75,3 +77,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1230264901021900149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341179972473110419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: d1b0587cd86e4cf4f816d99ba10cc8cc, type: 3}
+  examDialogueJSON: []
+  textDialogueSpeed: 0.1
+  fontSize: 16
+--- !u!114 &3704016083193812582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341179972473110419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980da1029c557ea4b8f50ebb6341fef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
