@@ -261,12 +261,6 @@ public class GameController : MonoBehaviour {
         SoundController.GetInstance().PlaySound("OST_fase3");
     }
 
-    public void LoadDeposito() {
-        if (ListaItems.Instance.cafeTomado && ListaItems.Instance.vestiuRoupa && ListaItems.Instance.remedioTomado){
-            TransitionController.GetInstance().LoadDeposito();
-        }
-    }
-
     public void LoadQuarto() {
         TransitionController.GetInstance().LoadQuarto();
     }

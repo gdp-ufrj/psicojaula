@@ -9,6 +9,5 @@ Será que já paguei o gás esse mês? Sem um fogão o pouco que como vai ser re
 -> END
 
 ==dialogo1==
-O único lugar da casa de onde emana alguma forma de calor, o resto parece sempre tão frio e distante.
-Mas até o calor do fogão parece estático... amassado.
+O único lugar da casa de onde emana alguma forma de calor, o resto parece sempre tão frio e distante. Eu nem uso muito o forno.
 -> END
