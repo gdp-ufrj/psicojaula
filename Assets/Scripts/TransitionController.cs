@@ -12,7 +12,7 @@ public class TransitionController : MonoBehaviour {
 
     private int cutscene = -1, activeCutscene = -1;  //cutscene guarda qual das cutscenes está rodando (nenhuma se for -1), e activeCutscene guarda qual imagem da cutscene está aparecendo (nenhuma se for -1)
     private bool canPassCutscene = false;
-    [SerializeField] private GameObject canvasCutscenes, canvasScenarios;
+    [SerializeField] private GameObject canvasCutscenes, canvasScenarios, canvasCutsceneMusica, posterBanda;
 
     public static TransitionController GetInstance() {
         return instance;
@@ -72,6 +72,12 @@ public class TransitionController : MonoBehaviour {
     }
     public void LoadMenu() {
         StartCoroutine(LoadSceneOrScenario(0));   //Carregando o menu
+    }
+
+
+    public void LoadCutsceneMusica(string nameAnimation) {
+        canvasCutsceneMusica.SetActive(true);
+        posterBanda.GetComponent<Animator>().Play(nameAnimation);
     }
 
 

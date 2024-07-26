@@ -27,6 +27,11 @@ public class ListaItems : MonoBehaviour
     public bool remedioTomado = false;
     public bool guitarraInteragida = false;
     public bool comeuPresunto = false;
+
+    public bool musicaBaixo = false;
+    public bool musicaBateria = false;
+    public bool musicaVocal = false;
+    public bool musicaTeclado = false;
     private void Awake()
     {
         if (Instance != null)
@@ -63,5 +68,10 @@ public class ListaItems : MonoBehaviour
         remedioTomado = false;
         guitarraInteragida = false;
         comeuPresunto = false;
+
+        musicaBaixo = false;
+        musicaBateria = false;
+        musicaVocal = false;
+        musicaTeclado = false;
     }
 }
