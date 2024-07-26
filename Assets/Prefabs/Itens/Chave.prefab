@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -84.5, y: 61.537}
-  m_SizeDelta: {x: 26.725, y: 20.725}
+  m_AnchoredPosition: {x: -219.6, y: -0.6}
+  m_SizeDelta: {x: 53.45, y: 41.45}
   m_Pivot: {x: 0.50000584, y: 0.5000018}
 --- !u!114 &5480245208324898624
 MonoBehaviour:
@@ -163,7 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDialogueJSON: {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
-  examDialogueJSON: {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  interactionDialogueJSON:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  examDialogueJSON:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   textDialogueSpeed: 0.05
   fontSize: 16
