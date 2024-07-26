@@ -3,5 +3,5 @@ INCLUDE ../../Variaveis.ink
 -> main
 
 ==main==
-Não parece ter nada de relevante aqui...
+Uhm... não lembro de guardar nada útil aí dentro.
 -> END

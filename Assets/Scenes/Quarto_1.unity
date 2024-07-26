@@ -845,6 +845,14 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     audioSource: {fileID: 0}
+  - name: pickup_musica
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 59e6a064dcfffe541a2176c639d1d413, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
   - name: queimando_jornal
     loop: 0
     is3D: 0
@@ -914,6 +922,110 @@ MonoBehaviour:
     is3D: 0
     isOST: 0
     clip: {fileID: 8300000, guid: 5023f844510eb264f9daac75471dabae, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: click_mouse1
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 3a365c91aad36454c914f2533a940aa1, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: click_mouse2
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: d4a87aba15b36ab4e8d1d742a0daa4b1, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: click_mouse3
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 9e080bc2f24a7ed47bf4e9ed76bb428f, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: abrindo_caixa
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: f0ffcd69f8d87dd44904e78aa7915e8d, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: abrindo_despertador
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: f5dd844e7e336dc418022038167f07bc, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: certidao_luminaria
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: a36d27b0fe5af444eb6d2ea07158d1f8, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: colocando_cruz
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 306c44a07f1c7b54ab856d3c620936d4, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: flashback
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 037d17da56e1d7b41b330c2e8826d219, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: pickup_revista
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 510fd2249e92604408efc4f12b8c726e, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: ligando_TV
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 743a94116289c9e45bf32c181350ea60, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: roupa
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: f7c6918486afe8e469df6ab13fc8d131, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: tomando_cafe
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: f9a0feb5bcdee91499e1697f0830a55c, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: item_bloqueado
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: fa5085ca4c561ff45bcb6fdb433ef25e, type: 3}
     volume: 0.8
     pitch: 1
     audioSource: {fileID: 0}
@@ -4445,9 +4557,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDialogueJSON:
-  - {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  - {fileID: 4900000, guid: 63975a3ce36c2824daa52e1e7f90360f, type: 3}
   examDialogueJSON:
-  - {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  - {fileID: 4900000, guid: 94a6ad6bb46596e43bea5f64f8b76028, type: 3}
   textDialogueSpeed: 0.05
   fontSize: 16
 --- !u!61 &1298923940
@@ -7158,7 +7270,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Armario_Aberto
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3140327716863360726, guid: c24b57f5a63d9fb408e0f92e9cf665eb, type: 3}
+    - {fileID: 3763094153620957602, guid: c24b57f5a63d9fb408e0f92e9cf665eb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
