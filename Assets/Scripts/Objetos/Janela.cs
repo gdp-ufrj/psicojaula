@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Janela : MonoBehaviour, IDropHandler
-{
+public class Janela : MonoBehaviour, IDropHandler {
 
     private RectTransform rectTransform;
     public Item musica;
@@ -16,15 +15,12 @@ public class Janela : MonoBehaviour, IDropHandler
         oculosUsado = ListaItems.Instance.oculosUsado;
     }
 
-    public void OnDrop(PointerEventData eventData)
-    {
+    public void OnDrop(PointerEventData eventData) {
         GameObject itemObject = eventData.selectedObject;
 
         var item = itemObject.GetComponent<DragDrop>().GetItem();
-        Debug.Log("Oiiiiiiiiii");
 
-        if (item.id == 13  && !musicaColetada)
-        {
+        if (item.id == 13  && !musicaColetada) {
             DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
             ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
             InventoryManager.Instance.Remove(itemInventory);
@@ -32,20 +28,18 @@ public class Janela : MonoBehaviour, IDropHandler
             musicaColetada = true;
             ListaItems.Instance.musicaColetadaJanela = true;
 
-            if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);    //Dialogo de usar o certificado na janela
+            Destroy(itemObject);
+
+            //if (gameObject.GetComponent<DialogueTrigger>() != null)
+            //    gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);    //Dialogo de usar a revista na janela
 
             rectTransform =  GetComponent<RectTransform>();
-            
-            GameObject obj =  Instantiate(Item, Cena);
-            
-            obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
+            GameObject musicaFernanda =  Instantiate(Item, Cena);
+            musicaFernanda.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y-60, -4);
             InventoryManager.Instance.ListItems();
-
         }
         
-        if (item.id == 9 && !oculosUsado)
-        {
+        if (item.id == 9 && !oculosUsado) {
             DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
             ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
             InventoryManager.Instance.Remove(itemInventory);
@@ -53,8 +47,10 @@ public class Janela : MonoBehaviour, IDropHandler
             oculosUsado = true;
             ListaItems.Instance.oculosUsado = true;
 
-            if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);    //Dialogo de usar o oculos na janela
+            Destroy(itemObject);
+
+            //if (gameObject.GetComponent<DialogueTrigger>() != null)
+            //    gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);    //Dialogo de usar o oculos na janela
         }
 
     }

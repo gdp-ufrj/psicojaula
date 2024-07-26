@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDialogueJSON:
-  - {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  - {fileID: 4900000, guid: d2b0149f7182ab24ea39a0b5ead5674a, type: 3}
   examDialogueJSON:
-  - {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  - {fileID: 4900000, guid: 66e91065e116c2745ad3579843343411, type: 3}
   textDialogueSpeed: 0.05
   fontSize: 16

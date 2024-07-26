@@ -3,5 +3,5 @@ INCLUDE ../../Variaveis.ink
 -> main
 
 ==main==
-Jornal inteiro interação!!!!!
+O jornal tá inteiro agora, melhor eu dar uma olhada no que se trata.
 -> END
