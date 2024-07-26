@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 18
   itemName: M_Fernanda
   value: 0
-  icon: {fileID: 21300000, guid: 02b1b4498c042b342b239e3af88af65e, type: 3}
-  newItem: {fileID: 0}
+  icon: {fileID: 21300000, guid: 59d31958a7b6f8e4087f2e240755b44c, type: 3}
   nameSoundPickup: pickup_jornal
-  dialogueTriggerScript: {fileID: 0}
+  isUsable: 0
+  newItemPrefab: {fileID: 0}

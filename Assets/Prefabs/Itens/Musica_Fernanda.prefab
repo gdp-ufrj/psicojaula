@@ -39,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 90.7, y: 129.3}
-  m_SizeDelta: {x: 27.8, y: 103.2}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.50000584, y: 0.5000018}
 --- !u!114 &361315938394774322
 MonoBehaviour:
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02b1b4498c042b342b239e3af88af65e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59d31958a7b6f8e4087f2e240755b44c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -141,7 +141,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 27.8, y: 103.2}
+  m_Size: {x: 50, y: 50}
   m_EdgeRadius: 0
 --- !u!222 &497061659681643167
 CanvasRenderer:
