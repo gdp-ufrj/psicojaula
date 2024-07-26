@@ -89,9 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eac0476a5d7393468e47e438d98a09a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  revista: {fileID: 0}
+  revista: {fileID: 11400000, guid: cd2086974cfa7b840bb9d302e6ba7cd0, type: 2}
   Cena: {fileID: 0}
-  Item: {fileID: 0}
+  Item: {fileID: 6280270197014945839, guid: bb7e46007e4ae2249b3a5bd1e2de9623, type: 3}
 --- !u!61 &-3335511689830024615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,5 +135,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 70, y: 70}
   m_EdgeRadius: 0
