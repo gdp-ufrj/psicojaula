@@ -3,5 +3,5 @@ INCLUDE ../../Variaveis.ink
 -> main
 
 ==main==
-Abriu!
+Abriu! Isso era uma chave?!
 -> END

@@ -3,5 +3,6 @@ INCLUDE ../../Variaveis.ink
 -> main
 
 ==main==
-Mas o que é isso? está tão apagado, não consigo ler.
+Uhm... parece uma carteira de afiliação partidária. O nome aqui é de Bete Batista. Me soa familiar...
+Mas está tão apagado que não consigo ler!
 -> END

@@ -147,8 +147,10 @@ MonoBehaviour:
   variablesJSON: {fileID: 4900000, guid: 90bacc9a1a5697040a0c4e98eb885d80, type: 3}
   canvasDialogue: {fileID: 0}
   dialogueBox: {fileID: 0}
+  dialogueBoxCutsceneMusica: {fileID: 0}
   bgDialogue: {fileID: 0}
   txtDialogue: {fileID: 0}
+  txtDialogueMusica: {fileID: 0}
   showPanelDialogueTax: 9
   opacityPanelDialogue: 0.5
 --- !u!1 &4347664945707214177
@@ -196,10 +198,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgTransitions: {fileID: 0}
-  transistionTimeScenes: 2
+  transistionTimeScenes: 1
   transitionTimeScenarios: 0.5
   transitionTimeCutscenes: 0
-  cutscenes: {fileID: 7384225569319489156, guid: b18e7a1a2de9e3b419bd022c6de1f9be, type: 3}
+  canvasCutscenes: {fileID: 0}
+  canvasScenarios: {fileID: 0}
+  canvasCutsceneMusica: {fileID: 0}
+  posterBanda: {fileID: 0}
 --- !u!1 &5512412540412008784
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +263,7 @@ MonoBehaviour:
   btnRight: {fileID: 0}
   btnUp: {fileID: 0}
   btnBack: {fileID: 0}
+  canvasCutsceneMusica: {fileID: 0}
   canvasPause: {fileID: 0}
   canvasMenu: {fileID: 0}
   canvasConfigs: {fileID: 0}
@@ -265,4 +271,6 @@ MonoBehaviour:
   SFXVolumeSlider: {fileID: 0}
   mainCamera: {fileID: 0}
   cameraOffset: 20
+  exitKey: {fileID: 0}
+  gamePhase: 0
   blockActionsDialogue: 0

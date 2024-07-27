@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Fogao : MonoBehaviour, IDropHandler
-{
+public class Fogao : MonoBehaviour, IDropHandler, IPointerClickHandler {
 
     private RectTransform rectTransform;
     public Item musica;
@@ -31,8 +30,7 @@ public class Fogao : MonoBehaviour, IDropHandler
 
             Destroy(itemObject);
 
-            if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);    //Di�logo de acender fog�o
+            gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);    //Di�logo de acender fog�o
 
         }
         if (isOnFire && item.id == 14) {     //Jornal
@@ -44,14 +42,23 @@ public class Fogao : MonoBehaviour, IDropHandler
             rectTransform = GetComponent<RectTransform>();
             GameObject musicaDarciso = Instantiate(Item, Cena);
             musicaDarciso.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
-            //InventoryManager.Instance.ListItems();
 
             Destroy(itemObject);
 
-            if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 1);    //Di�logo de queimar objeto
+            gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 1);    //Di�logo de queimar objeto
         }
+    }
 
+    public void OnPointerClick(PointerEventData eventData) {
+        if (eventData.button == ObjDialogue.clickExam) {
+            DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+            if (!isOnFire) {
+                dialogueTrigger.TriggerExamDialogue(true, 0);
+            }
+            else {
+                dialogueTrigger.TriggerExamDialogue(true, 1);
+            }
+        }
     }
 
 }

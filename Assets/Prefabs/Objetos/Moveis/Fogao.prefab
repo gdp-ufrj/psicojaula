@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1662110086262507878}
   - component: {fileID: 1967785237747208829}
   - component: {fileID: -2268391862020433313}
-  - component: {fileID: 1862493286811368147}
   m_Layer: 0
   m_Name: Fogao
   m_TagString: Untagged
@@ -110,17 +109,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d520e3e99e86edf408ac1999c5364ebb, type: 3}
   examDialogueJSON:
   - {fileID: 4900000, guid: 9f1659825588faf4abb1b10980abba36, type: 3}
+  - {fileID: 4900000, guid: ba64ca2842fcca840b9710164030ae15, type: 3}
   textDialogueSpeed: 0.05
   fontSize: 16
---- !u!114 &1862493286811368147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4626572411702505081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22a8de0b49c68f449ca02159de1d2af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

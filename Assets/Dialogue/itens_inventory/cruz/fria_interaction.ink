@@ -3,5 +3,5 @@ INCLUDE ../../Variaveis.ink
 -> main
 
 ==main==
-O metal esfriou, mas o terço ficou deformado.
+Agora tá numa temperatura normal! Uhm, mas a ponta tem um formato curioso.
 -> END

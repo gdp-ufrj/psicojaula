@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class GavetaFechadura : MonoBehaviour, IDropHandler, IPointerClickHandler
-{   //N�o ter� ObjDialogue
+public class GavetaFechadura : MonoBehaviour, IDropHandler, IPointerClickHandler { 
 
     private bool isOpen;
     public Sprite gavetaAberta;
@@ -12,16 +11,11 @@ public class GavetaFechadura : MonoBehaviour, IDropHandler, IPointerClickHandler
         isOpen = ListaItems.Instance.gavetaIsOpen;
     }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-
+    public void OnDrop(PointerEventData eventData) {
         GameObject itemObject = eventData.selectedObject;
-
         var item = itemObject.GetComponent<DragDrop>().GetItem();
 
-
-        if (item.id == 5 && !isOpen)
-        {
+        if (item.id == 5 && !isOpen) {    //Cruz fria
             SoundController.GetInstance().PlaySound("abrindo_fechadura");
             DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
             ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
@@ -29,28 +23,24 @@ public class GavetaFechadura : MonoBehaviour, IDropHandler, IPointerClickHandler
 
             GetComponent<Image>().sprite = gavetaAberta;
 
-            if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
+            gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
 
             isOpen = true;
             ListaItems.Instance.gavetaIsOpen = isOpen;
+
+            Destroy(itemObject);
         }
 
     }
 
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (isOpen)
-        {
+    public void OnPointerClick(PointerEventData eventData) {
+        if (isOpen) {
             GameController.GetInstance().changeScenario((int)GameController.LookDirection.OTHER, transform.gameObject.name);
         }
         else {
-            if (eventData.button == ObjDialogue.clickExam) { 
-                DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
-                if (dialogueTrigger != null)
-                    dialogueTrigger.TriggerExamDialogue(true);
-            }
+            DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+            dialogueTrigger.TriggerExamDialogue(true);
         }
     }
 }

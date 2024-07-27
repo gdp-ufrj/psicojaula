@@ -10,11 +10,9 @@ public class Despertador : MonoBehaviour, IPointerClickHandler
     
     private void Awake() {
         clicked = ListaItems.Instance.despertadorIsClicked;
-
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
+    public void OnPointerClick(PointerEventData eventData) {
         if(eventData.button == ObjDialogue.clickInteract) {
             if (!clicked) {
                 rectTransform = GetComponent<RectTransform>();
@@ -22,10 +20,15 @@ public class Despertador : MonoBehaviour, IPointerClickHandler
                 obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
                 clicked = true;
 
-                if (gameObject.GetComponent<DialogueTrigger>() != null)
-                    gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
+                SoundController.GetInstance().PlaySound("abrindo_despertador");
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
 
                 ListaItems.Instance.despertadorIsClicked = clicked;
+            }
+        }
+        else if (eventData.button == ObjDialogue.clickExam) {
+            if (!clicked) {
+                gameObject.GetComponent<DialogueTrigger>().TriggerExamDialogue(true);
             }
         }
     }
