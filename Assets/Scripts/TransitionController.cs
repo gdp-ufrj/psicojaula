@@ -62,6 +62,9 @@ public class TransitionController : MonoBehaviour {
     public void LoadNextFase() {
         StartCoroutine(LoadSceneOrScenario(SceneManager.GetActiveScene().buildIndex + 1));   //Carregando a proxima fase
     }
+    public void LoadCreditos() {
+        StartCoroutine(LoadSceneOrScenario(7));   //Carregando os creditos
+    }
 
     public void LoadScenario() {
         StartCoroutine(LoadSceneOrScenario());
@@ -107,7 +110,7 @@ public class TransitionController : MonoBehaviour {
             cutscene = -1;
             SoundController.GetInstance().PlaySceneMusic();
             if (isFinalCutscene)   //Se for a cutscene final do jogo
-                LoadMenu();
+                LoadCreditos();
             else
                 FadeOutScene();
         }

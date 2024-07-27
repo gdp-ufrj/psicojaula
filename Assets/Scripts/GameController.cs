@@ -343,6 +343,10 @@ public class GameController : MonoBehaviour {
         SoundController.GetInstance().PlaySound("btn");
         TransitionController.GetInstance().LoadNextScene();
     }
+    public void Creditos() {
+        SoundController.GetInstance().PlaySound("btn");
+        TransitionController.GetInstance().LoadCreditos();
+    }
     public void QuitGame() {
         SoundController.GetInstance().PlaySound("btn");
         Application.Quit();
@@ -367,4 +371,6 @@ public class GameController : MonoBehaviour {
         SoundController.GetInstance().PlaySound("btn");
         TransitionController.GetInstance().LoadMenu();
     }
+    
+
 }
