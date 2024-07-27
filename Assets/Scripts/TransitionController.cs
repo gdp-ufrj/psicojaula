@@ -88,7 +88,7 @@ public class TransitionController : MonoBehaviour {
         cutscene = cutsceneIndex;
         canvasCutscenes.SetActive(true);
         canvasCutscenes.transform.GetChild(cutsceneIndex).gameObject.SetActive(true);
-        SoundController.GetInstance().PauseCurrentTrack();
+        SoundController.GetInstance().PlaySound("OST_final");
         StartCoroutine(NextCutscene());
     }
 

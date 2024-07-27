@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour {
 
     [SerializeField] private GameObject canvasScenarios, btnLeft, btnRight, btnUp, btnBack, canvasCutsceneMusica;
     [SerializeField] private GameObject canvasPause, canvasMenu, canvasConfigs;  //Diferentes interfaces do jogo
+    [SerializeField] private GameObject TV_estatica, TV_piano, TV_medo1, TV_medo2, TV_medo3;
     [SerializeField] private Slider OSTVolumeSlider, SFXVolumeSlider;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float cameraOffset;
@@ -49,6 +50,18 @@ public class GameController : MonoBehaviour {
     }
 
     private void Start() {
+        if(TV_estatica != null && TV_piano != null) {
+            if (ListaItems.Instance.oculosUsado) {
+                Debug.Log("oweoeqwi");
+                TV_estatica.SetActive(false);
+                TV_piano.SetActive(true);
+            }
+            else {
+                TV_estatica.SetActive(true);
+                TV_piano.SetActive(false);
+            }
+        }
+
         if (SceneManager.GetActiveScene().name.ToUpper().Contains("_1"))
             gamePhase = 1;
         else if (SceneManager.GetActiveScene().name.ToUpper().Contains("_2"))
@@ -316,9 +329,23 @@ public class GameController : MonoBehaviour {
         }
     }
 
-
     private IEnumerator NextPhase() {
         yield return new WaitForSeconds(0.5f);
         TransitionController.GetInstance().LoadNextFase();
+    }
+
+    public void changeTV() {
+        if (TV_medo1.activeSelf) {
+            TV_medo1.SetActive(false);
+            TV_medo2.SetActive(true);
+        }
+        else if (TV_medo2.activeSelf) {
+            TV_medo2.SetActive(false);
+            TV_medo3.SetActive(true);
+        }
+        else if (TV_medo3.activeSelf) {
+            TV_medo3.SetActive(false);
+            TV_medo1.SetActive(true);
+        }
     }
 }

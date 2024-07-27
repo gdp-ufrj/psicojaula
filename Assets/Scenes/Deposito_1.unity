@@ -6015,12 +6015,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: TV
       objectReference: {fileID: 0}
+    - target: {fileID: 7752817441756837267, guid: 667fe3ac01eeeb046bbf4279f6b13bac, type: 3}
+      propertyPath: interactionDialogueJSON.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4835825698602189178, guid: 667fe3ac01eeeb046bbf4279f6b13bac, type: 3}
-      insertIndex: -1
+      insertIndex: 5
       addedObject: {fileID: 5979756619895037987}
   m_SourcePrefab: {fileID: 100100000, guid: 667fe3ac01eeeb046bbf4279f6b13bac, type: 3}
 --- !u!224 &5979756619895037985 stripped

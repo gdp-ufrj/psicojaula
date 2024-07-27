@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Janela : MonoBehaviour, IDropHandler {
+public class Janela : MonoBehaviour, IDropHandler, IPointerClickHandler {
 
     private RectTransform rectTransform;
     public Item musica;
@@ -17,7 +17,6 @@ public class Janela : MonoBehaviour, IDropHandler {
 
     public void OnDrop(PointerEventData eventData) {
         GameObject itemObject = eventData.selectedObject;
-
         var item = itemObject.GetComponent<DragDrop>().GetItem();
 
         if (item.id == 13  && !musicaColetada) {
@@ -30,8 +29,7 @@ public class Janela : MonoBehaviour, IDropHandler {
 
             Destroy(itemObject);
 
-            //if (gameObject.GetComponent<DialogueTrigger>() != null)
-            //    gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);    //Dialogo de usar a revista na janela
+            gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0);    //Revista na janela
 
             rectTransform =  GetComponent<RectTransform>();
             GameObject musicaFernanda =  Instantiate(Item, Cena);
@@ -49,10 +47,23 @@ public class Janela : MonoBehaviour, IDropHandler {
 
             Destroy(itemObject);
 
-            //if (gameObject.GetComponent<DialogueTrigger>() != null)
-            //    gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);    //Dialogo de usar o oculos na janela
+            gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 1);    //Óculos na janela
         }
 
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+        if (eventData.button == ObjDialogue.clickExam) {
+            DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
+            if (GameController.GetInstance().gamePhase == 1) {
+                dialogueTrigger.TriggerExamDialogue(true, 0);
+                Debug.Log("kdkoe");
+            }
+            else if (GameController.GetInstance().gamePhase == 2)
+                dialogueTrigger.TriggerExamDialogue(true, 1);
+            else if (GameController.GetInstance().gamePhase == 3)
+                dialogueTrigger.TriggerExamDialogue(true, 2);
+        }
     }
 
 }

@@ -1936,7 +1936,6 @@ GameObject:
   - component: {fileID: 621657431}
   - component: {fileID: 621657433}
   - component: {fileID: 621657432}
-  - component: {fileID: 621657434}
   m_Layer: 5
   m_Name: Janela
   m_TagString: Untagged
@@ -1976,9 +1975,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDialogueJSON:
-  - {fileID: 4900000, guid: f89818115b1b7da44920c175e41eb897, type: 3}
+  - {fileID: 4900000, guid: 0048941aa41b02346b737208f632c65f, type: 3}
+  - {fileID: 4900000, guid: 4c750809002af9c4698a16d8e33204c3, type: 3}
   examDialogueJSON:
-  - {fileID: 4900000, guid: e03ee2be0c7d5af4ca9b073fdc61ea22, type: 3}
+  - {fileID: 4900000, guid: cdbfcc7d8bc6c884090cad5aaa5723d7, type: 3}
+  - {fileID: 4900000, guid: 3a76f700ec9b64b4782f23399b94eac3, type: 3}
+  - {fileID: 4900000, guid: 641f014563bf7744e9a48bbef5c9874b, type: 3}
   textDialogueSpeed: 0.05
   fontSize: 16
 --- !u!114 &621657430
@@ -2079,18 +2081,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621657427}
   m_CullTransparentMesh: 1
---- !u!114 &621657434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621657427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22a8de0b49c68f449ca02159de1d2af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &727762307
 PrefabInstance:
   m_ObjectHideFlags: 0

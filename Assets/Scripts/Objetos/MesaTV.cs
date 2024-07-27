@@ -19,9 +19,9 @@ public class MesaTV : MonoBehaviour, IPointerClickHandler {
                 obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
                 clicked = true;
 
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
-
                 ListaItems.Instance.mesaTVIsClicked = clicked;
+                SoundController.GetInstance().PlaySound("pickup_musica");
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
             }
         }
 

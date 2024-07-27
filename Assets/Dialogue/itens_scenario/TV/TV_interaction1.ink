@@ -3,5 +3,6 @@ INCLUDE ../../Variaveis.ink
 -> main
 
 ==main==
-Haaa.... Como sempre, não consigo sintonizar a TV.
+Espera, esse programa parece interessante. Alguma coisa nele faz eu me sentir nostálgico.
+É uma aula de piano! Eu devo conseguir reproduzir esta música...
 -> END

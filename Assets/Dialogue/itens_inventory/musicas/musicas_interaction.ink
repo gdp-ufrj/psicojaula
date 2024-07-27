@@ -3,5 +3,5 @@ INCLUDE ../../Variaveis.ink
 -> main
 
 ==main==
-Preciso de algo com que tocar essa música.
+Preciso de algo para tocar essa música.
 -> END
