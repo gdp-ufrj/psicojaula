@@ -35,7 +35,7 @@ public class TransitionController : MonoBehaviour {
 
     private void Update() {
         if (canPassCutscene) {
-            if(Input.GetKeyDown(KeyCode.Mouse0) ||  Input.GetKeyDown(KeyCode.Space)) {
+            if(Input.GetKeyDown(KeyCode.Mouse0) ||  Input.GetKeyDown(KeyCode.Mouse1)) {
                 StartCoroutine(NextCutscene());
             }
         }

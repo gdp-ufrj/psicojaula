@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4541977898011505188}
   - component: {fileID: 2853876608216948932}
   - component: {fileID: 7215415124408202465}
+  - component: {fileID: -237032799446619324}
+  - component: {fileID: -3193590092086790825}
   m_Layer: 0
   m_Name: Cartaz (12)
   m_TagString: Untagged
@@ -75,3 +77,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-237032799446619324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8103228369341696465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22a8de0b49c68f449ca02159de1d2af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3193590092086790825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8103228369341696465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f8a48ae58bce746b7dc557d45c8a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDialogueJSON: []
+  examDialogueJSON:
+  - {fileID: 4900000, guid: 33563013e08a1dc48ae4805baefd852b, type: 3}
+  textDialogueSpeed: 0.05
+  fontSize: 16

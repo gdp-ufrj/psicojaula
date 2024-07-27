@@ -393,3 +393,19 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     audioSource: {fileID: 0}
+  - name: abrindo_gaveta
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 13a08df52c413eb4784a231b00e11173, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: anotando_partitura
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 2a9a515e419a7f14b811cdc1daa9bd74, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}

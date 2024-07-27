@@ -52,7 +52,7 @@ public class DialogueController : MonoBehaviour
     {
         if (dialogueActive)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1))
                 PassDialogue();
         }
         if (endLine)

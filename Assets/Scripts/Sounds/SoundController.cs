@@ -11,7 +11,6 @@ public class SoundController : MonoBehaviour {   //Será uma classe Singleton
     [SerializeField] private float timeFadeInTrack, timeFadeOutTrack, timeFadeBetweenTracks, SFXVoume=0.7f;
 
     public Sound[] sounds;
-    //public List<GameObject> objectsSounds;
 
     private Dictionary<string, bool> isPlayingOST = new Dictionary<string, bool>();
     private Dictionary<string, float> originalVolumesOSTs = new Dictionary<string, float>();

@@ -20,7 +20,7 @@ public class TV : MonoBehaviour, IPointerClickHandler {
                     obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
                     ListaItems.Instance.musicaColetadaTv = true;
 
-                    SoundController.GetInstance().PlaySound("ligando_TV");
+                    SoundController.GetInstance().PlaySound("anotando_partitura");
                     gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
                 }
             }

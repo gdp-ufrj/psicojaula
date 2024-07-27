@@ -20,7 +20,7 @@ public class MesaTV : MonoBehaviour, IPointerClickHandler {
                 clicked = true;
 
                 ListaItems.Instance.mesaTVIsClicked = clicked;
-                SoundController.GetInstance().PlaySound("pickup_musica");
+                SoundController.GetInstance().PlaySound("abrindo_gaveta");
                 gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
             }
         }

@@ -331,7 +331,7 @@ public class GameController : MonoBehaviour {
         canvasConfigs.SetActive(true);
     }
     public void ExitConfigs() {
-        SoundController.GetInstance().PlaySound("btn");
+        //SoundController.GetInstance().PlaySound("btn");
         if (canvasPause != null)
             canvasPause.SetActive(true);
         else if (canvasMenu != null)
