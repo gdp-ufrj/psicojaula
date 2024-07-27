@@ -13,7 +13,7 @@ public class Bateria : MonoBehaviour, IDropHandler, IPointerClickHandler {
             ListaItems.Instance.musicaBateria = true;
             Destroy(itemObject);
             if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0, true);
             TransitionController.GetInstance().LoadCutsceneMusica("bateria");
         }
     }

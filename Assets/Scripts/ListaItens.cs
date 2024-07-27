@@ -70,12 +70,12 @@ public class ListaItems : MonoBehaviour
         remedioTomado = false;
         guitarraInteragida = false;
         comeuPresunto = false;
-        exitKeyGenerated = false;
 
         musicaBaixo = false;
         musicaBateria = false;
         musicaVocal = false;
         musicaTeclado = false;
         exitKeyUsed = false;
+        exitKeyGenerated = false;
     }
 }

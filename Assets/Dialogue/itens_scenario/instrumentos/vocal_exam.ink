@@ -3,5 +3,5 @@ INCLUDE ../../Variaveis.ink
 -> main
 
 ==main==
-Um micro-fone de segunda-mão. Esse é guerreiro.
+Um microfone de segunda-mão. Esse é guerreiro.
 -> END

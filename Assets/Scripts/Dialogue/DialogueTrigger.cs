@@ -6,12 +6,12 @@ public class DialogueTrigger : MonoBehaviour
     public TextAsset[] interactionDialogueJSON, examDialogueJSON;
     public float textDialogueSpeed = 0.05f, fontSize = 16f;
 
-    public void TriggerInteractionDialogue(bool letterEfect, int idDialogue = -1)
+    public void TriggerInteractionDialogue(bool letterEfect, int idDialogue = -1, bool isCutsceneMusica=false)
     {
         if (!DialogueController.GetInstance().dialogueActive) {
             idDialogue = idDialogue == -1 ? 0 : idDialogue;
             if (interactionDialogueJSON[idDialogue] != null) {
-                DialogueController.GetInstance().StartDialogue(interactionDialogueJSON[idDialogue], textDialogueSpeed, fontSize, letterEfect);
+                DialogueController.GetInstance().StartDialogue(interactionDialogueJSON[idDialogue], textDialogueSpeed, fontSize, letterEfect, isCutsceneMusica);
             }
         }
     }
@@ -20,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         idDialogue = idDialogue == -1 ? 0 : idDialogue;
         if (examDialogueJSON[idDialogue] != null) {
-            DialogueController.GetInstance().StartDialogue(examDialogueJSON[idDialogue], textDialogueSpeed, fontSize, letterEfect);
+            DialogueController.GetInstance().StartDialogue(examDialogueJSON[idDialogue], textDialogueSpeed, fontSize, letterEfect, false);
         }
     }
 

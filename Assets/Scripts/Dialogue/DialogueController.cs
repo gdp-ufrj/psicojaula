@@ -9,8 +9,10 @@ public class DialogueController : MonoBehaviour
     private static DialogueController instance;
 
     public TextAsset variablesJSON;    //Este � o arquivo JSON do ink que cont�m todas as vari�veis de di�logo
-    public GameObject canvasDialogue, dialogueBox, bgDialogue;
-    public TextMeshProUGUI txtDialogue;
+    public GameObject canvasDialogue, dialogueBox, dialogueBoxCutsceneMusica, bgDialogue;
+    private GameObject activeDialogueBox;
+    public TextMeshProUGUI txtDialogue, txtDialogueMusica;
+    private TextMeshProUGUI txtDialogueActive;
     public DialogueVariablesController dialogueVariablesController { get; private set; }
 
     private Story dialogue;
@@ -41,6 +43,8 @@ public class DialogueController : MonoBehaviour
 
     void Start()
     {
+        txtDialogueActive = txtDialogue;
+        activeDialogueBox = dialogueBox;
         dialogueActive = false;
     }
 
@@ -59,7 +63,7 @@ public class DialogueController : MonoBehaviour
 
     public IEnumerator ShowCanvasDialogue(float showPanelDialogueTax)
     {   //Este m�todo ser� respon�vel por mostrar o canvas de di�logo
-        Image dialogueBoxRectTransform = dialogueBox.GetComponent<Image>();
+        Image dialogueBoxRectTransform = activeDialogueBox.GetComponent<Image>();
         Color initialColor = new Color(0, 0, 0, 0);
         dialogueBoxRectTransform.color = initialColor;
         float targetValue = opacityPanelDialogue;   //Este � o valor desejado para a opacidade da caixa de di�logo
@@ -78,22 +82,32 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    public void StartDialogue(TextAsset dialogueJSON, float textSpeed, float fontSize, bool isInteractionDialogue)
+    public void StartDialogue(TextAsset dialogueJSON, float textSpeed, float fontSize, bool isInteractionDialogue, bool isCutsceneMusica)
     {
+        if (!isCutsceneMusica) {
+            dialogueBox.SetActive(true);
+            dialogueBoxCutsceneMusica.SetActive(false);
+            activeDialogueBox = dialogueBox;
+            txtDialogueActive = txtDialogue;
+        }
+        else {
+            dialogueBox.SetActive(false);
+            dialogueBoxCutsceneMusica.SetActive(true);
+            activeDialogueBox = dialogueBoxCutsceneMusica;
+            txtDialogueActive = txtDialogueMusica;
+        }
         dialogue = new Story(dialogueJSON.text);        //Carregando o di�logo a partir do arquivo JSON passado de par�metro
         textDialogueSpeed = textSpeed;
-        txtDialogue.fontSize = fontSize;
+        txtDialogueActive.fontSize = fontSize;
         canvasDialogue.SetActive(true);
         letterEfect = isInteractionDialogue;
-        //Image bgDialogueImg = bgDialogue.GetComponent<Image>();
-        //bgDialogueImg.raycastTarget = true;
         GameController.GetInstance().blockActionsDialogue = true;
 
         if (isInteractionDialogue)
             StartCoroutine(ShowCanvasDialogue(showPanelDialogueTax));
         else
         {
-            Image dialogueBoxRectTransform = dialogueBox.GetComponent<Image>();
+            Image dialogueBoxRectTransform = activeDialogueBox.GetComponent<Image>();
             Color colorPanel = new Color(0, 0, 0, opacityPanelDialogue);
             dialogueBoxRectTransform.color = colorPanel;
             StartTextDialogue();
@@ -116,18 +130,16 @@ public class DialogueController : MonoBehaviour
     {
         string fala = dialogue.currentText;
 
-        if (indexLine < fala.Length - 1)
-        {         //Se n�o estiver no final da fala
+        if (indexLine < fala.Length - 1) {
             StopAllCoroutines();
             indexLine = fala.Length - 1;
             endLine = true;
-            txtDialogue.text = fala;
+            txtDialogueActive.text = fala;
         }
         else
         {
             if (dialogue.currentChoices.Count == 0)
             {
-                //SoundController.GetInstance().PlaySound("skip_dialogo", null);
                 if (!dialogue.canContinue)     //Se estiver no final do di�logo
                     EndDialogue();
                 else
@@ -145,17 +157,17 @@ public class DialogueController : MonoBehaviour
         string fala = dialogue.currentText;    //Pegando a fala atual do di�logo
         if (letterEfect)
         {
-            txtDialogue.text = "";
+            txtDialogueActive.text = "";
             for (int i = 0; i < fala.Length; i++)
             {    //Fazendo as letras aparecerem uma de cada vez
-                txtDialogue.text += fala[i];
+                txtDialogueActive.text += fala[i];
                 indexLine = i;
                 yield return new WaitForSeconds(textDialogueSpeed);
             }
         }
         else
         {
-            txtDialogue.text = fala;
+            txtDialogueActive.text = fala;
             indexLine = fala.Length - 1;
         }
         endLine = true;
@@ -163,7 +175,7 @@ public class DialogueController : MonoBehaviour
 
     public void EndDialogue()
     {   //M�todo chamado ao fim do di�logo
-        txtDialogue.text = "";
+        txtDialogueActive.text = "";
         canvasDialogue.SetActive(false);
         dialogueActive = false;
         if (dialogue != null)

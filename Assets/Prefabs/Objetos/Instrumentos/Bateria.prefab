@@ -93,7 +93,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 30cab5e45b9014d4a80ecf5b9faac091, type: 3}
   examDialogueJSON:
   - {fileID: 4900000, guid: f04737b5526746343b0e3763bb91f84d, type: 3}
-  textDialogueSpeed: 0.1
+  textDialogueSpeed: 0.07
   fontSize: 16
 --- !u!114 &3068923593853110899
 MonoBehaviour:

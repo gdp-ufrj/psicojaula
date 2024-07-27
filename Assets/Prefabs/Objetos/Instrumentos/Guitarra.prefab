@@ -104,6 +104,7 @@ MonoBehaviour:
   interactionDialogueJSON:
   - {fileID: 4900000, guid: 23e605549f3156e4cb8f7757e2b79434, type: 3}
   examDialogueJSON:
-  - {fileID: 4900000, guid: f315b4f727a5e0e4e82ad5ac46e306db, type: 3}
-  textDialogueSpeed: 0.05
+  - {fileID: 4900000, guid: d3c3c1cf6891a36498b0c82bc2dd6330, type: 3}
+  - {fileID: 4900000, guid: 20cf0b8d89b46824d960cc04c9a496b5, type: 3}
+  textDialogueSpeed: 0.07
   fontSize: 16

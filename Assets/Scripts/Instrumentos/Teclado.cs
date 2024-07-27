@@ -13,7 +13,7 @@ public class Teclado : MonoBehaviour, IDropHandler, IPointerClickHandler {
             ListaItems.Instance.musicaTeclado = true;
             Destroy(itemObject);
             if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
+                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 0, true);
             TransitionController.GetInstance().LoadCutsceneMusica("teclado");
         }
     }

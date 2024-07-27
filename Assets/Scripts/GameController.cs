@@ -26,7 +26,8 @@ public class GameController : MonoBehaviour {
     [SerializeField] private float cameraOffset;
 
     public GameObject exitKey;
-    private int idActiveScenario, gamePhase;
+    private int idActiveScenario;
+    public int gamePhase;
     private bool isChangingScenario = false, gamePaused=false, isInMainScenario, isInQuarto=false, developMode=true;
     public bool blockActionsDialogue = false;
     private float originalCameraSize;
@@ -298,6 +299,10 @@ public class GameController : MonoBehaviour {
     }
 
     public void checkActionsAfterDialogue() {
+        if (canvasCutsceneMusica.activeSelf) {
+            SoundController.GetInstance().ResumeCurrentTrack();
+            canvasCutsceneMusica.SetActive(false);
+        }
         canvasCutsceneMusica.SetActive(false);
         if (gamePhase == 1 && ListaItems.Instance.guitarraInteragida) {
             StartCoroutine(NextPhase());
