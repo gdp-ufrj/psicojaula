@@ -47,7 +47,7 @@ MonoBehaviour:
   timeFadeInTrack: 0.8
   timeFadeOutTrack: 0.5
   timeFadeBetweenTracks: 1
-  SFXVoume: 0.9
+  SFXVoume: 1
   sounds:
   - name: OST_fase1
     loop: 1
