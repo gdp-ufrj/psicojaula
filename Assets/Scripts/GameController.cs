@@ -52,7 +52,6 @@ public class GameController : MonoBehaviour {
     private void Start() {
         if(TV_estatica != null && TV_piano != null) {
             if (ListaItems.Instance.oculosUsado) {
-                Debug.Log("oweoeqwi");
                 TV_estatica.SetActive(false);
                 TV_piano.SetActive(true);
             }
@@ -121,7 +120,6 @@ public class GameController : MonoBehaviour {
             OSTVolumeSlider.value = Globals.volumeOST;
             SFXVolumeSlider.value = Globals.volumeSFX;
             OSTVolumeSlider.onValueChanged.AddListener((newValue) => {
-                Debug.Log(newValue);
                 Globals.volumeOST = newValue;
                 SoundController.GetInstance().ChangeVolumes(false);
             });
@@ -156,6 +154,8 @@ public class GameController : MonoBehaviour {
                 SoundController.GetInstance().PlaySound("cena_esq");
             else if (direction == (int)LookDirection.RIGHT)
                 SoundController.GetInstance().PlaySound("cena_dir");
+            else if (direction == (int)LookDirection.BACK)
+                SoundController.GetInstance().PlaySound("cena_back");
 
             DialogueController.GetInstance().EndDialogue();
             changeScenario(direction);
@@ -266,44 +266,8 @@ public class GameController : MonoBehaviour {
         canvasScenarios.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
     }
 
-    public void changeOST1() {
-        SoundController.GetInstance().PlaySound("OST_fase1");
-    }
-    public void changeOST2() {
-        SoundController.GetInstance().PlaySound("OST_fase2");
-    }
-    public void changeOST3() {
-        SoundController.GetInstance().PlaySound("OST_fase3");
-    }
-
     public void LoadQuarto() {
         TransitionController.GetInstance().LoadQuarto();
-    }
-
-
-    //M�todos para bot�es do menu e do menu de pausa:
-    public void StartGame() {
-        TransitionController.GetInstance().LoadNextScene();
-    }
-    public void QuitGame() {
-        Application.Quit();
-    }
-    public void EnterConfigs() {
-        if(canvasPause != null)
-            canvasPause.SetActive(false);
-        else if(canvasMenu != null)
-            canvasMenu.SetActive(false);
-        canvasConfigs.SetActive(true);
-    }
-    public void ExitConfigs() {
-        if (canvasPause != null)
-            canvasPause.SetActive(true);
-        else if (canvasMenu != null)
-            canvasMenu.SetActive(true);
-        canvasConfigs.SetActive(false);
-    }
-    public void ReturnToGameMenu() {   //Para retornar ao menu do jogo
-        TransitionController.GetInstance().LoadMenu();
     }
 
     public void ResetGame() {   //Deve ser chamada quando voltamos ao menu ou zeramos o jogo
@@ -347,5 +311,35 @@ public class GameController : MonoBehaviour {
             TV_medo3.SetActive(false);
             TV_medo1.SetActive(true);
         }
+    }
+
+    //M�todos para bot�es do menu e do menu de pausa:
+    public void StartGame() {
+        SoundController.GetInstance().PlaySound("btn");
+        TransitionController.GetInstance().LoadNextScene();
+    }
+    public void QuitGame() {
+        SoundController.GetInstance().PlaySound("btn");
+        Application.Quit();
+    }
+    public void EnterConfigs() {
+        SoundController.GetInstance().PlaySound("btn");
+        if (canvasPause != null)
+            canvasPause.SetActive(false);
+        else if (canvasMenu != null)
+            canvasMenu.SetActive(false);
+        canvasConfigs.SetActive(true);
+    }
+    public void ExitConfigs() {
+        SoundController.GetInstance().PlaySound("btn");
+        if (canvasPause != null)
+            canvasPause.SetActive(true);
+        else if (canvasMenu != null)
+            canvasMenu.SetActive(true);
+        canvasConfigs.SetActive(false);
+    }
+    public void ReturnToGameMenu() {   //Para retornar ao menu do jogo
+        SoundController.GetInstance().PlaySound("btn");
+        TransitionController.GetInstance().LoadMenu();
     }
 }

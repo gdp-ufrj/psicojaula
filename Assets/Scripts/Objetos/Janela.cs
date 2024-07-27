@@ -47,6 +47,7 @@ public class Janela : MonoBehaviour, IDropHandler, IPointerClickHandler {
 
             Destroy(itemObject);
 
+            SoundController.GetInstance().PlaySound("limpando_antena");
             gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true, 1);    //Óculos na janela
         }
 
@@ -57,7 +58,6 @@ public class Janela : MonoBehaviour, IDropHandler, IPointerClickHandler {
             DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
             if (GameController.GetInstance().gamePhase == 1) {
                 dialogueTrigger.TriggerExamDialogue(true, 0);
-                Debug.Log("kdkoe");
             }
             else if (GameController.GetInstance().gamePhase == 2)
                 dialogueTrigger.TriggerExamDialogue(true, 1);

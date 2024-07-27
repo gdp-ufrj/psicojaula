@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: Chave
   value: 0
   icon: {fileID: 21300000, guid: 5d645b310fac3e94ebe237ea56116ef6, type: 3}
-  nameSoundPickup: pickup_musica
+  nameSoundPickup: pickup_chave
   isUsable: 0
   newItemPrefab: {fileID: 0}

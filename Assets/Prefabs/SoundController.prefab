@@ -47,7 +47,7 @@ MonoBehaviour:
   timeFadeInTrack: 0.8
   timeFadeOutTrack: 0.5
   timeFadeBetweenTracks: 1
-  SFXVoume: 0.7
+  SFXVoume: 0.9
   sounds:
   - name: OST_fase1
     loop: 1
@@ -70,6 +70,14 @@ MonoBehaviour:
     is3D: 0
     isOST: 1
     clip: {fileID: 8300000, guid: 0a6712c61c2e7cf498213fe558001291, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: OST_final
+    loop: 1
+    is3D: 0
+    isOST: 1
+    clip: {fileID: 8300000, guid: f3b171bc31d45494b956072a09b59b8b, type: 3}
     volume: 0.8
     pitch: 1
     audioSource: {fileID: 0}
@@ -161,6 +169,14 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     audioSource: {fileID: 0}
+  - name: pickup_chave
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 2ad0acd409f4ee0418b3fe428fd526f1, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
   - name: pickup_tesoura
     loop: 0
     is3D: 0
@@ -230,6 +246,14 @@ MonoBehaviour:
     is3D: 0
     isOST: 0
     clip: {fileID: 8300000, guid: 1f91c52675bf88742b24694d2b03d461, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: cena_back
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: b22aa97f1cd544e49ab6d24f716c4724, type: 3}
     volume: 0.8
     pitch: 1
     audioSource: {fileID: 0}
@@ -350,6 +374,22 @@ MonoBehaviour:
     is3D: 0
     isOST: 0
     clip: {fileID: 8300000, guid: fa5085ca4c561ff45bcb6fdb433ef25e, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: limpando_antena
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: 1e519dd1e18b8b84e939cb3b9ff5b1ab, type: 3}
+    volume: 0.8
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: btn
+    loop: 0
+    is3D: 0
+    isOST: 0
+    clip: {fileID: 8300000, guid: b8b143a839aaf4043a735a715389c765, type: 3}
     volume: 0.8
     pitch: 1
     audioSource: {fileID: 0}
