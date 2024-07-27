@@ -2056,6 +2056,10 @@ PrefabInstance:
       value: ControllersPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 5623273931128090211, guid: 18c5336422b74c441aec037820e6e1c7, type: 3}
+      propertyPath: SFXVoume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5623273931128090211, guid: 18c5336422b74c441aec037820e6e1c7, type: 3}
       propertyPath: sounds.Array.size
       value: 2
       objectReference: {fileID: 0}
