@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour {
     public GameObject exitKey;
     private int idActiveScenario;
     public int gamePhase;
-    private bool isChangingScenario = false, gamePaused=false, isInMainScenario, isInQuarto=false, developMode=true;
+    private bool isChangingScenario = false, gamePaused=false, isInMainScenario, isInQuarto=false;
     public bool blockActionsDialogue = false;
     private float originalCameraSize;
 
@@ -70,6 +70,7 @@ public class GameController : MonoBehaviour {
         else
             gamePhase = -1;
 
+        bool canPlaySceneMusic = true;
         if (SceneManager.GetActiveScene().name.ToUpper().Contains("DEPOSITO")) {
             isInQuarto = false;
             if (ListaItems.Instance.depositoScenarios != null){
@@ -80,6 +81,24 @@ public class GameController : MonoBehaviour {
             isInQuarto = true;
             if (ListaItems.Instance.quartoScenarios != null){
                 canvasScenarios = ListaItems.Instance.quartoScenarios;
+            }
+            if(gamePhase == 1) {
+                if (ListaItems.Instance.firstTimeInPhase1) {
+                    gameObject.GetComponent<DialogueTrigger>().TriggerExamDialogue(true);
+                    canPlaySceneMusic = false;
+                }
+            }
+            else if (gamePhase == 2) {
+                if (ListaItems.Instance.firstTimeInPhase2) {
+                    gameObject.GetComponent<DialogueTrigger>().TriggerExamDialogue(true);
+                    canPlaySceneMusic = false;
+                }
+            }
+            else if (gamePhase == 3) {
+                if (ListaItems.Instance.firstTimeInPhase3) {
+                    gameObject.GetComponent<DialogueTrigger>().TriggerExamDialogue(true);
+                    canPlaySceneMusic = false;
+                }
             }
         }
         SoundController.GetInstance().LoadSounds();   //Carregando os sons da cena
@@ -98,25 +117,14 @@ public class GameController : MonoBehaviour {
             }
         }
 
-        if (!Globals.playedFirstCutscene) {
-            if (isInQuarto && !developMode) {
-                TransitionController.GetInstance().LoadCutscene(0);   //Cutscene inicial
-                Globals.playedFirstCutscene = true;
-            }
-            else {
-                if (!Globals.firstScene)
-                    TransitionController.GetInstance().FadeOutScene();
-                else
-                    Globals.firstScene = false;
-            }
-        }
+        if (Globals.firstScene)
+            Globals.firstScene = false;
         else
             TransitionController.GetInstance().FadeOutScene();
 
 
         SoundController.GetInstance().ChangeVolumes(true);
         if (OSTVolumeSlider != null) {   //Se 1 slider estiver ativo, os outros tamb�m estar�o
-            //updateConfigs();
             OSTVolumeSlider.value = Globals.volumeOST;
             SFXVolumeSlider.value = Globals.volumeSFX;
             OSTVolumeSlider.onValueChanged.AddListener((newValue) => {
@@ -128,7 +136,8 @@ public class GameController : MonoBehaviour {
                 SoundController.GetInstance().ChangeVolumes(false);
             });
         }
-        SoundController.GetInstance().PlaySceneMusic();
+        if(canPlaySceneMusic)
+            SoundController.GetInstance().PlaySceneMusic();
     }
 
     private void Update() {
@@ -277,8 +286,13 @@ public class GameController : MonoBehaviour {
 
     public void checkActionsAfterDialogue() {
         if (canvasCutsceneMusica.activeSelf) {
-            SoundController.GetInstance().ResumeCurrentTrack();
             canvasCutsceneMusica.SetActive(false);
+            SoundController.GetInstance().ResumeCurrentTrack();
+            if (ListaItems.Instance.musicaBaixo && ListaItems.Instance.musicaBateria && !ListaItems.Instance.exitKeyGenerated) {
+                exitKey.SetActive(true);
+                ListaItems.Instance.exitKeyGenerated = true;
+                gameObject.GetComponent<DialogueTrigger>().TriggerExamDialogue(true);   //Chave
+            }
         }
         canvasCutsceneMusica.SetActive(false);
         if (gamePhase == 1 && ListaItems.Instance.guitarraInteragida) {
@@ -287,9 +301,20 @@ public class GameController : MonoBehaviour {
         if (gamePhase == 2 && ListaItems.Instance.musicaVocal && ListaItems.Instance.musicaTeclado) {
             StartCoroutine(NextPhase());
         }
-        if (ListaItems.Instance.musicaBaixo && ListaItems.Instance.musicaBateria && !ListaItems.Instance.exitKeyGenerated) {
-            exitKey.SetActive(true);
-            ListaItems.Instance.exitKeyGenerated = true;
+
+        if(isInQuarto) {   //Diálogos iniciais de fase
+            if (ListaItems.Instance.firstTimeInPhase1 && gamePhase == 1) {
+                ListaItems.Instance.firstTimeInPhase1 = false;
+                SoundController.GetInstance().PlaySceneMusic();
+            }
+            else if (ListaItems.Instance.firstTimeInPhase2 && gamePhase == 2) {
+                ListaItems.Instance.firstTimeInPhase2 = false;
+                SoundController.GetInstance().PlaySceneMusic();
+            }
+            else if (ListaItems.Instance.firstTimeInPhase3 && gamePhase == 3) {
+                ListaItems.Instance.firstTimeInPhase3 = false;
+                SoundController.GetInstance().PlaySceneMusic();
+            }
         }
     }
 

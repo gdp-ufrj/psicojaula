@@ -34,6 +34,9 @@ public class ListaItems : MonoBehaviour
     public bool musicaTeclado = false;
     public bool exitKeyUsed = false;
     public bool exitKeyGenerated = false;
+    public bool firstTimeInPhase1 = true;
+    public bool firstTimeInPhase2 = true;
+    public bool firstTimeInPhase3 = true;
     private void Awake()
     {
         if (Instance != null)
@@ -77,5 +80,8 @@ public class ListaItems : MonoBehaviour
         musicaTeclado = false;
         exitKeyUsed = false;
         exitKeyGenerated = false;
+        firstTimeInPhase1 = true;
+        firstTimeInPhase2 = true;
+        firstTimeInPhase3 = true;
     }
 }
