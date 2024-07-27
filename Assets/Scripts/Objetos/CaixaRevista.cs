@@ -19,16 +19,16 @@ public class CaixaRevista : MonoBehaviour, IDropHandler, IPointerClickHandler {
 
         var item = itemObject.GetComponent<DragDrop>().GetItem();
 
-        if (item.id == 11) {
+        if (item.id == 11) {    //Tesoura
             DialogueTrigger dialogueTrigger = itemObject.GetComponent<DialogueTrigger>();
             ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
             InventoryManager.Instance.Remove(itemInventory);
 
             isOpen = true;
             ListaItems.Instance.caixaRevistaIsOpen = true;
+            SoundController.GetInstance().PlaySound("abrindo_caixa");
 
-            if (gameObject.GetComponent<DialogueTrigger>() != null)
-                gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
+            gameObject.GetComponent<DialogueTrigger>().TriggerInteractionDialogue(true);
 
             rectTransform = GetComponent<RectTransform>();
             GameObject obj = Instantiate(Item, Cena);

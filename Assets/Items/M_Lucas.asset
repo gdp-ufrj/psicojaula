@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: M_Lucas
   value: 0
   icon: {fileID: 21300000, guid: 4a7cd6b2c54b4b041a55cd7078ca6fe2, type: 3}
-  nameSoundPickup: pickup_jornal
+  nameSoundPickup: pickup_musica
   isUsable: 0
   newItemPrefab: {fileID: 0}

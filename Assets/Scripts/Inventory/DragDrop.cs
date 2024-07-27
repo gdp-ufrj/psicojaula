@@ -100,7 +100,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 Destroy(rectTransform.gameObject);
             }
             else
-                Debug.Log("O item " + item.name + " n�o � us�vel");   //Som?
+                SoundController.GetInstance().PlaySound("item_bloqueado");
         }
     }
 

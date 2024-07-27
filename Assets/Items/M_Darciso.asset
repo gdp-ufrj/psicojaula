@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: M_Darciso
   value: 0
   icon: {fileID: 21300000, guid: 481f50a283777d942831b2fff5131c99, type: 3}
-  nameSoundPickup: pickup_jornal
+  nameSoundPickup: pickup_musica
   isUsable: 0
   newItemPrefab: {fileID: 0}

@@ -60,7 +60,7 @@ public class TransitionController : MonoBehaviour {
         StartCoroutine(LoadSceneOrScenario(SceneManager.GetActiveScene().buildIndex + 1));   //Carregando o Deposito
     }
     public void LoadNextFase() {
-        StartCoroutine(LoadSceneOrScenario(SceneManager.GetActiveScene().buildIndex + 2));   //Carregando a proxima fase
+        StartCoroutine(LoadSceneOrScenario(SceneManager.GetActiveScene().buildIndex + 1));   //Carregando a proxima fase
     }
 
     public void LoadScenario() {
@@ -88,7 +88,7 @@ public class TransitionController : MonoBehaviour {
         cutscene = cutsceneIndex;
         canvasCutscenes.SetActive(true);
         canvasCutscenes.transform.GetChild(cutsceneIndex).gameObject.SetActive(true);
-        SoundController.GetInstance().PlaySound("OST_fase3");
+        SoundController.GetInstance().PauseCurrentTrack();
         StartCoroutine(NextCutscene());
     }
 
@@ -106,7 +106,7 @@ public class TransitionController : MonoBehaviour {
             activeCutscene = -1;
             cutscene = -1;
             SoundController.GetInstance().PlaySceneMusic();
-            if(isFinalCutscene)   //Se for a cutscene final do jogo
+            if (isFinalCutscene)   //Se for a cutscene final do jogo
                 LoadMenu();
             else
                 FadeOutScene();
@@ -133,8 +133,10 @@ public class TransitionController : MonoBehaviour {
         if (sceneIndex != -1) {   //Se for a transi��o entre cenas
             SoundController.GetInstance().PauseCurrentTrack();
             bgTransitions.GetComponent<Image>().raycastTarget = true;
-            animTransitionScenes.Play("fadeInScene");
-            yield return new WaitForSeconds(transistionTimeScenes);
+            if (bgTransitions.GetComponent<Image>().color.a != 1){   //Se a tela já não estiver preta
+                animTransitionScenes.Play("fadeInScene");
+                yield return new WaitForSeconds(transistionTimeScenes);
+            }
             SceneManager.LoadScene(sceneIndex);
         }
         else {    //Se for transi��o entre cen�rios
