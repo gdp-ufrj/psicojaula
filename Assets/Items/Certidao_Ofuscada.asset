@@ -16,7 +16,10 @@ MonoBehaviour:
   itemName: "Certid\xE3o Ofuscada"
   value: 0
   icon: {fileID: 21300000, guid: b1dee8bacec206147a290bb56a160fe7, type: 3}
-  newItem: {fileID: 0}
   nameSoundPickup: pickup_certidao
-  firstPickup: 1
-  dialogueTriggerScript: {fileID: 0}
+  isUsable: 0
+  newItemPrefab: {fileID: 0}
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: d86205a430862e84eade3d1550a17995, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: 87b59403ca0f405499781fa0c0ee9c6e, type: 3}

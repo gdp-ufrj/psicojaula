@@ -16,7 +16,10 @@ MonoBehaviour:
   itemName: Cruz Fria
   value: 0
   icon: {fileID: 21300000, guid: 33e546383109a634f88b999e13bc99d2, type: 3}
-  newItem: {fileID: 0}
   nameSoundPickup: pickup_cruz
-  firstPickup: 1
-  dialogueTriggerScript: {fileID: 0}
+  isUsable: 0
+  newItemPrefab: {fileID: 0}
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: 36a632d035b3d7645a0e74ba0b77e87c, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: b88ff9c14ce743f4ca396aae435232c6, type: 3}

@@ -16,7 +16,10 @@ MonoBehaviour:
   itemName: Espanador
   value: 0
   icon: {fileID: 21300000, guid: c063251411c9c3c4a805b5fe85358f70, type: 3}
-  newItem: {fileID: 0}
   nameSoundPickup: pickup_espanador
-  firstPickup: 1
-  dialogueTriggerScript: {fileID: 0}
+  isUsable: 0
+  newItemPrefab: {fileID: 0}
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: 872a42738ad3cc149a476fc0e54b94c4, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: 810ca07ebf721024297cdf886ea6f893, type: 3}

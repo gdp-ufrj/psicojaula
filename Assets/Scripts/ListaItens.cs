@@ -5,7 +5,7 @@ public class ListaItems : MonoBehaviour
 {
     public static ListaItems Instance;
     public List<ItemInventory> listItems = new List<ItemInventory>();
-    public List<ItemInventory> listaItenslargados = new List<ItemInventory>();
+    public List<Item> listaItenslargados = new List<Item>();
     public GameObject quartoScenarios, depositoScenarios;
     public List<Item> ItensColetados = new List<Item>();
 
@@ -54,7 +54,7 @@ public class ListaItems : MonoBehaviour
         }
         ItensColetados = new List<Item>();
         listItems = new List<ItemInventory>();
-        listaItenslargados = new List<ItemInventory>();
+        listaItenslargados = new List<Item>();
         firstItem = 0;
         lastItem = 0;
         qtdItem = 0;

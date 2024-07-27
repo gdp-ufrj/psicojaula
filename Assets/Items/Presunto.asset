@@ -16,7 +16,10 @@ MonoBehaviour:
   itemName: Presunto
   value: 0
   icon: {fileID: 21300000, guid: d013b6f67603d684a930906b3c941bd2, type: 3}
-  newItem: {fileID: 0}
   nameSoundPickup: pickup_presunto
-  dialogueTriggerScript: {fileID: 0}
   isUsable: 1
+  newItemPrefab: {fileID: 0}
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: ef445a902c8cf7640a9096c417f4573f, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: 69a2b67b194805f40b722a5fd1678a84, type: 3}

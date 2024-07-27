@@ -31,4 +31,11 @@ public class DialogueTrigger : MonoBehaviour
         this.textDialogueSpeed = dialogueTrigger.textDialogueSpeed;
         this.fontSize = dialogueTrigger.fontSize;
     }
-}
+
+    public void setDialogues(TextAsset[] interactionDialogueJSON, TextAsset[] examDialogueJSON)
+    {
+        this.interactionDialogueJSON = interactionDialogueJSON;
+        this.examDialogueJSON = examDialogueJSON;
+    }
+
+}   

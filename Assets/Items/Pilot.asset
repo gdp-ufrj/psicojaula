@@ -16,7 +16,10 @@ MonoBehaviour:
   itemName: Pilot Vermelho
   value: 0
   icon: {fileID: 21300000, guid: f656927d4a4d3c94ebcd3e3f01438742, type: 3}
-  newItem: {fileID: 0}
   nameSoundPickup: pickup_caneta
-  firstPickup: 1
-  dialogueTriggerScript: {fileID: 0}
+  isUsable: 0
+  newItemPrefab: {fileID: 0}
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: f174f7c1a8230924490e2f6b28f939f9, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: f71f5e567800f8648a9eea4ceeb586ba, type: 3}

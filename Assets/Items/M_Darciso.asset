@@ -19,3 +19,7 @@ MonoBehaviour:
   nameSoundPickup: pickup_musica
   isUsable: 0
   newItemPrefab: {fileID: 0}
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: d2b0149f7182ab24ea39a0b5ead5674a, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: 31be4d7ef6e90d549bcf9dd7db758202, type: 3}

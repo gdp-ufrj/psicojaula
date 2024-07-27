@@ -12,4 +12,6 @@ public class Item:ScriptableObject
     public string nameSoundPickup;
     public bool isUsable;
     public GameObject newItemPrefab;
+    public TextAsset[] interactionDialogueJSON, examDialogueJSON;
+    
 }

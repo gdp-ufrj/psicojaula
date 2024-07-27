@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,11 +26,14 @@ public class InventoryManager : MonoBehaviour
             ListItems();
         }
         if (ListaItems.Instance.listaItenslargados.Count > 0) {
-            foreach (ItemInventory i in ListaItems.Instance.listaItenslargados){
-                Add(i.item, i.dialogueTrigger);
+            foreach (Item i in ListaItems.Instance.listaItenslargados){
+                DialogueTrigger newDialogueTrigger = Instantiate(dialogueTriggerPrefab);
+                newDialogueTrigger.setDialogues(i.interactionDialogueJSON, i.examDialogueJSON);
+                newDialogueTrigger.transform.SetParent(ListaItems.Instance.transform);
+                Add(i, newDialogueTrigger);
             }
         }
-        ListaItems.Instance.listaItenslargados = new List<ItemInventory>();
+        ListaItems.Instance.listaItenslargados = new List<Item>();
     }
 
     public void updateItems(List<ItemInventory> items, int first, int last, int qtd)
@@ -47,7 +51,7 @@ public class InventoryManager : MonoBehaviour
         if (dialogueTrigger != null)
         {
             DialogueTrigger newDialogueTrigger = Instantiate(dialogueTriggerPrefab);
-            newDialogueTrigger.SetVariables(dialogueTrigger);
+            newDialogueTrigger.setDialogues(item.interactionDialogueJSON, item.examDialogueJSON);
             newDialogueTrigger.transform.SetParent(ListaItems.Instance.transform);
             itemInventory = new ItemInventory(item, newDialogueTrigger);
         }
@@ -67,6 +71,22 @@ public class InventoryManager : MonoBehaviour
         ListItems();
         updateItems(Items, firstItem, lastItem, qtdItem);
     }
+    public void AddItemIventory(ItemInventory itemInventory)
+    {
+        Items.Add(itemInventory);
+        qtdItem += 1;
+        if (qtdItem <= 4)
+        {
+            lastItem += 1;
+        }
+        else if (lastItem % 4 != 0)
+        {
+            lastItem += 1;
+        }
+        ListItems();
+        updateItems(Items, firstItem, lastItem, qtdItem);
+    }
+
 
     public void Remove(ItemInventory itemInventory)
     {

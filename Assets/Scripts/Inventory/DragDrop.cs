@@ -8,7 +8,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private Canvas canvas;
     RectTransform rectTransform;
     private GameController gameController;
-    private Item item;
+    public Item item;
     private int activeScene;
     public GameObject ItemObject;
 
@@ -58,7 +58,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         DialogueTrigger dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
         ItemInventory itemInventory = new ItemInventory(item, dialogueTrigger);
-        ListaItems.Instance.listaItenslargados.Add(itemInventory);
+        ListaItems.Instance.listaItenslargados.Add(item);
         InventoryManager.Instance.Remove(itemInventory);
 
         GameObject obj = Instantiate(ItemObject, GameObject.Find(activeScene.ToString()).GetComponent<RectTransform>());

@@ -16,8 +16,8 @@ public class ItemPickup : MonoBehaviour, IPointerClickHandler {
         ItemInventory itemInventory = new ItemInventory(Item, dialogueTrigger);
         InventoryManager.Instance.Add(Item, dialogueTrigger);
         ListaItems.Instance.ItensColetados.Add(Item);
-        if (ListaItems.Instance.listaItenslargados.Contains(itemInventory)) {
-            ListaItems.Instance.listaItenslargados.Remove(itemInventory);
+        if (ListaItems.Instance.listaItenslargados.Contains(Item)) {
+            ListaItems.Instance.listaItenslargados.Remove(Item);
         }
         SoundController.GetInstance().PlaySound(Item.nameSoundPickup);
         if (!gameObject.CompareTag("ItemDropped")) {

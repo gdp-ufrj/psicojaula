@@ -16,7 +16,10 @@ MonoBehaviour:
   itemName: Jornal Parte 2
   value: 0
   icon: {fileID: 21300000, guid: cd0883f3ae7171f459ed83ca7d97af9e, type: 3}
-  newItem: {fileID: 11400000, guid: 765e868a658d87648a214c464a5498eb, type: 2}
   nameSoundPickup: pickup_jornal
   isUsable: 0
   newItemPrefab: {fileID: 7992965870666225647, guid: f8c01fbd860df6949a5d492d7c368859, type: 3}
+  interactionDialogueJSON:
+  - {fileID: 4900000, guid: f493eddb003562d4f81bc96b11c95180, type: 3}
+  examDialogueJSON:
+  - {fileID: 4900000, guid: 50863504839462a4282bb13f2e0d36e1, type: 3}
