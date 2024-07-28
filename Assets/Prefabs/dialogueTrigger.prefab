@@ -47,4 +47,4 @@ MonoBehaviour:
   interactionDialogueJSON: []
   examDialogueJSON: []
   textDialogueSpeed: 0.05
-  fontSize: 20
+  fontSize: 16

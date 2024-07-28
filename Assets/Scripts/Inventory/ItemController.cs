@@ -20,18 +20,8 @@ public class ItemController : MonoBehaviour, IDropHandler
                 ListaItems.Instance.listaItenslargados.Remove(Item);
                 InventoryManager.Instance.Remove(itemInventory);
 
-                //GameObject obj = Instantiate(ItemObject, itemObject.transform.parent);
                 GameObject obj = Instantiate(dropItem.newItemPrefab, itemObject.transform.parent);
                 obj.GetComponent<RectTransform>().localPosition = itemObject.GetComponent<RectTransform>().localPosition;
-
-                //var itemIcon = obj.GetComponent<UnityEngine.UI.Image>(); 
-                
-                //itemIcon.sprite = dropItem.newItem.icon;
-                //obj.GetComponent<ItemPickup>().Item = dropItem.newItem;
-                //obj.GetComponent<ItemController>().Item = dropItem.newItem;
-
-                //obj.GetComponent<DialogueTrigger>().SetVariables(dialogueTrigger);
-                
                 Destroy(itemObject); 
                 Destroy(gameObject); 
             }
