@@ -75,7 +75,8 @@ public class Frigobar : MonoBehaviour, IDropHandler, IPointerClickHandler {
             
             rectTransform =  GetComponent<RectTransform>();
             GameObject obj =  Instantiate(Item, Cena);
-            
+            ListaItems.Instance.listaItenslargados.Add(Item.GetComponent<ItemPickup>().Item);
+
             obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
             InventoryManager.Instance.ListItems();
 

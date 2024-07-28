@@ -32,6 +32,7 @@ public class CaixaRevista : MonoBehaviour, IDropHandler, IPointerClickHandler {
 
             rectTransform = GetComponent<RectTransform>();
             GameObject obj = Instantiate(Item, Cena);
+            ListaItems.Instance.listaItenslargados.Add(Item.GetComponent<ItemPickup>().Item);
             obj.transform.localPosition = new Vector3(rectTransform.localPosition.x - 70, rectTransform.localPosition.y - 20, -4);
             InventoryManager.Instance.ListItems();
             Destroy(itemObject);

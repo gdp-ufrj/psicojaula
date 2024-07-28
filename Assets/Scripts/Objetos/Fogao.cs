@@ -41,6 +41,7 @@ public class Fogao : MonoBehaviour, IDropHandler, IPointerClickHandler {
 
             rectTransform = GetComponent<RectTransform>();
             GameObject musicaDarciso = Instantiate(Item, Cena);
+            ListaItems.Instance.listaItenslargados.Add(Item.GetComponent<ItemPickup>().Item);
             musicaDarciso.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
 
             Destroy(itemObject);

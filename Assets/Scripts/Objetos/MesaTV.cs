@@ -16,6 +16,7 @@ public class MesaTV : MonoBehaviour, IPointerClickHandler {
             if (!clicked) {
                 rectTransform = GetComponent<RectTransform>();
                 GameObject obj = Instantiate(Item, Cena);
+                ListaItems.Instance.listaItenslargados.Add(Item.GetComponent<ItemPickup>().Item);
                 obj.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, -4);
                 clicked = true;
 

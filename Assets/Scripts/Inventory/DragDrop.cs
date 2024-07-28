@@ -9,7 +9,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     RectTransform rectTransform;
     private GameController gameController;
     public Item item;
-    private int activeScene;
+    private GameObject activeScene;
     public GameObject ItemObject;
 
     private Image itemImg;
@@ -45,7 +45,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
-        rectTransform.SetParent(GameObject.Find(activeScene.ToString()).GetComponent<RectTransform>());
+        rectTransform.SetParent(activeScene.GetComponent<RectTransform>());
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -61,7 +61,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         ListaItems.Instance.listaItenslargados.Add(item);
         InventoryManager.Instance.Remove(itemInventory);
 
-        GameObject obj = Instantiate(ItemObject, GameObject.Find(activeScene.ToString()).GetComponent<RectTransform>());
+        GameObject obj = Instantiate(ItemObject, activeScene.GetComponent<RectTransform>());
         obj.tag = "ItemDropped";
 
         var itemIcon = obj.GetComponent<UnityEngine.UI.Image>();

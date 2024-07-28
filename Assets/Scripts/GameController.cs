@@ -45,8 +45,8 @@ public class GameController : MonoBehaviour {
             Destroy(gameObject);
     }
 
-    public int GetActiveScene() {
-        return idActiveScenario;
+    public GameObject GetActiveScene() {
+        return currentScenario.ScenarioObject;
     }
 
     private void Start() {
@@ -142,7 +142,7 @@ public class GameController : MonoBehaviour {
 
     private void Update() {
         if(canvasPause != null) {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (Input.GetKeyDown(KeyCode.Escape) && !DialogueController.GetInstance().dialogueActive) {
                 if (canvasConfigs.activeSelf)    //Se estiver no menu de configura��es
                     ExitConfigs();
                 else {

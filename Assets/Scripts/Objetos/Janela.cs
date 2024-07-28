@@ -33,6 +33,7 @@ public class Janela : MonoBehaviour, IDropHandler, IPointerClickHandler {
 
             rectTransform =  GetComponent<RectTransform>();
             GameObject musicaFernanda =  Instantiate(Item, Cena);
+            ListaItems.Instance.listaItenslargados.Add(Item.GetComponent<ItemPickup>().Item);
             musicaFernanda.transform.localPosition = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y-60, -4);
             InventoryManager.Instance.ListItems();
         }
