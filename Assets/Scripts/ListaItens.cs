@@ -37,6 +37,7 @@ public class ListaItems : MonoBehaviour
     public bool firstTimeInPhase1 = true;
     public bool firstTimeInPhase2 = true;
     public bool firstTimeInPhase3 = true;
+    public bool pegouchaveFinal = false;
     private void Awake()
     {
         if (Instance != null)
@@ -83,5 +84,6 @@ public class ListaItems : MonoBehaviour
         firstTimeInPhase1 = true;
         firstTimeInPhase2 = true;
         firstTimeInPhase3 = true;
+        pegouchaveFinal = false;
     }
 }

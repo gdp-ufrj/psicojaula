@@ -26,6 +26,8 @@ public class ItemPickup : MonoBehaviour, IPointerClickHandler {
                     dialogueTrigger.TriggerInteractionDialogue(true);
             }
         }
+        if (Item.id == 15)
+            ListaItems.Instance.pegouchaveFinal = true;
         Destroy(gameObject);
     }
 

@@ -61,6 +61,11 @@ public class GameController : MonoBehaviour {
             }
         }
 
+        if(exitKey != null) {
+            if (ListaItems.Instance.musicaBaixo && ListaItems.Instance.musicaBateria && !ListaItems.Instance.pegouchaveFinal)
+                exitKey.SetActive(true);
+        }
+
         if (SceneManager.GetActiveScene().name.ToUpper().Contains("_1"))
             gamePhase = 1;
         else if (SceneManager.GetActiveScene().name.ToUpper().Contains("_2"))

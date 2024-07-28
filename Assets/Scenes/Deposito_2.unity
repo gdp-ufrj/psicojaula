@@ -4854,18 +4854,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.0000082131
       objectReference: {fileID: 0}
-    - target: {fileID: 5700595919625936107, guid: 5742d332f96ba01478933a38d0d64c84, type: 3}
-      propertyPath: m_Color.b
-      value: 0.13216448
-      objectReference: {fileID: 0}
-    - target: {fileID: 5700595919625936107, guid: 5742d332f96ba01478933a38d0d64c84, type: 3}
-      propertyPath: m_Color.g
-      value: 0.13216448
-      objectReference: {fileID: 0}
-    - target: {fileID: 5700595919625936107, guid: 5742d332f96ba01478933a38d0d64c84, type: 3}
-      propertyPath: m_Color.r
-      value: 0.2830189
-      objectReference: {fileID: 0}
     - target: {fileID: 8272015233035834808, guid: 5742d332f96ba01478933a38d0d64c84, type: 3}
       propertyPath: m_Name
       value: canvasCutsceneMusica

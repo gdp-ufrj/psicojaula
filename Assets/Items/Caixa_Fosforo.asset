@@ -22,4 +22,4 @@ MonoBehaviour:
   interactionDialogueJSON:
   - {fileID: 4900000, guid: 49b6984ec58b7164f9cba49095eeecee, type: 3}
   examDialogueJSON:
-  - {fileID: 4900000, guid: 49b6984ec58b7164f9cba49095eeecee, type: 3}
+  - {fileID: 4900000, guid: a4c1959ae990af54297c1990c435472f, type: 3}
